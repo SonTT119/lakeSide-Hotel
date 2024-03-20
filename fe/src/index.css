@@ -1,0 +1,307 @@
+body {
+  min-height: 100vh;
+  padding-bottom: 50px;
+}
+.card {
+  opacity: 0.9;
+}
+
+/* Navigation bar definitions */
+.navbar {
+  padding: 0;
+  background-color: #7f5353; /* Màu nền cho navbar */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Hiệu ứng bóng đổ */
+}
+
+.navbar .navbar-nav .nav-link {
+  padding: 1em;
+  font-family: 'Roboto', sans-serif; /* Chọn font chữ */
+  font-size: 16px; /* Kích thước font */
+  color: #333; /* Màu chữ */
+}
+
+.navbar .navbar-nav .nav-item {
+  position: relative;
+}
+
+.navbar-toggler {
+  color: #221f1f;
+  border: none;
+}
+
+.navbar .navbar-nav .nav-item::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  content: '';
+  background-color: rgb(169, 77, 123);
+  width: 0;
+  margin: 0 auto;
+  height: 4px;
+  transition: all 0.3s ease; /* Hiệu ứng chuyển động mượt mà */
+}
+
+.navbar .navbar-nav .nav-item:hover::after {
+  width: 100%;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #333; /* Màu chữ khi sử dụng chế độ tối */
+}
+
+.navbar-dark .navbar-brand {
+  color: #333; /* Màu chữ cho brand/logo khi sử dụng chế độ tối */
+}
+
+@media screen and (min-width: 992px) {
+  .navbar {
+    padding: 0;
+  }
+  .navbar .navbar-nav .nav-link {
+    padding: 1em 0;
+  }
+  .navbar .navbar-nav .nav-item {
+    margin: 0 1em;
+  }
+}
+
+
+  /* Hotel custom color */
+.btn-hotel{
+  background-color: rgb(80, 90, 129);
+  color: #fff;
+  margin-left: 10px;
+}
+.btn-hotel:hover{
+  background-color: rgb(137, 127, 132);
+  color: #fff;
+  transition: 0.7s;
+  outline-color: transparent;
+  outline-style:solid;
+}
+
+.hotel-color{
+  color: rgb(169, 77, 123);
+}
+
+/* Room card definitions */
+  .room-price{
+    color:darkgoldenrod;
+    font-family: 'Courier New', Courier, monospace;
+    font-size:medium;
+  }
+  .vertical-rule{
+    border-left: '0.5px solid black';
+    height: '100vh'
+  }
+
+.button-carousel{
+  background-color: rgb(7, 32, 71);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.7s;
+  outline-color: transparent;
+  outline-style:solid;
+
+}
+.card-body{
+  background-color: rgb(23, 36, 36);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.7s;
+  outline-color: transparent;
+  outline-style:solid;
+
+
+}
+.button-carousel:hover{
+  background-color: rgb(137, 127, 132);
+  color: #fff;
+  transition: 0.7s;
+  outline-color: transparent;
+  outline-style:solid;
+}
+.search-room{
+  background-color: rgb(75, 74, 57);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.7s;
+  outline-color: transparent;
+  outline-style:solid;
+
+}
+
+.card-room{
+  background-color: rgb(23, 36, 36);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.7s;
+  outline-color: transparent;
+  outline-style:solid;
+
+}
+
+
+.parallax {
+  background-image: url("D:\lakeSide_Hotel\client\lakeSide_Hotel\src\assets\images\images1.jpeg");
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 50vh;
+}
+
+.header {
+  position: relative;
+  height: 150px;
+  background-size: cover;
+  background-image: url("D:\lakeSide_Hotel\client\lakeSide_Hotel\src\assets\images\images1.jpeg");
+  background-position: center center;
+}
+.header-title {
+  color: #fff;
+  font-size: 4rem;
+  align-content: center;
+}
+
+.parallax {
+  margin-top: 50px;
+  color: white;
+  text-shadow: 2px 2px black;
+}
+
+.animated {
+  animation-duration: 1s;
+}
+
+.animated-texts h1 {
+  animation: fadeInDown 1s ease-in-out;
+}
+
+.animated-texts p, h1, h2 {
+  animation: fadeInUp 1s ease-in-out;
+}
+
+.button-card {
+  animation: bounceIn 1s ease-in-out;
+  animation-delay: 0.5s;
+  animation-fill-mode: both;
+  animation-iteration-count: 1;
+  animation-play-state: running;
+  animation-timing-function: ease-in-out;
+  animation-direction: normal;
+}
+@keyframes bounceIn {
+  from, 20%, 40%, 60%, 80%, to {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transform: translate3d(0,0,0);
+  }
+
+  40%, 60% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -30px, 0);
+  }
+
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -15px, 0);
+  }
+
+  90% {
+    transform: translate3d(0,-4px,0);
+  }
+}
+
+.bounceIn {
+  animation-name: bounceIn;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -50%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 50%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* Header overlay */
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  .overlay-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    justify-content: flex-start;
+  }
+
+/* The header banner */
+.header-banner {
+  background-image:  url("D:\lakeSide_Hotel\client\lakeSide_Hotel\src\assets\images\images1.jpeg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  height: 80vh;
+}
+
+.header-banner {
+  position: relative;
+  height: 500px;
+}
+
+@media only screen and (max-width: 768px) {
+  .header-banner h1 {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .header-banner h1 {
+    font-size: 16px;
+  }
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #f5f5f5;
+  height: 60px;
+  text-align: center;
+}
