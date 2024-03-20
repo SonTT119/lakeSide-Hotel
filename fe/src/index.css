@@ -156,7 +156,7 @@ body {
 
 
 .parallax {
-  background-image: url("D:\lakeSide_Hotel\client\lakeSide_Hotel\src\assets\images\images1.jpeg");
+  background-image: url("D:\lakeSide_Hotel\lakeSide-Hotel\fe\src\assets\images\images1.jpeg");
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -168,7 +168,7 @@ body {
   position: relative;
   height: 150px;
   background-size: cover;
-  background-image: url("D:\lakeSide_Hotel\client\lakeSide_Hotel\src\assets\images\images1.jpeg");
+  background-image: url("D:\lakeSide_Hotel\lakeSide-Hotel\fe\src\assets\images\images1.jpeg");
   background-position: center center;
 }
 .header-title {
@@ -272,7 +272,7 @@ body {
 
 /* The header banner */
 .header-banner {
-  background-image:  url("D:\lakeSide_Hotel\client\lakeSide_Hotel\src\assets\images\images1.jpeg");
+  background-image:  url("D:\lakeSide_Hotel\lakeSide-Hotel\fe\src\assets\images\images1.jpeg");
   background-size: cover;
   background-position: center;
   position: relative;
