@@ -65,4 +65,10 @@ public class RoleController {
             @RequestParam Long roleId) {
         return roleService.assignRoleToUser(userId, roleId);
     }
+
+    // get All users with a specific role
+    @GetMapping("/users/{roleId}")
+    public ResponseEntity<?> getUsersWithRole(@PathVariable Long roleId) {
+        return ResponseEntity.ok(roleService.getUsersWithRole(roleId));
+    }
 }

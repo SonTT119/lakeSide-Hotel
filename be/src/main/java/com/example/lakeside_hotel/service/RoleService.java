@@ -1,5 +1,6 @@
 package com.example.lakeside_hotel.service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,6 +78,12 @@ public class RoleService implements IRoleService {
     public void deleteRole(Long roleId) {
         this.removeAllUserFromRole(roleId);
         roleRepository.deleteById(roleId);
+    }
+
+    @Override
+    public Optional<User> getUsersWithRole(Long roleId) {
+        Optional<Role> role = roleRepository.findById(roleId);
+        return role.map(Role::getUsers).map(Collection::stream).orElse(null).findFirst();
     }
 
 }

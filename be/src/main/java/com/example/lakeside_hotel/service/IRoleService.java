@@ -1,6 +1,7 @@
 package com.example.lakeside_hotel.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.lakeside_hotel.model.Role;
 import com.example.lakeside_hotel.model.User;
@@ -17,6 +18,8 @@ public interface IRoleService {
     User removeUserFromRole(Long userId, Long roleId);
 
     User assignRoleToUser(Long userId, Long roleId);
+
+    Optional<User> getUsersWithRole(Long roleId);
 
     Role removeAllUserFromRole(Long roleId);
 
