@@ -242,10 +242,7 @@ export async function updateUser(userId, userData){
     formData.append('firstName', userData.firstName);
     formData.append('lastName', userData.lastName);
     formData.append('email', userData.email);
-    const response = await api.put(`/users/update/${userId}`, formData,
-    {
-        headers: getHeader()
-    })
+    const response = await api.put(`/users/update/${userId}`, formData)
     return response
 }
 

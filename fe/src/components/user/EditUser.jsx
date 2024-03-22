@@ -53,6 +53,12 @@ const EditUser = () => {
                 setErrorMessage("An unexpected error occurred while updating user");
             }
         }
+
+        setTimeout(() =>{
+            setMessage("")
+            setErrorMessage("")
+        
+        },3000)
     }
     
 
