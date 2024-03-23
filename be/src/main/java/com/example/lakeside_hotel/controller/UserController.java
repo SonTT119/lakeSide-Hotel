@@ -35,6 +35,7 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
+    // get user by email
     @GetMapping("/{email}")
     // @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')")
     public ResponseEntity<?> getUserByEmail(@PathVariable String email) {

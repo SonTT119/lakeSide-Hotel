@@ -1,6 +1,6 @@
 import moment from "moment"
 import React, { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { deleteUser, getBookingsByUserId, getUser } from "../utils/ApiFunctions"
 
 const Profile = () => {
@@ -195,13 +195,9 @@ const Profile = () => {
 								<p>You have not made any bookings yet.</p>
 							)}
 
-							{/* <div className="d-flex justify-content-center">
-								<div className="mx-2">
-									<button className="btn btn-danger btn-sm" onClick={handleDeleteAccount}>
-										Close account
-									</button>
-								</div>
-							</div> */}
+							<Link to="/edit-profile" className="btn btn-warning">
+								Edit Profile
+							</Link>
 						</div>
 					</div>
 				</div>

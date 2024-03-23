@@ -1,7 +1,9 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import { Link } from "react-router-dom"
+import { AuthContext } from "../auth/AuthProvider"
 import RoomTypeSelector from "../common/RoomTypeSelector"
 import { addRoom } from "../utils/ApiFunctions"
+
 
 const AddRoom = () => {
     const[newRoom, setNewRoom] = useState({
@@ -58,75 +60,95 @@ const AddRoom = () => {
             setErrorMessage("")
         }, 3000)
     }
+
+    const{user} = useContext(AuthContext)
+
+    const isLoggedIn = user !== null
+
+	const userRole = localStorage.getItem("userRole")
+
     return (
         <>
-            <section className="container mt-5 mb-5">
-                <div className="row justify-content-center ">
-                    <div className="col-md-8 col-lg-6">
-                        <h2 className="mt-5 mb-2">Add New Room</h2>
-                        {successMessage && (
-							<div className="alert alert-success fade show"> {successMessage}</div>
-						)}
+            {isLoggedIn && userRole === "ROLE_ADMIN" && (
+                <section className="container mt-5 mb-5">
+                    <div className="row justify-content-center ">
+                        <div className="col-md-8 col-lg-6">
+                            <h2 className="mt-5 mb-2">Add New Room</h2>
+                            {successMessage && (
+                                <div className="alert alert-success fade show"> {successMessage}</div>
+                            )}
 
-						{errorMessage && <div className="alert alert-danger fade show"> {errorMessage}</div>}
-                        <form onSubmit={handleSubmit}>
-                            <div className="mb-3">
-                                <label htmlFor="roomType" className="form-label">
-                                    Room Type
-                                </label>
-                                <div>
-                                    <RoomTypeSelector handleRoomInputChange={handleRoomInputChange}
-                                    newRoom={newRoom}/>
+                            {errorMessage && <div className="alert alert-danger fade show"> {errorMessage}</div>}
+                            <form onSubmit={handleSubmit}>
+                                <div className="mb-3">
+                                    <label htmlFor="roomType" className="form-label">
+                                        Room Type
+                                    </label>
+                                    <div>
+                                        <RoomTypeSelector handleRoomInputChange={handleRoomInputChange}
+                                        newRoom={newRoom}/>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div className="mb-3">
-                                <label htmlFor="roomPrice" className="form-label">
-                                    Room Price
-                                </label>
-                                <input
-                                    className="form-control"
-                                    required
-                                    id="roomPrice"
-                                    type="number"
-                                    name="roomPrice"
-                                    value={newRoom.roomPrice}
-                                    onChange={handleRoomInputChange}
-                                />
-                            </div>
+                                
+                                <div className="mb-3">
+                                    <label htmlFor="roomPrice" className="form-label">
+                                        Room Price
+                                    </label>
+                                    <input
+                                        className="form-control"
+                                        required
+                                        id="roomPrice"
+                                        type="number"
+                                        name="roomPrice"
+                                        value={newRoom.roomPrice}
+                                        onChange={handleRoomInputChange}
+                                    />
+                                </div>
 
-                            <div className="mb-3">
-                                <label htmlFor="photo" className="form-label">
-                                    Room Photo
-                                </label>
-                                <input
-                                    name="photo"
-                                    id="photo"
-                                    type="file"
-                                    className="form-control"
-                                    required
-                                    onChange={handleImageChange}
-                                />
-                                {imagePreview && (
-                                    <img
-                                        src={imagePreview}
-                                        alt="Preview Room Photo"
-                                        style={{maxWidth:"400px", maxHeight: "400px"}}
-                                        className="img-fluid mt-3"></img>
-                                )}
-                            </div>
-                            <div className="d-grid gap-2 d-md-flex mt-2">
-                                <Link to = {"/existing-rooms"} className="btn btn-outline-info">
-                                    Back
-                                </Link>
-                                <button className="btn btn-outline-primary ml-5">
-                                    Save room
-                                </button>
-                            </div>
-                        </form>
+                                <div className="mb-3">
+                                    <label htmlFor="photo" className="form-label">
+                                        Room Photo
+                                    </label>
+                                    <input
+                                        name="photo"
+                                        id="photo"
+                                        type="file"
+                                        className="form-control"
+                                        required
+                                        onChange={handleImageChange}
+                                    />
+                                    {imagePreview && (
+                                        <img
+                                            src={imagePreview}
+                                            alt="Preview Room Photo"
+                                            style={{maxWidth:"400px", maxHeight: "400px"}}
+                                            className="img-fluid mt-3"></img>
+                                    )}
+                                </div>
+                                <div className="d-grid gap-2 d-md-flex mt-2">
+                                    <Link to = {"/existing-rooms"} className="btn btn-outline-info">
+                                        Back
+                                    </Link>
+                                    <button className="btn btn-outline-primary ml-5">
+                                        Save room
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            )}
+
+            {(!isLoggedIn || userRole !== "ROLE_ADMIN") && (
+                    <div className="container mt-5">
+                        <div className="row justify-content-center">
+                            <div className="col-md-8 col-lg-6">
+                                <h2 className="mt-5 mb-2">You are not authorized to view this page</h2>
+                                <Link to={"/"} className="btn btn-outline-info">Back to Home</Link>
+                            </div>
+                        </div>
+                    </div>
+            )}
         </>
     )
 }

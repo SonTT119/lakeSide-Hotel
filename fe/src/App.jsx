@@ -3,6 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Admin from "./components/admin/Admin";
 import { AuthProvider } from "./components/auth/AuthProvider";
+import EditProfile from "./components/auth/EditProfile";
 import Login from "./components/auth/Login";
 import Profile from "./components/auth/Profile";
 import Registration from "./components/auth/Registration";
@@ -48,6 +49,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/existing-users" element={<ExistingUsers/>} />
             <Route path="/user/edit/:userId" element={<EditUser />} />
+            <Route path="/edit-profile" element={<EditProfile />} />
           </Routes>
           <Footer/>
         </Router>
