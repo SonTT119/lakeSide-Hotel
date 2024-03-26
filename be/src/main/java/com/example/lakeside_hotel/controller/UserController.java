@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.lakeside_hotel.exception.ResourceNotFoundException;
 import com.example.lakeside_hotel.model.User;
 import com.example.lakeside_hotel.reponse.UserResponse;
+import com.example.lakeside_hotel.request.UpdatePasswordRequest;
 import com.example.lakeside_hotel.service.IUserService;
 
 import lombok.RequiredArgsConstructor;
@@ -74,6 +76,27 @@ public class UserController {
         }
     }
 
+    // delete user by id
+    @DeleteMapping("/delete-user/{userId}")
+    public ResponseEntity<String> deleteUserById(@PathVariable Long userId) {
+        try {
+            if (!userService.getUserById(userId).isPresent()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+            }
+            if (userService.getUserById(userId).get().getRoles().stream()
+                    .anyMatch(role -> role.getName().equals("ROLE_ADMIN"))) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Admin user cannot be deleted");
+            }
+            userService.deleteUserById(userId);
+            return ResponseEntity.ok("User deleted successfully");
+
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error deleting user");
+        }
+    }
+
     // @PutMapping("/update/{email}")
     // @PreAuthorize("hasRole('ROLE_ADMIN') or (hasRole('ROLE_USER') and #email ==
     // principal.username)")
@@ -119,4 +142,16 @@ public class UserController {
                 existingUser.getEmail());
     }
 
+    // update password
+    @PutMapping("/update-password")
+    public ResponseEntity<String> updatePassword(@RequestBody UpdatePasswordRequest updatePasswordRequest) {
+        try {
+            userService.updatePassword(updatePasswordRequest);
+            return ResponseEntity.ok("Password updated successfully");
+        } catch (UsernameNotFoundException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating password");
+        }
+    }
 }

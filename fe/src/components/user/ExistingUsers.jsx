@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { FaEdit, FaEye, FaTrash } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../auth/AuthProvider'
-import { deleteUser, getAllUsers } from '../utils/ApiFunctions'
+import { deleteUserById, getAllUsers } from '../utils/ApiFunctions'
 
 
 // import UserFilter from '../common/UserFilter'
@@ -49,23 +49,24 @@ const ExistingUsers = () => {
         setCurrentPage(pageNumber)
     }
 
-    const handleDeleteUser = async(userId) => {
-        try {
-            const result = await deleteUser(userId)
-            if(result === ""){
-                setSuccessMessage(`User No ${userId} deleted successfully`)
-                fetchUsers()
-            } else {
-                console.error( `Error deleting user: ${result.message}`)
+    const handleDeleteUser = async (userId) => {
+        const confirmed = window.confirm("Are you sure you want to delete this user?")
+        if (confirmed) {
+            try {
+                const response = await deleteUserById(userId)
+                if (response) {
+                    setSuccessMessage("User deleted successfully!")
+                    setTimeout(() => {
+                        setSuccessMessage("")
+                    }, 5000)
+                    fetchUsers()
+                }
+            } catch (error) {
+                setErrorMessage(error.message)
             }
-        } catch (error) {
-            setErrorMessage(error.message)
         }
-        setTimeout(() => {
-            setSuccessMessage("")
-            setErrorMessage("")
-        }, 3000)
     }
+
 
     const calculateTotalPages = (filteredUsers, usersPerPage, users) => {
         const totalUsers = filteredUsers.length > 0 ? filteredUsers.length : users.length

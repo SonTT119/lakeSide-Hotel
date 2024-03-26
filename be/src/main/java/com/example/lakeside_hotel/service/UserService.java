@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import com.example.lakeside_hotel.model.Role;
 import com.example.lakeside_hotel.model.User;
 import com.example.lakeside_hotel.repository.RoleRepository;
 import com.example.lakeside_hotel.repository.UserRepository;
+import com.example.lakeside_hotel.request.UpdatePasswordRequest;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -71,7 +73,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User updateUser(Long userId, String firstName, String lastName, String email) throws NoSuchElementException {
+    public User updateUser(Long userId, String firstName, String lastName, String email) {
         Optional<User> optionalUser = userRepository.findById(userId);
         User user = optionalUser.orElseThrow(() -> new NoSuchElementException("No user found with id " + userId));
 
@@ -90,4 +92,29 @@ public class UserService implements IUserService {
         userRepository.save(user);
         return user;
     }
+
+    @Override
+    public void updatePassword(UpdatePasswordRequest updatePasswordRequest) {
+        User currentUser = getCurrentUserLogin();
+        String currentPassword = new String(updatePasswordRequest.getOldPassword());
+        if (!passwordEncoder.matches(currentPassword, currentUser.getPassword())) {
+            throw new UserAlreadyExistException("Wrong credentials!");
+        }
+
+        String newPassword = new String(updatePasswordRequest.getNewPassword());
+        currentUser.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(currentUser);
+
+    }
+
+    private User getCurrentUserLogin() {
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        return getUserByEmail(email);
+    }
+
+    @Override
+    public void deleteUserById(Long userId) {
+        userRepository.deleteById(userId);
+    }
+
 }

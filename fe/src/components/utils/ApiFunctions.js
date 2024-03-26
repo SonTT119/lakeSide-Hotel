@@ -181,11 +181,11 @@ export async function getUserProfile(userId, token) {
 }
 
 /* This isthe function to delete a user */
-export async function deleteUser(userId) {
+export async function deleteUser(email) {
 	try {
-		const response = await api.delete(`/users/delete/${userId}`, {
-			headers: getHeader()
-		})
+		const response = await api.delete(`/users/delete/${email}`,
+        { headers: getHeader() }
+        )
 		return response.data
 	} catch (error) {
 		return error.message
@@ -257,9 +257,19 @@ export async function getUserById(userId) {
         if (error.response && error.response.status === 404) {
             throw new Error(`User with ID ${userId} not found`)
         } else {
-            throw new Error(`Error fetching user ${userId}: ${error.message}`)
+            throw new Error(`Error fetching user ${userId}: cannot delete user ${userId}`)
         }
     }
 }
 
-
+export async function deleteUserById(userId) {
+    try {
+        const response = await api.delete(`/users/delete-user/${userId}`,
+        {
+            headers: getHeader()
+        })
+        return response.data
+    } catch (error) {
+        throw new Error(`Error deleting user ${userId}: ${error.message}`)
+    }
+}
