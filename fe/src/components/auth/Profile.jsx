@@ -195,9 +195,14 @@ const Profile = () => {
 								<p>You have not made any bookings yet.</p>
 							)}
 
-							<Link to="/edit-profile" className="btn btn-warning">
-								Edit Profile
-							</Link>
+							<div className="d-grid gap-2 d-md-flex mt-2">
+								<Link to="/edit-profile" className="btn btn-outline-warning">
+									Edit Profile
+								</Link>
+								{/* <button className="btn btn-outline-danger" onClick={handleDeleteAccount}>
+									Delete Account
+								</button> */}
+							</div>
 						</div>
 					</div>
 				</div>

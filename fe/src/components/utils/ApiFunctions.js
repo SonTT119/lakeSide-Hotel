@@ -246,7 +246,7 @@ export async function updateUser(userId, userData){
     return response
 }
 
-export async function getUserById(userId, token) {
+export async function getUserById(userId) {
     try {
         const response = await api.get(`/users/user/${userId}`,
         {

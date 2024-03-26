@@ -1,70 +1,59 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react'
 import { getUserById, updateUser } from '../utils/ApiFunctions'
 
 
-const EditProfile = () => {
-    
-    const [user, setEditUser] = useState({
-        email: "",
-        firstName: "",
-        lastName: ""
-    })
+const EditProfile = ({user}) => {
+	const[formData, setFormData] = useState({
+		id: user.id,
+		email: user.email,
+		firstName: user.firstName,
+		lastName: user.lastName
+	})
 
-    const [message, setMessage] = useState("")
+	const [message, setMessage] = useState("")
 	const [errorMessage, setErrorMessage] = useState("")
-	const navigate = useNavigate()
 
-	const userId = localStorage.getItem("userId")
-	const token = localStorage.getItem("token")
-
-    const handleInputChange = (event) => {
-        const { name, value } = event.target
-        setEditUser({ ...user, [name]: value })
-    }
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await updateUser(userId, user);
-            if (response) {
-                setMessage("User updated successfully!");
-                const updatedUserData = await getUserById(userId);
-                setUser(updatedUserData);
-                setErrorMessage("");
-            } else {
-                setErrorMessage("Error updating user: Response is empty");
-            }
-        } catch (error) {
-            console.error("Error updating user:", error);
-            if (error.response && error.response.data && error.response.data.message) {
-                setErrorMessage(error.response.data.message);
-            } else {
-                setErrorMessage("An unexpected error occurred while updating user");
-            }
-        }
-
-        setTimeout(() =>{
-            setMessage("")
-            setErrorMessage("")
-        
-        },3000)
-    }
-
-	useEffect(() => {
-		const fetchUser = async () => {
-			try {
-                const userData = await getUserById(userId, token)
-                setUser(userData)
-			} catch (error) {
-				console.error(error)
+	const handleChange = (e) => {
+		const {name, value} = e.target
+		setFormData({
+			...formData,
+			[name]: value
+		})
+	}
+	
+	const handleSubmit = async (e) => {
+		e.preventDefault()
+		try {
+			const response = await updateUser(user.id, formData)
+			if (response) {
+				setMessage("User updated successfully!")
+				const updatedUserData = await getUserById(user.id)
+				setFormData(updatedUserData)
+				setErrorMessage("")
+			}
+			else {
+				setErrorMessage("Error updating user: Response is empty")
 			}
 		}
+		catch (error) {
+			console.error("Error updating user:", error)
+			if (error.response && error.response.data && error.response.data.message) {
+				setErrorMessage(error.response.data.message)
+			}
+			else {
+				setErrorMessage("An unexpected error occurred while updating user")
+			}
+		}
+		setTimeout(() => {
+			setMessage("")
+			setErrorMessage("")
+		}
+		, 5000)
+	}
 
-		fetchUser()
-	}, [userId])
 
     return (
+		
         <div className="container">
 			{errorMessage && <p className="text-danger">{errorMessage}</p>}
 			{message && <p className="text-danger">{message}</p>}
@@ -88,34 +77,30 @@ const EditProfile = () => {
 
 									<div className="col-md-10">
 										<div className="card-body">
-											{/* <div className="form-group row">
+											<div className="form-group row">
 												<label className="col-md-2 col-form-label fw-bold">ID:</label>
 												<div className="col-md-10">
-													<p className="card-text">{user.id}</p>
-												</div>
-											</div> */}
-											<hr />
-
-											<div className="form-group row">
-												<label className="col-md-2 col-form-label fw-bold">First Name:</label>
-												<div className="col-md-10">
-													<p className="card-text">{user.firstName}</p>
+													<p className="card-text">{formData.id}</p>
 												</div>
 											</div>
 											<hr />
 
 											<div className="form-group row">
+												<label className="col-md-2 col-form-label fw-bold">First Name:</label>
+													<input type="text" className="form-control" name="firstName" value={formData.firstName} onChange={handleChange} />
+											</div>
+											<hr />
+
+											<div className="form-group row">
 												<label className="col-md-2 col-form-label fw-bold">Last Name:</label>
-												<div className="col-md-10">
-													<p className="card-text">{user.lastName}</p>
-												</div>
+													<input type="text" className="form-control" name="lastName" value={formData.lastName} onChange={handleChange} />
 											</div>
 											<hr />
 
 											<div className="form-group row">
 												<label className="col-md-2 col-form-label fw-bold">Email:</label>
 												<div className="col-md-10">
-                                                <input type="email" className="form-control" id="email" name="email" value={user.email} onChange={handleInputChange} required />
+                                                <input type="email" className="form-control" id="email" name="email" value={formData.email} onChange={handleChange} required />
 												</div>
 											</div>
 											<hr />
