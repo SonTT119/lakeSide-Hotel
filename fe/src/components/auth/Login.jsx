@@ -1,7 +1,11 @@
 import React, { useContext, useState } from 'react'
+import { FaLock } from 'react-icons/fa'
+import { MdEmail } from 'react-icons/md'
 import { Link, useNavigate } from 'react-router-dom'
 import { login } from '../utils/ApiFunctions'
 import { AuthContext } from './AuthProvider'
+// import "./login.css"
+// import "./Login.css"
 
 const Login = () => {
     const[errorMessages, setErrorMessages] = useState("")
@@ -38,45 +42,47 @@ const Login = () => {
         }, 3000)
     }
     return (
-        <section className='container col-6 mt-5 mb-5'>
-            {errorMessages && <div className="alert alert-danger">{errorMessages}</div>}
-            <h2>Login</h2>
-            <form onSubmit={handleSubmit}>
-                <div className="row mb-3">
-                    <label htmlFor="email" className="col-sm-2 col-form-label">Email</label>
-                    <div>
+        <div className='wrapper-background'>
+            <div className='wrapper'>
+                <form onSubmit={handleSubmit}>
+                    <h1>Login</h1>
+                    {errorMessages && <div className="alert alert-danger">{errorMessages}</div>}
+                    <div className="input-box">
+                        {/* <label htmlFor="email">Email</label> */}
                         <input type="email"
-                        className="form-control"
+                        // className="form-control"
                         id="email"
                         name="email"
+                        placeholder='Email'
                         value={loginData.email}
                         onChange={handleInputChange}
                         required />
+                        <MdEmail className='icon'/>
                     </div>
-                </div>
-                <div className="row mb-3">
-                    <label htmlFor="password" className="col-sm-2 col-form-label">Password</label>
-                    <div>
+                    <div className="input-box">
+                        {/* <label htmlFor="password">Password</label> */}
                         <input type="password"
-                        className="form-control"
+                        // className="form-control"
                         id="password"
                         name="password"
+                        placeholder='Password'
                         value={loginData.password}
                         onChange={handleInputChange}
                         required />
+                        <FaLock className='icon'/>
                     </div>
-                </div>
-                <div className="mb-3">
-                    <button type="submit"
-                    style={{marginRight:"10px"}}
-                    className="btn btn-hotel">Login</button>
-                    <span style={{marginRight:"10px"}}>
-                        Don't have an account? <Link to="/register">Register</Link>
-                    </span>
-                </div>
-                
-            </form>
-        </section>
+                    <div className='remember-forgot'>
+                        <label><input type="checkbox" />Remember me</label>
+                        <a href="#">Forgot password?</a>
+                    </div>
+                    <button type="submit">Login</button>
+                    <div className='sign-up'>
+                        <span>Don't have an account? <Link to="/register">Register</Link></span>
+                    </div>
+
+                </form>
+            </div>
+        </div>
     )
 }
 

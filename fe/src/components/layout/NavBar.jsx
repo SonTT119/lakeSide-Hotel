@@ -22,7 +22,7 @@ const Navbar = () => {
             <div className="container-fluid">
                 <Link to={"/"} className="navbar-brand">
                     <span className="hotel-color">
-                        lakeSide Hotel
+                        LakeSide Hotel
                     </span>
                 </Link>
                 <button className="navbar-toggler"

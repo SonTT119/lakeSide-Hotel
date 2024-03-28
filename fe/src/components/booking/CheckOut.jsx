@@ -3,7 +3,7 @@ import { FaCar, FaParking, FaTshirt, FaTv, FaUtensils, FaWifi, FaWineGlassAlt } 
 import { useParams } from 'react-router-dom'
 import RoomCarousel from '../common/RoomCarousel'
 import AddReview from '../review/AddReview'
-import Review from '../review/Review'
+// import Review from '../review/Review'
 import { getRoomById } from '../utils/ApiFunctions'
 import BookingForm from './BookingForm'
 
@@ -89,7 +89,7 @@ const CheckOut = () => {
             </section>
             <div className='container'>
                 {/* <Review id={roomId}/> */}
-                <Review/>
+                {/* <Review/> */}
                 <AddReview/>
                 <RoomCarousel/>
             </div>
