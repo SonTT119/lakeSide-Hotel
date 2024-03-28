@@ -1,11 +1,12 @@
 package com.example.lakeside_hotel.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.example.lakeside_hotel.model.Review;
+import com.example.lakeside_hotel.model.Room;
+import com.example.lakeside_hotel.model.User;
 import com.example.lakeside_hotel.repository.ReviewRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -17,11 +18,24 @@ public class ReviewService implements IReviewService {
 
     @Override
     public void deleteReview(Long reviewId) {
-        Optional<Review> theReview = reviewRepository.findById(reviewId);
-        if (theReview.isEmpty()) {
-            throw new RuntimeException("Review not found");
-        }
         reviewRepository.deleteById(reviewId);
+    }
+
+    @Override
+    public List<Review> getReviewsByRoomId(Long roomId) {
+        return reviewRepository.findByRoomId(roomId);
+    }
+
+    @Override
+    public List<Review> getReviewsByUserId(Long userId) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public Review updateReview(Long reviewId, String comment, int rating) {
+        // TODO Auto-generated method stub
+        return null;
     }
 
     @Override
@@ -30,45 +44,17 @@ public class ReviewService implements IReviewService {
     }
 
     @Override
-    public Review getReviewById(Long reviewId) {
-        Optional<Review> theReview = reviewRepository.findById(reviewId);
-        if (theReview.isEmpty()) {
-            throw new RuntimeException("Review not found");
-        }
-        return theReview.get();
-    }
-
-    @Override
-    public List<Review> getReviewsByRating(int rating) {
-        return reviewRepository.findByRating(rating);
-    }
-
-    @Override
-    public List<Review> getReviewsByRoom(Long roomId) {
-        return reviewRepository.findByRoomId(roomId);
-    }
-
-    @Override
-    public List<Review> getReviewsByUser(Long userId) {
-        return reviewRepository.findByUserId(userId);
-    }
-
-    @Override
-    public Review updateReview(Long reviewId, int rating, String comment) {
-        Optional<Review> theReview = reviewRepository.findById(reviewId);
-        if (theReview.isEmpty()) {
-            throw new RuntimeException("Review not found");
-        }
-        Review review = theReview.get();
-        review.setRating(rating);
+    public Review addReview(Long userId, Long roomId, String comment, int rating) {
+        Review review = new Review();
+        User user = new User();
+        user.setId(userId);
+        Room room = new Room();
+        room.setId(roomId);
+        review.setUser(user);
+        review.setRoom(room);
         review.setComment(comment);
+        review.setRating(rating);
         return reviewRepository.save(review);
-    }
-
-    @Override
-    public Review savaReview(Review review) {
-        Review newReview = reviewRepository.save(review);
-        return newReview;
     }
 
 }

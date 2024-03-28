@@ -37,6 +37,7 @@ function App() {
             <Route path="/book-room/:roomId" element={
               <RequireAuth>
 								<CheckOut />
+                {/* <Review /> */}
 							</RequireAuth>} />
             <Route path="/existing-rooms" element={<ExistingRooms />} />
             <Route path="/browse-all-rooms" element={<RoomListing/>} />

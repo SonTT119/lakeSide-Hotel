@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { FaCar, FaParking, FaTshirt, FaTv, FaUtensils, FaWifi, FaWineGlassAlt } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
 import RoomCarousel from '../common/RoomCarousel'
+import AddReview from '../review/AddReview'
+import Review from '../review/Review'
 import { getRoomById } from '../utils/ApiFunctions'
 import BookingForm from './BookingForm'
 
@@ -86,6 +88,9 @@ const CheckOut = () => {
                 </div>
             </section>
             <div className='container'>
+                {/* <Review id={roomId}/> */}
+                <Review/>
+                <AddReview/>
                 <RoomCarousel/>
             </div>
         </div>

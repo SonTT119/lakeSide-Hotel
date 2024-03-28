@@ -273,3 +273,43 @@ export async function deleteUserById(userId) {
         throw new Error(`Error deleting user ${userId}: ${error.message}`)
     }
 }
+
+export async function getAllReview() {
+    try {
+        const response = await api.get("/review/get-all-reviews")
+        return response.data
+    } catch (error) {
+        throw new Error("Error fetching reviews")
+    }
+}
+
+// export async function addReview(review) {
+//     try {
+//         const response = await api.post("/review/save-review", review,{
+//             headers: getHeader()
+//         })
+//         return response.data
+//     } catch (error) {
+//         throw new Error(`Error adding review: ${error.message}`)
+//     }
+// }
+
+export async function getAllReviewsByRoomId(roomId) {
+    try {
+        const response = await api.get(`review/get_reviews_by_room_id/${roomId}`)
+        return response.data
+    } catch (error) {
+        throw new Error(`Error fetching reviews for room ${roomId}: ${error.message}`)
+    }
+}
+
+export async function addReviews(roomId, comment, rating) {
+    try {
+        const response = await api.post(`/review/add_review/room/${roomId}`, {comment, rating},{
+            headers: getHeader()
+        })
+        return response.data
+    } catch (error) {
+        throw new Error(`Error adding review: ${error.message}`)
+    }
+}

@@ -1,7 +1,8 @@
 import moment from 'moment'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Form } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
+import { AuthContext } from '../auth/AuthProvider'
 import { bookRoom, getRoomById } from '../utils/ApiFunctions'
 import BookingSummary from './BookingSummary'
 
@@ -25,6 +26,8 @@ const BookingForm = () => {
         roomType: "",
         roomPrice: ""
     })
+
+    const { isAuthenticated } = useContext(AuthContext);
 
     const{roomId} = useParams()
     const navigate = useNavigate()
@@ -76,12 +79,17 @@ const BookingForm = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         const form = e.currentTarget
-        if (form.checkValidity() === false || !isGuestCountValid() || !isCheckOutDateValid()){
-            e.stopPropagation()
+        if (isAuthenticated){
+            if (form.checkValidity() === false || !isGuestCountValid() || !isCheckOutDateValid()){
+                e.stopPropagation()
+            }else{
+                setIsSubmitted(true)
+            }
+            setIsValidated(true)
         }else{
-            setIsSubmitted(true)
+            alert("Please login to continue")
+            // navigate("/login")
         }
-        setIsValidated(true)
     }
 
     const handleBooking = async() => {
