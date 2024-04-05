@@ -1,4 +1,4 @@
-package com.example.lakeside_hotel.service;
+package com.example.lakeside_hotel.service.implement;
 
 import java.util.List;
 
@@ -8,6 +8,7 @@ import com.example.lakeside_hotel.model.Review;
 import com.example.lakeside_hotel.model.Room;
 import com.example.lakeside_hotel.model.User;
 import com.example.lakeside_hotel.repository.ReviewRepository;
+import com.example.lakeside_hotel.service.IReviewService;
 
 import lombok.RequiredArgsConstructor;
 

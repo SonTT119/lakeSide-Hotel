@@ -1,4 +1,4 @@
-package com.example.lakeside_hotel.service;
+package com.example.lakeside_hotel.service.implement;
 
 import java.util.Collection;
 import java.util.List;
@@ -12,6 +12,7 @@ import com.example.lakeside_hotel.model.Role;
 import com.example.lakeside_hotel.model.User;
 import com.example.lakeside_hotel.repository.RoleRepository;
 import com.example.lakeside_hotel.repository.UserRepository;
+import com.example.lakeside_hotel.service.IRoleService;
 
 import lombok.RequiredArgsConstructor;
 

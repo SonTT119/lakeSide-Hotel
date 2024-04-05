@@ -1,4 +1,4 @@
-package com.example.lakeside_hotel.service;
+package com.example.lakeside_hotel.service.implement;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -17,6 +17,7 @@ import com.example.lakeside_hotel.exception.InternalServerException;
 import com.example.lakeside_hotel.exception.ResourceNotFoundException;
 import com.example.lakeside_hotel.model.Room;
 import com.example.lakeside_hotel.repository.RoomRepository;
+import com.example.lakeside_hotel.service.IRoomService;
 
 import lombok.RequiredArgsConstructor;
 

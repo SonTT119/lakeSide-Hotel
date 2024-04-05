@@ -9,7 +9,7 @@ const Registration = () => {
         lastName: "",
         email: "",
         password: "",
-        // confirmPassword: ""
+        confirmPassword: ""
     })
 
     const[errorMessages, setErrorMessages] = useState("")
@@ -34,7 +34,7 @@ const Registration = () => {
                     lastName: "",
                     email: "",
                     password: "",
-                    // confirmPassword: ""
+                    confirmPassword: ""
                 })
             }
         } catch (error) {
@@ -117,32 +117,35 @@ const Registration = () => {
         <div className='wrapper-background'>
             <div className='wrapper'>
                 <form onSubmit={handleFormSubmit}>
-                    <h1>Registration</h1>
-                    {errorMessages && <div className="alert alert-danger">{errorMessages}</div>}
+                    <h1>Sign Up</h1>
+                    {errorMessages && <div className="error-message">{errorMessages}</div>}
                     {successMessages && <div className="alert alert-success">{successMessages}</div>}
-                    <div className="input-box">
-                        {/* <label htmlFor="firstName">First Name</label> */}
-                        <input type="text"
-                        // className="form-control"
-                        id="firstName"
-                        name="firstName"
-                        placeholder='First Name'
-                        value={registrationData.firstName}
-                        onChange={handleInputChange}
-                        required />
-                        <FaUser className='icon'/>
-                    </div>
-                    <div className="input-box">
-                        {/* <label htmlFor="lastName">Last Name</label> */}
-                        <input type="text"
-                        // className="form-control"
-                        id="lastName"
-                        name="lastName"
-                        placeholder='Last Name'
-                        value={registrationData.lastName}
-                        onChange={handleInputChange}
-                        required />
-                        <FaUser className='icon'/>
+                    <div className='input-group'>
+                        <div className="input-item">
+                            {/* <label htmlFor="firstName">First Name</label> */}
+                            <input type="text"
+                            // className="form-control"
+                            id="firstName"
+                            name="firstName"
+                            placeholder='First Name'
+                            value={registrationData.firstName}
+                            onChange={handleInputChange}
+                            required />
+                            <FaUser className='icon'/>
+                        </div>
+                        <div className="input-item">
+                            {/* <label htmlFor="lastName">Last Name</label> */}
+                            <input type="text"
+                            // className="form-control"
+                            id="lastName"
+                            name="lastName"
+                            placeholder='Last Name'
+                            value={registrationData.lastName}
+                            onChange={handleInputChange}
+                            required />
+                            <FaUser className='icon'/>
+                                
+                        </div>
                     </div>
                     <div className="input-box">
                         {/* <label htmlFor="email">Email</label> */}
@@ -168,18 +171,19 @@ const Registration = () => {
                         required />
                         <FaLock className='icon'/>
                     </div>
-                    {/* <div className="input-box">
-                        <label htmlFor="confirmPassword">Confirm Password</label>
+                    <div className="input-box">
+                        {/* <label htmlFor="confirmPassword">Confirm Password</label> */}
                         <input type="password"
                         // className="form-control"
                         id="confirmPassword"
                         name="confirmPassword"
+                        placeholder='Confirm Password'
                         value={registrationData.confirmPassword}
                         onChange={handleInputChange}
                         required />
                         <FaLock className='icon'/>
-                    </div> */}
-                    <button type="submit">Register</button>
+                    </div>
+                    <button type="submit">Sign Up</button>
                     <div className='sign-up'>
                         <span>Already have an account? <Link to="/login">Login</Link></span>
                     </div>

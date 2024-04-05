@@ -1,4 +1,4 @@
-package com.example.lakeside_hotel.service;
+package com.example.lakeside_hotel.service.implement;
 
 import java.util.Collections;
 import java.util.List;
@@ -16,6 +16,7 @@ import com.example.lakeside_hotel.model.User;
 import com.example.lakeside_hotel.repository.RoleRepository;
 import com.example.lakeside_hotel.repository.UserRepository;
 import com.example.lakeside_hotel.request.UpdatePasswordRequest;
+import com.example.lakeside_hotel.service.IUserService;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -52,6 +53,19 @@ public class UserService implements IUserService {
     public User registerUser(User user) {
         if (userRepository.existsByEmail(user.getEmail())) {
             throw new UserAlreadyExistException(user.getEmail() + " already exists");
+        }
+
+        // check if the password equals the confirm password
+        String password = user.getPassword();
+        String confirmPassword = user.getConfirmPassword();
+        if (!password.equals(confirmPassword)) {
+            throw new UserAlreadyExistException("Passwords do not match");
+        }
+
+        String passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+        if (!password.matches(passwordPattern)) {
+            throw new UserAlreadyExistException(
+                    "Password must contain at least one digit, one lowercase letter, one uppercase letter, one special character and no whitespace");
         }
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));

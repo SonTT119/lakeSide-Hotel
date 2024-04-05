@@ -376,6 +376,45 @@
     font-size: 16px;
   }
 
+  .input-group {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    width: 98%;
+    height: 50px;
+    margin: 20px 0;
+  }
+
+  .input-group .input-item {
+    width: 48%;
+  }
+
+  .input-item input {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    outline: none;
+    border-radius: 40px;
+    font-size: 16px;
+    color: #fff;
+    padding: 20px 45px 20px 20px;
+  }
+
+  .input-item input::placeholder{
+    color: #fff;
+    font-size: 16px;
+  }
+
+  .input-item .icon{
+    position:relative;
+    right: -130px;
+    top: 40%;
+    transform: translateY(-50%);
+    font-size: 16px;
+  }
+
   .wrapper .remember-forgot {
     display: flex;
     justify-content: space-between;
@@ -430,3 +469,9 @@
   .wrapper .sign-up span a:hover {
     text-decoration: underline;
   }
+
+  .error-message {
+    color: #dc3545; /* Red color */
+    font-size: 14px;
+    margin-top: 5px;
+}

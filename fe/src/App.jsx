@@ -15,6 +15,7 @@ import FindBooking from "./components/booking/FindBooking";
 import Home from "./components/home/Home";
 import Footer from "./components/layout/Footer";
 import Navbar from "./components/layout/NavBar";
+import StarRate from "./components/review/StarRate";
 import AddRoom from "./components/room/AddRoom";
 import EditRoom from "./components/room/EditRoom";
 import ExistingRooms from "./components/room/ExistingRooms";
@@ -51,6 +52,7 @@ function App() {
             <Route path="/existing-users" element={<ExistingUsers/>} />
             <Route path="/user/edit/:userId" element={<EditUser />} />
             <Route path="/edit-profile" element={<EditProfile />} />
+            <Route path="star" element={<StarRate />} />
           </Routes>
           <Footer/>
         </Router>

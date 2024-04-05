@@ -1,4 +1,4 @@
-package com.example.lakeside_hotel.service;
+package com.example.lakeside_hotel.service.implement;
 
 import java.util.List;
 
@@ -9,6 +9,8 @@ import com.example.lakeside_hotel.exception.ResourceNotFoundException;
 import com.example.lakeside_hotel.model.BookedRoom;
 import com.example.lakeside_hotel.model.Room;
 import com.example.lakeside_hotel.repository.BookingRepository;
+import com.example.lakeside_hotel.service.IBookingService;
+import com.example.lakeside_hotel.service.IRoomService;
 
 import lombok.RequiredArgsConstructor;
 
