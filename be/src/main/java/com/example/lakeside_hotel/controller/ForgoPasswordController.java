@@ -90,6 +90,8 @@ public class ForgoPasswordController {
         }
         String encodedPassword = passwordEncoder.encode(forgotPasswordRequest.getNewPassword());
         userService.updatePasswordByEmail(email, encodedPassword);
+        // userService.updatePasswordByEmail(email,
+        // forgotPasswordRequest.getNewPassword());
         return ResponseEntity.ok("Password updated successfully");
     }
 

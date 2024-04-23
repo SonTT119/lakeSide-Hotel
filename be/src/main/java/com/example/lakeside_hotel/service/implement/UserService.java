@@ -80,7 +80,8 @@ public class UserService implements IUserService {
                     "Password must contain at least one digit, one lowercase letter, one uppercase letter, one special character and no whitespace");
         }
 
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        // user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setPassword(user.getPassword());
         System.out.println(user.getPassword());
         Role userRole = roleRepository.findByName("ROLE_USER").get();
         user.setRoles(Collections.singletonList(userRole));
@@ -156,8 +157,17 @@ public class UserService implements IUserService {
 
     @Override
     public void updatePasswordByEmail(String email, String newPassword) {
+
         User user = getUserByEmail(email);
-        user.setPassword(passwordEncoder.encode(newPassword));
+
+        // check pattern of password
+        String passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+        if (!newPassword.matches(passwordPattern)) {
+            throw new UserAlreadyExistException(
+                    "Password must contain at least one digit, one lowercase letter, one uppercase letter, one special character and no whitespace");
+        }
+        // user.setPassword(passwordEncoder.encode(newPassword));
+        user.setPassword(newPassword);
         userRepository.save(user);
     }
 
@@ -168,8 +178,8 @@ public class UserService implements IUserService {
         try {
             // Authenticate user
             Authentication authenticateAction = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(email, password));
-
+                    new UsernamePasswordAuthenticationToken(email, password)); // Authenticate user with email and
+                                                                               // password
             // Set authentication in security context
             SecurityContextHolder.getContext().setAuthentication(authenticateAction);
 

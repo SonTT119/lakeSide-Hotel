@@ -163,7 +163,7 @@ export async function login(login) {
 		}
 	} catch (error) {
         if (error.response && error.response.data) {
-            throw new Error(error.response.data)
+            throw new Error(`Error logging in: ${error.message}`)
         }
     }
 
