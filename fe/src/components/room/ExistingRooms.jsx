@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../auth/AuthProvider";
 import RoomFilter from "../common/RoomFilter";
 import RoomPaginator from "../common/RoomPaginator";
+import Sidebar from "../layout/Sidebar";
 import { deleteRoom, getAllRooms } from "../utils/ApiFunctions";
 
 
@@ -85,8 +86,10 @@ const ExistingRooms = () => {
 
     return (
         <>
+        <Sidebar>
+            <div className="admin-content">
             {isLoggedIn && userRole === "ROLE_ADMIN" ? (
-                <div className="container col-md-8 col-lg-6">
+                <div className="container">
                     {successMessage && (
                         <div className="alert alert-success mt-5" role="alert">
                             {successMessage}
@@ -102,8 +105,8 @@ const ExistingRooms = () => {
                         <p>Loading existing rooms</p>
                     ) : (
                         <>
-                            <section className="mt-5 mb-5 container ">
-                                <div className="d-flex justify-content-between mb-3 mt-5 ">
+                            <section className="container ">
+                                <div className="justify-content-between mb-3 mt-5 ">
                                     <h2>Existing Rooms</h2>
                                 </div>
 
@@ -112,8 +115,8 @@ const ExistingRooms = () => {
                                         <RoomFilter data={rooms} setFilteredData={setFilteredRooms} />
                                     </Col>
 
-                                    <Col md={6} className="d-flex justify-content-end mb-3">
-                                        <Link to={"/add-Room"} className="btn btn-hotel btn-sm">
+                                    <Col md={6} className="d-flex justify-content-end">
+                                        <Link to={"/add-Room"} className="btn btn-addRoom">
                                             ADD ROOM
                                         </Link>
                                     </Col>
@@ -176,6 +179,8 @@ const ExistingRooms = () => {
                     </div>
                 )
             }
+            </div>
+        </Sidebar>
         </>
     )
 }

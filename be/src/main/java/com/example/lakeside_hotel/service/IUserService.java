@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.lakeside_hotel.model.User;
+import com.example.lakeside_hotel.reponse.JwtResponse;
+import com.example.lakeside_hotel.request.LoginRequest;
 import com.example.lakeside_hotel.request.UpdatePasswordRequest;
 
 public interface IUserService {
@@ -28,4 +30,10 @@ public interface IUserService {
     void deleteUserById(Long userId);
 
     // User getUserById(Long userId);
+    void updatePasswordByEmail(String email, String password);
+
+    JwtResponse authenticateUser(LoginRequest loginRequest);
+
+    // count the number of users
+    long countUsers();
 }

@@ -3,13 +3,9 @@ import { DateRangePicker } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 
+
 const DateSlider = ({onDateChange, onFilterChange}) => {
     const[dateRange, setDateRange] = useState({
-        // selection: {
-        //     startDate: new Date(),
-        //     endDate: null,
-        //     key: "selection"
-        // }
         startDate: undefined,
         endDate: undefined,
         key: "selection"
@@ -32,16 +28,16 @@ const DateSlider = ({onDateChange, onFilterChange}) => {
     }
 
     return (
-        <>
-            <h5>Filter Booking By Date</h5>
+        <div className="date-slider-container">
+            <h5 className="date-slider-heading">Filter Booking By Date</h5>
             <DateRangePicker
                 ranges={[dateRange]}
                 onChange={handleSelect}
                 className='mb-4'
             />
-            <button className="btn btn-secondary" onClick={handleClearFilter}>Clear Filter</button>
-        </>
+            <button className="date-slider-button" onClick={handleClearFilter}>Clear Filter</button>
+        </div>
     )
 }
 
-export default DateSlider
+export default DateSlider;

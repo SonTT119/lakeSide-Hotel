@@ -154,4 +154,11 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating password");
         }
     }
+
+    // get the number of users
+    @GetMapping("/count")
+    public ResponseEntity<Long> countUsers() {
+        long count = userService.countUsers();
+        return ResponseEntity.ok(count);
+    }
 }

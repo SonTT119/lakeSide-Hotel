@@ -1,26 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import Sidebar from "../layout/Sidebar";
+import "./Admin.css";
 
 const Admin = () => {
     return (
-        <section className="container mt-5">
-            <h2> welcome to admin panel</h2>
-            <hr />
-            <Link to={"/existing-rooms"} className="btn btn-hotel btn-sm">
-            Manage Rooms
-            </Link>
-            <hr />
-            <Link to={"/existing-bookings"} className="btn btn-hotel btn-sm">
-            Manage Bookings
-            </Link>
+        <div className="admin-container">
+            <Sidebar>
+                <div className="admin-content">
+                    <h1>Welcome to admin panner</h1>
+                    
+                </div>
+                
+                
+                
+                
+                
+                
 
-            <hr />
-            <Link to={"/existing-users"} className="btn btn-hotel btn-sm">
-                Manage Users
-            </Link>
-            
-        </section>
-    )
+                {/* Đây là nơi bạn có thể đặt các component hoặc nội dung khác của trang Admin */}
+                
+            </Sidebar>
+        </div>
+    );
 }
 
 export default Admin;

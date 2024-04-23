@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { FaEdit, FaEye, FaTrash } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../auth/AuthProvider'
+import Sidebar from '../layout/Sidebar'
 import { deleteUserById, getAllUsers } from '../utils/ApiFunctions'
 
 
@@ -85,6 +86,8 @@ const ExistingUsers = () => {
 
     return (
         <>
+        <Sidebar>
+            <div className="admin-content">
             {isLoggedIn && userRole === "ROLE_ADMIN" && (
                 <div className='container'>
                     {successMessage && (
@@ -175,7 +178,8 @@ const ExistingUsers = () => {
                     </div>
                 </div>
             )}
-
+            </div>
+        </Sidebar>
         </>
     )
 }

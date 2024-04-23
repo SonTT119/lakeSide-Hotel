@@ -1,28 +1,30 @@
 import React, { useContext, useState } from 'react'
-import { FaLock } from 'react-icons/fa'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { MdEmail } from 'react-icons/md'
 import { Link, useNavigate } from 'react-router-dom'
 import { login } from '../utils/ApiFunctions'
 import { AuthContext } from './AuthProvider'
-// import "./login.css"
-// import "./Login.css"
 
 const Login = () => {
-    const[errorMessages, setErrorMessages] = useState("")
-    const[loginData, setLoginData] = useState({
+    const [errorMessages, setErrorMessages] = useState("")
+    const [loginData, setLoginData] = useState({
         email: "",
         password: ""
     })
+    const [showPassword, setShowPassword] = useState(false) // State để xác định xem mật khẩu có được hiển thị hay không
 
     const navigate = useNavigate()
-
-    const{handleLogin} = useContext(AuthContext)
+    const { handleLogin } = useContext(AuthContext)
 
     const handleInputChange = (e) => {
         setLoginData({
             ...loginData,
             [e.target.name]: e.target.value
         })
+    }
+
+    const toggleShowPassword = () => {
+        setShowPassword(!showPassword) // Chuyển đổi trạng thái của state hiển thị mật khẩu
     }
 
     const handleSubmit = async (e) => {
@@ -32,7 +34,6 @@ const Login = () => {
             const token = success.token
             handleLogin(token)
             navigate("/")
-            // window.location.reload()
         } else {
             setErrorMessages("Invalid email or password. Please try again.")
         }
@@ -41,40 +42,44 @@ const Login = () => {
             setErrorMessages("")
         }, 3000)
     }
+
     return (
         <div className='wrapper-background'>
             <div className='wrapper'>
                 <form onSubmit={handleSubmit}>
                     <h1>Login</h1>
-                    {errorMessages && <div className="alert alert-danger">{errorMessages}</div>}
+                    {errorMessages && <div className="notice danger">{errorMessages}</div>}
                     <div className="input-box">
-                        {/* <label htmlFor="email">Email</label> */}
-                        <input type="email"
-                        // className="form-control"
-                        id="email"
-                        name="email"
-                        placeholder='Email'
-                        value={loginData.email}
-                        onChange={handleInputChange}
-                        required />
-                        <MdEmail className='icon'/>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder='Email'
+                            value={loginData.email}
+                            onChange={handleInputChange}
+                            required
+                        />
+                        <MdEmail className='icon' />
                     </div>
                     <div className="input-box">
-                        {/* <label htmlFor="password">Password</label> */}
-                        <input type="password"
-                        // className="form-control"
-                        id="password"
-                        name="password"
-                        placeholder='Password'
-                        value={loginData.password}
-                        onChange={handleInputChange}
-                        required />
-                        <FaLock className='icon'/>
+                        <input
+                            type={showPassword ? "text" : "password"} // Sử dụng state để quyết định loại của trường nhập
+                            id="password"
+                            name="password"
+                            placeholder='Password'
+                            value={loginData.password}
+                            onChange={handleInputChange}
+                            required
+                        />
+                        {showPassword ? <FaEyeSlash className='icon' onClick={toggleShowPassword} /> : <FaEye className='icon' onClick={toggleShowPassword} />}
                     </div>
                     <div className='remember-forgot'>
                         <label><input type="checkbox" />Remember me</label>
-                        <a href="#">Forgot password?</a>
+                        <span>
+                            <Link to="/forgot-password">Forgot Password?</Link>
+                        </span>
                     </div>
+
                     <button type="submit">Login</button>
                     <div className='sign-up'>
                         <span>Don't have an account? <Link to="/register">Register</Link></span>

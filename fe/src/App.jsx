@@ -2,8 +2,10 @@ import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Admin from "./components/admin/Admin";
+import Dashboard from "./components/admin/Dashboard";
 import { AuthProvider } from "./components/auth/AuthProvider";
 import EditProfile from "./components/auth/EditProfile";
+import ForgotPass from "./components/auth/ForgotPass";
 import Login from "./components/auth/Login";
 import Profile from "./components/auth/Profile";
 import Registration from "./components/auth/Registration";
@@ -13,7 +15,6 @@ import Bookings from "./components/booking/Bookings";
 import CheckOut from "./components/booking/CheckOut";
 import FindBooking from "./components/booking/FindBooking";
 import Home from "./components/home/Home";
-import Footer from "./components/layout/Footer";
 import Navbar from "./components/layout/NavBar";
 import StarRate from "./components/review/StarRate";
 import AddRoom from "./components/room/AddRoom";
@@ -53,8 +54,9 @@ function App() {
             <Route path="/user/edit/:userId" element={<EditUser />} />
             <Route path="/edit-profile" element={<EditProfile />} />
             <Route path="star" element={<StarRate />} />
+            <Route path="/forgot-password" element={<ForgotPass/>} />
+            <Route path="/dashboard" element={<Dashboard/>} />
           </Routes>
-          <Footer/>
         </Router>
         
         

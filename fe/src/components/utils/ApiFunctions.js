@@ -313,3 +313,15 @@ export async function addReviews(roomId, comment, rating) {
         throw new Error(`Error adding review: ${error.message}`)
     }
 }
+
+// forgot password
+export async function forgotPassword(forgotPassData) {
+    try {
+        const response = await api.post(`/forgotPassword/verifyEmail/${forgotPassData.email}`,{
+            headers: getHeader()
+        })
+        return response.data
+    } catch (error) {
+        throw new Error(`Error sending email: ${error.message}`)
+    }
+}

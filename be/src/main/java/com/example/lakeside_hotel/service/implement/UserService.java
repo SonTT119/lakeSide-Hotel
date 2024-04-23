@@ -4,7 +4,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -13,9 +19,13 @@ import org.springframework.stereotype.Service;
 import com.example.lakeside_hotel.exception.UserAlreadyExistException;
 import com.example.lakeside_hotel.model.Role;
 import com.example.lakeside_hotel.model.User;
+import com.example.lakeside_hotel.reponse.JwtResponse;
 import com.example.lakeside_hotel.repository.RoleRepository;
 import com.example.lakeside_hotel.repository.UserRepository;
+import com.example.lakeside_hotel.request.LoginRequest;
 import com.example.lakeside_hotel.request.UpdatePasswordRequest;
+import com.example.lakeside_hotel.security.jwt.JwtUtils;
+import com.example.lakeside_hotel.security.user.HotelUserDetail;
 import com.example.lakeside_hotel.service.IUserService;
 
 import jakarta.transaction.Transactional;
@@ -28,6 +38,8 @@ public class UserService implements IUserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final RoleRepository roleRepository;
+    private final AuthenticationManager authenticationManager;
+    private final JwtUtils jwtUtils;
 
     @Transactional
     @Override
@@ -116,6 +128,17 @@ public class UserService implements IUserService {
         }
 
         String newPassword = new String(updatePasswordRequest.getNewPassword());
+        String confirmPassword = new String(updatePasswordRequest.getConfirmPassword());
+        if (!newPassword.equals(confirmPassword)) {
+            throw new UserAlreadyExistException("New password and confirmation password do not match");
+        }
+
+        String passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+        if (!newPassword.matches(passwordPattern)) {
+            throw new UserAlreadyExistException(
+                    "Password must contain at least one digit, one lowercase letter, one uppercase letter, one special character and no whitespace");
+        }
+
         currentUser.setPassword(passwordEncoder.encode(newPassword));
         userRepository.save(currentUser);
 
@@ -129,6 +152,45 @@ public class UserService implements IUserService {
     @Override
     public void deleteUserById(Long userId) {
         userRepository.deleteById(userId);
+    }
+
+    @Override
+    public void updatePasswordByEmail(String email, String newPassword) {
+        User user = getUserByEmail(email);
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+    }
+
+    @Override
+    public JwtResponse authenticateUser(LoginRequest loginRequest) {
+        String email = loginRequest.getEmail();
+        String password = loginRequest.getPassword();
+        try {
+            // Authenticate user
+            Authentication authenticateAction = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(email, password));
+
+            // Set authentication in security context
+            SecurityContextHolder.getContext().setAuthentication(authenticateAction);
+
+            // Generate JWT token
+            String jwt = jwtUtils.generateJwtTokenForUser(authenticateAction);
+            HotelUserDetail userDetails = (HotelUserDetail) authenticateAction.getPrincipal();
+            List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
+                    .collect(Collectors.toList());
+
+            // Return JWT token and user details
+            return new JwtResponse(userDetails.getId(), userDetails.getEmail(), jwt, roles);
+        } catch (BadCredentialsException e) {
+            throw new AccessDeniedException("Incorrect email or password");
+        } catch (Exception e) {
+            throw new AccessDeniedException("You are not authorized to access this resource");
+        }
+    }
+
+    @Override
+    public long countUsers() {
+        return userRepository.count();
     }
 
 }

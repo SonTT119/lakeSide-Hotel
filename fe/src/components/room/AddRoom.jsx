@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react"
 import { Link } from "react-router-dom"
 import { AuthContext } from "../auth/AuthProvider"
 import RoomTypeSelector from "../common/RoomTypeSelector"
+import Sidebar from "../layout/Sidebar"
 import { addRoom } from "../utils/ApiFunctions"
 
 
@@ -69,8 +70,9 @@ const AddRoom = () => {
 
     return (
         <>
+        <Sidebar>
             {isLoggedIn && userRole === "ROLE_ADMIN" && (
-                <section className="container mt-5 mb-5">
+                <section className="container">
                     <div className="row justify-content-center ">
                         <div className="col-md-8 col-lg-6">
                             <h2 className="mt-5 mb-2">Add New Room</h2>
@@ -149,6 +151,7 @@ const AddRoom = () => {
                         </div>
                     </div>
             )}
+        </Sidebar>
         </>
     )
 }

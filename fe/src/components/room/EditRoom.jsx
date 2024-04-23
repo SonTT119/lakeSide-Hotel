@@ -60,6 +60,7 @@ const EditRoom = () => {
 
 	return (
 		<>
+			<div className="admin-content">
 			<div className="container mt-5 mb-5">
 				<h3 className="text-center mb-5 mt-5">Edit Room</h3>
 				<div className="row justify-content-center">
@@ -137,6 +138,7 @@ const EditRoom = () => {
 						</form>
 					</div>
 				</div>
+			</div>
 			</div>
 		</>
 	)

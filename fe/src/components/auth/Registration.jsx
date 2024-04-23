@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
-import { FaLock, FaUser } from 'react-icons/fa'
+import { FaEye, FaEyeSlash, FaUser } from 'react-icons/fa'
 import { MdEmail } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 import { registration } from '../utils/ApiFunctions'
+
 const Registration = () => {
-    const[registrationData, setRegistrationData] = useState({
+    const [registrationData, setRegistrationData] = useState({
         firstName: "",
         lastName: "",
         email: "",
@@ -12,8 +13,9 @@ const Registration = () => {
         confirmPassword: ""
     })
 
-    const[errorMessages, setErrorMessages] = useState("")
-    const[successMessages, setSuccessMessages] = useState("")
+    const [errorMessages, setErrorMessages] = useState("")
+    const [successMessages, setSuccessMessages] = useState("")
+    const [showPassword, setShowPassword] = useState(false) // State để xác định xem mật khẩu có được hiển thị hay không
 
     const handleInputChange = (e) => {
         setRegistrationData({
@@ -22,7 +24,7 @@ const Registration = () => {
         })
     }
 
-    const  handleFormSubmit = async (e) => {
+    const handleFormSubmit = async (e) => {
         e.preventDefault()
         try {
             const result = await registration(registrationData)
@@ -48,72 +50,11 @@ const Registration = () => {
         }, 3000)
     }
 
+    const toggleShowPassword = () => {
+        setShowPassword(!showPassword) // Chuyển đổi trạng thái của state hiển thị mật khẩu
+    }
+
     return (
-        // <section className='container col-6 mt-5 mb-5'>
-        //     {errorMessages && <p className="alert alert-danger">{errorMessages}</p>}
-        //     {successMessages && <p className="alert alert-success">{successMessages}</p>}
-        //     <h2>Registration</h2>
-        //     <form onSubmit={handleFormSubmit}>
-        //         <div className="row mb-3">
-        //             <label htmlFor="firstName" className="col-sm-2 col-form-label">First Name</label>
-        //             <div>
-        //                 <input type="text"
-        //                 className="form-control"
-        //                 id="firstName"
-        //                 name="firstName"
-        //                 value={registrationData.firstName}
-        //                 onChange={handleInputChange}
-        //                 required />
-        //             </div>
-        //         </div>
-        //         <div className="row mb-3">
-        //             <label htmlFor="lastName" className="col-sm-2 col-form-label">Last Name</label>
-        //             <div>
-        //                 <input type="text"
-        //                 className="form-control"
-        //                 id="lastName"
-        //                 name="lastName"
-        //                 value={registrationData.lastName}
-        //                 onChange={handleInputChange}
-        //                 required />
-        //             </div>
-        //         </div>
-        //         <div className="row mb-3">
-        //             <label htmlFor="email" className="col-sm-2 col-form-label">Email</label>
-        //             <div>
-        //                 <input type="email"
-        //                 className="form-control"
-        //                 id="email"
-        //                 name="email"
-        //                 value={registrationData.email}
-        //                 onChange={handleInputChange}
-        //                 required />
-        //             </div>
-        //         </div>
-        //         <div className="row mb-3">
-        //             <label htmlFor="password" className="col-sm-2 col-form-label">Password</label>
-        //             <div>
-        //                 <input type="password"
-        //                 className="form-control"
-        //                 id="password"
-        //                 name="password"
-        //                 value={registrationData.password}
-        //                 onChange={handleInputChange}
-        //                 required />
-        //             </div>
-        //         </div>
-        //         <div className='mb-3'>
-        //             <button type="submit" className="btn btn-hotel"
-        //             style={{marginRight: "10px"}}
-        //             >Register</button>
-        //             <span style={{marginRight: "10px"}}>
-        //                 Already have an account? <Link to="/login">Login</Link>
-        //             </span>
-
-        //         </div>
-        //     </form>
-        // </section>
-
         <div className='wrapper-background'>
             <div className='wrapper'>
                 <form onSubmit={handleFormSubmit}>
@@ -122,66 +63,65 @@ const Registration = () => {
                     {successMessages && <div className="alert alert-success">{successMessages}</div>}
                     <div className='input-group'>
                         <div className="input-item">
-                            {/* <label htmlFor="firstName">First Name</label> */}
-                            <input type="text"
-                            // className="form-control"
-                            id="firstName"
-                            name="firstName"
-                            placeholder='First Name'
-                            value={registrationData.firstName}
-                            onChange={handleInputChange}
-                            required />
-                            <FaUser className='icon'/>
+                            <input
+                                type="text"
+                                id="firstName"
+                                name="firstName"
+                                placeholder='First Name'
+                                value={registrationData.firstName}
+                                onChange={handleInputChange}
+                                required
+                            />
+                            <FaUser className='icon' />
                         </div>
                         <div className="input-item">
-                            {/* <label htmlFor="lastName">Last Name</label> */}
-                            <input type="text"
-                            // className="form-control"
-                            id="lastName"
-                            name="lastName"
-                            placeholder='Last Name'
-                            value={registrationData.lastName}
-                            onChange={handleInputChange}
-                            required />
-                            <FaUser className='icon'/>
-                                
+                            <input
+                                type="text"
+                                id="lastName"
+                                name="lastName"
+                                placeholder='Last Name'
+                                value={registrationData.lastName}
+                                onChange={handleInputChange}
+                                required
+                            />
+                            <FaUser className='icon' />
                         </div>
                     </div>
                     <div className="input-box">
-                        {/* <label htmlFor="email">Email</label> */}
-                        <input type="email"
-                        // className="form-control"
-                        id="email"
-                        name="email"
-                        placeholder='Email'
-                        value={registrationData.email}
-                        onChange={handleInputChange}
-                        required />
-                        <MdEmail className='icon'/>
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder='Email'
+                            value={registrationData.email}
+                            onChange={handleInputChange}
+                            required
+                        />
+                        <MdEmail className='icon' />
                     </div>
                     <div className="input-box">
-                        {/* <label htmlFor="password">Password</label> */}
-                        <input type="password"
-                        // className="form-control"
-                        id="password"
-                        name="password"
-                        placeholder='Password'
-                        value={registrationData.password}
-                        onChange={handleInputChange}
-                        required />
-                        <FaLock className='icon'/>
+                        <input
+                            type={showPassword ? "text" : "password"} // Sử dụng state để quyết định loại của trường nhập
+                            id="password"
+                            name="password"
+                            placeholder='Password'
+                            value={registrationData.password}
+                            onChange={handleInputChange}
+                            required
+                        />
+                        {showPassword ? <FaEyeSlash className='icon' onClick={toggleShowPassword} /> : <FaEye className='icon' onClick={toggleShowPassword} />}
                     </div>
                     <div className="input-box">
-                        {/* <label htmlFor="confirmPassword">Confirm Password</label> */}
-                        <input type="password"
-                        // className="form-control"
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        placeholder='Confirm Password'
-                        value={registrationData.confirmPassword}
-                        onChange={handleInputChange}
-                        required />
-                        <FaLock className='icon'/>
+                        <input
+                            type={showPassword ? "text" : "password"} // Sử dụng state để quyết định loại của trường nhập
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            placeholder='Confirm Password'
+                            value={registrationData.confirmPassword}
+                            onChange={handleInputChange}
+                            required
+                        />
+                        {showPassword ? <FaEyeSlash className='icon' onClick={toggleShowPassword} /> : <FaEye className='icon' onClick={toggleShowPassword} />}
                     </div>
                     <button type="submit">Sign Up</button>
                     <div className='sign-up'>

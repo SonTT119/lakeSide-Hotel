@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Header from '../common/Header'
+import Sidebar from '../layout/Sidebar'
 import { cancelBooking, getAllBookings } from '../utils/ApiFunctions'
 import BookingTable from './BookingTable'
 
@@ -32,14 +33,20 @@ const Bookings = () => {
   }
 
   return (
-    <section className='container' style={{backgroundColor:"whitesmoke"}}>
+    <Sidebar>
+      <div className="admin-content">
+      <section className='container' style={{backgroundColor:"whitesmoke"}}>
       <Header title={"Existing Bookings"}/>
       {error && (<div className='text-danger'>{error}</div>)}
       {isLoading ? (<div>Loading Existing Booking </div>):(
         <BookingTable bookingInfo={bookingInfo}
         handleBookingCancellation={handleBookingCancellation} />
       )}
-    </section>
+      </section>
+      </div>
+      
+    </Sidebar>
+    
   )
 }
 
