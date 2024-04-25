@@ -129,7 +129,7 @@ const FindBooking = () => {
 	}
 
 	return (
-		<>
+		<section className="container"  style={{backgroundColor:"whitesmoke"}} >
 			<div className="container mt-5 d-flex flex-column justify-content-center align-items-center">
 				<h2 className="text-center mb-4">Find My Booking</h2>
 				<form onSubmit={handleFormSubmit} className="col-md-6">
@@ -155,8 +155,9 @@ const FindBooking = () => {
 				) : error ? (
 					<div className="text-danger">Error: {error}</div>
 				) : bookingInfo.bookingConfirmationCode ? (
-					<div className="col-md-6 mt mb-2">
-						<h5>Booking Information</h5>
+				<div className="booking-info">
+						<div className="col-md-6 mt mb-2">
+						<h4>Booking Information</h4>
                         <hr />
 
 						<p className="text-success">Confirmation Code: {bookingInfo.bookingConfirmationCode}</p>
@@ -188,13 +189,14 @@ const FindBooking = () => {
 							</button>
 						)}
 					</div>
+				</div>
 				) : (
 					<div>find booking...</div>
 				)}
 
 				{isDeleted && <div className="alert alert-success mt-3 fade show">{successMessage}</div>}
 			</div>
-		</>
+		</section>
 	)
 }
 

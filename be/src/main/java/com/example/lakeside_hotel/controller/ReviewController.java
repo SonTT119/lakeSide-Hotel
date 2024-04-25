@@ -1,5 +1,6 @@
 package com.example.lakeside_hotel.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
@@ -43,9 +44,28 @@ public class ReviewController {
 
     // get all reviews by room id
     @GetMapping("/get_reviews_by_room_id/{roomId}")
-    public ResponseEntity<List<Review>> getReviewsByRoomId(@PathVariable Long roomId) {
+    public ResponseEntity<List<ReviewResponse>> getReviewsByRoomId(@PathVariable Long roomId) {
         List<Review> reviews = reviewService.getReviewsByRoomId(roomId);
-        return ResponseEntity.ok(reviews);
+        List<ReviewResponse> reviewResponses = new ArrayList<>();
+        for (Review review : reviews) {
+            ReviewResponse reviewResponse = getReviewResponse(review);
+            reviewResponses.add(reviewResponse);
+        }
+        return ResponseEntity.ok(reviewResponses);
+    }
+
+    // get rating average by room id
+    @GetMapping("/get_rating_average_by_room_id/{roomId}")
+    public ResponseEntity<Double> getRatingAverageByRoomId(@PathVariable Long roomId) {
+        double averageRating = reviewService.calculateAverageRating(roomId);
+        return ResponseEntity.ok(averageRating);
+    }
+
+    // get review count by room id
+    @GetMapping("/get_review_count_by_room_id/{roomId}")
+    public ResponseEntity<Long> getReviewCountByRoomId(@PathVariable Long roomId) {
+        long reviewCount = reviewService.getReviewCount(roomId);
+        return ResponseEntity.ok(reviewCount);
     }
 
     // get all reviews
@@ -58,5 +78,9 @@ public class ReviewController {
     private User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return userService.getUserByEmail(authentication.getName());
+    }
+
+    private ReviewResponse getReviewResponse(Review review) {
+        return new ReviewResponse(review.getReviewId(), review.getComment(), review.getRating(), review.getUser());
     }
 }

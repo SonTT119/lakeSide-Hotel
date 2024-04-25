@@ -16,4 +16,8 @@ public interface IReviewService {
     List<Review> getAllReviews();
 
     Review addReview(Long userId, Long roomId, String comment, int rating);
+
+    double calculateAverageRating(Long roomId);
+
+    long getReviewCount(Long roomId);
 }

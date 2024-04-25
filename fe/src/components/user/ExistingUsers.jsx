@@ -88,6 +88,7 @@ const ExistingUsers = () => {
         <>
         <Sidebar>
             <div className="admin-content">
+            <section className='container' style={{backgroundColor:"whitesmoke"}}>
             {isLoggedIn && userRole === "ROLE_ADMIN" && (
                 <div className='container'>
                     {successMessage && (
@@ -178,6 +179,7 @@ const ExistingUsers = () => {
                     </div>
                 </div>
             )}
+            </section>
             </div>
         </Sidebar>
         </>

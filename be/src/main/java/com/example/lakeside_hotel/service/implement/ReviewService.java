@@ -24,7 +24,7 @@ public class ReviewService implements IReviewService {
 
     @Override
     public List<Review> getReviewsByRoomId(Long roomId) {
-        return reviewRepository.findByRoomId(roomId);
+        return reviewRepository.findByRoomIdWithUser(roomId);
     }
 
     @Override
@@ -42,6 +42,28 @@ public class ReviewService implements IReviewService {
     @Override
     public List<Review> getAllReviews() {
         return reviewRepository.findAll();
+    }
+
+    @Override
+    public double calculateAverageRating(Long roomId) {
+        List<Integer> ratings = reviewRepository.findRatingsByRoomId(roomId);
+        int size = ratings.size();
+        if (size == 0) {
+            return 0.0;
+        }
+        double sum = 0;
+        for (int rating : ratings) {
+            sum += rating;
+        }
+        double average = sum / size;
+
+        // Sử dụng String.format để giới hạn đến 2 chữ số thập phân
+        return Double.parseDouble(String.format("%.2f", average));
+    }
+
+    @Override
+    public long getReviewCount(Long roomId) {
+        return reviewRepository.countByRoomId(roomId);
     }
 
     @Override

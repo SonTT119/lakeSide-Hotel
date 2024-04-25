@@ -1,0 +1,76 @@
+.table-roomDetail{
+    /* width: 100%; */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 120px;
+    margin-right: 120px;
+    border: 1px solid #ccc; 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #dcd5d5;
+    padding: 20px; 
+    border-collapse: collapse;
+}
+
+h2{
+    color: #3c2020;
+    font-size: 30px;
+    margin-bottom: 10px;
+    font-style:unset;
+}
+
+.color-star{
+    color: #ff9100;
+    font-size: medium;
+}
+.star{
+    color: #c8baa9;
+    font-size: medium;
+}
+
+.rating-link{
+    display: inline;
+    color: #cc0d0d;
+    font-size: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+h5{
+    color: #3c2020;
+    font-size: 20px;
+    font-weight: 150;
+    margin-top: 10px;
+}
+
+.room-price-detail{
+    border: 1px solid #706969;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    background-color: #c6bfbf;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.room-price-detail h3{
+    font-size: 20px;
+    color: #232323;
+    font-weight: 200;
+}
+.list-unstyled{
+    width: 50%;
+    list-style-type: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+.list-unstyled .li{
+    border: 1px  #706969;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 2px;
+    background-color: #c6bfbf;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}

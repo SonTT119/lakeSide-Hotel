@@ -325,3 +325,62 @@ export async function forgotPassword(forgotPassData) {
         throw new Error(`Error sending email: ${error.message}`)
     }
 }
+// verify OTP
+export async function verifyOTP(data) {
+    try {
+        const response = await api.post(`/forgotPassword/verifyOtp/${data.otp}/${data.email}`)
+        return response.data
+    } catch (error) {
+        throw new Error(`Error verifying OTP: ${error.message}`)
+    }
+}
+
+//get count users
+export async function getCountUsers() {
+    try {
+        const response = await api.get("/users/count")
+        return response.data
+    } catch (error) {
+        throw new Error("Error fetching users")
+    }
+}
+
+//get count rooms
+export async function getCountRooms() {
+    try {
+        const count = await api.get("/rooms/count")
+        return count.data
+    } catch (error) {
+        throw new Error("Error fetching rooms")
+    }
+}
+
+//get count bookings
+export async function getCountBookings() {
+    try {
+        const count = await api.get("/bookings/count")
+        return count.data
+    } catch (error) {
+        throw new Error("Error fetching bookings")
+    }
+}
+
+//get rating average by room id
+export async function getRatingById(roomId) {
+    try {
+        const response = await api.get(`/review/get_rating_average_by_room_id/${roomId}`)
+        return response.data
+    } catch (error) {
+        throw new Error(`Error fetching rating for room ${roomId}`)
+    }
+}
+
+//get count reviews by room id
+export async function getCountById(roomId) {
+    try {
+        const response = await api.get(`/review/get_review_count_by_room_id/${roomId}`)
+        return response.data
+    } catch (error) {
+        throw new Error(`Error fetching count for room ${roomId}`)
+    }
+}

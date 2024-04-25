@@ -20,6 +20,7 @@ import StarRate from "./components/review/StarRate";
 import AddRoom from "./components/room/AddRoom";
 import EditRoom from "./components/room/EditRoom";
 import ExistingRooms from "./components/room/ExistingRooms";
+import RoomDetail from "./components/room/RoomDetail";
 import RoomListing from "./components/room/RoomListing";
 import EditUser from "./components/user/EditUser";
 import ExistingUsers from "./components/user/ExistingUsers";
@@ -56,6 +57,7 @@ function App() {
             <Route path="star" element={<StarRate />} />
             <Route path="/forgot-password" element={<ForgotPass/>} />
             <Route path="/dashboard" element={<Dashboard/>} />
+            <Route path="/roomdetail/:roomId" element={<RoomDetail />} />
           </Routes>
         </Router>
         

@@ -131,6 +131,12 @@ public class RoomController {
         }
     }
 
+    // get count of all rooms
+    @GetMapping("/count")
+    public ResponseEntity<Long> getRoomCount() {
+        return ResponseEntity.ok(roomService.getRoomCount());
+    }
+
     private RoomResponse getRoomResponse(Room room) {
         List<BookedRoom> bookings = getAllBookingsByRoomId(room.getId());
         List<BookingResponse> bookingInfo = bookings

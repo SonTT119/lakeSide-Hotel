@@ -18,4 +18,6 @@ public interface IBookingService {
 
     List<BookedRoom> getBookingsByUserEmail(String email);
 
+    long getBookingCount();
+
 }

@@ -3,7 +3,6 @@
 }
 .dashboard-content{
     flex: 3;
-    margin-left: 200px;
     padding: 20px;
     display: flex;
     gap: 20px;
@@ -42,6 +41,11 @@
         font-size: 15px;
         font-weight: 400;
         border-bottom: 1px solid #404040;
+        &:hover{
+            color: #000;
+        }
+
+        text-decoration: none;
     }
 
     .percentage{

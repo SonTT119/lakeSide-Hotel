@@ -84,4 +84,9 @@ public class BookingService implements IBookingService {
         return bookingRepository.findByGuestEmail(email);
     }
 
+    @Override
+    public long getBookingCount() {
+        return bookingRepository.count();
+    }
+
 }

@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -27,6 +28,7 @@ public class Role {
 
     @JsonIgnore
     @ManyToMany(mappedBy = "roles")
+    @JsonBackReference
     private Collection<User> users = new HashSet<>();
 
     public Role(String name) {

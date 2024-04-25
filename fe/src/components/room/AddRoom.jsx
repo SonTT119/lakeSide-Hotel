@@ -71,6 +71,9 @@ const AddRoom = () => {
     return (
         <>
         <Sidebar>
+        <div className="admin-content">
+        <section className='container' style={{backgroundColor:"whitesmoke"}}>
+
             {isLoggedIn && userRole === "ROLE_ADMIN" && (
                 <section className="container">
                     <div className="row justify-content-center ">
@@ -127,7 +130,7 @@ const AddRoom = () => {
                                             className="img-fluid mt-3"></img>
                                     )}
                                 </div>
-                                <div className="d-grid gap-2 d-md-flex mt-2">
+                                <div className="d-grid gap-2 d-md-flex mt-2 mb-3">
                                     <Link to = {"/existing-rooms"} className="btn btn-outline-info">
                                         Back
                                     </Link>
@@ -136,6 +139,7 @@ const AddRoom = () => {
                                     </button>
                                 </div>
                             </form>
+                        
                         </div>
                     </div>
                 </section>
@@ -151,6 +155,8 @@ const AddRoom = () => {
                         </div>
                     </div>
             )}
+        </section>
+        </div>
         </Sidebar>
         </>
     )

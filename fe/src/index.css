@@ -605,3 +605,21 @@ main{
   margin-top: 5%;
 }
 
+.icon-forgot{
+  margin-left: 120px;
+  font-size: 80px;
+  color: #cfc8c8;
+}
+
+.booking-info{
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #f4eded;
+  padding: 10px;
+  border-collapse: collapse;
+  width: 49%;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  
+}

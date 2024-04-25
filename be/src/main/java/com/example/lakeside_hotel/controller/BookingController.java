@@ -84,6 +84,12 @@ public class BookingController {
         bookingService.cancelBooking(bookingId);
     }
 
+    // get count of bookings
+    @GetMapping("/count")
+    public ResponseEntity<Long> getBookingCount() {
+        return ResponseEntity.ok(bookingService.getBookingCount());
+    }
+
     private BookingResponse getBookingResponse(BookedRoom booking) {
         Room theRoom = roomService.getRoomById(booking.getRoom().getId()).get();
         RoomResponse room = new RoomResponse(theRoom.getId(), theRoom.getRoomType(), theRoom.getRoomPrice());

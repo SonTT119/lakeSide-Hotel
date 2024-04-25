@@ -88,6 +88,7 @@ const ExistingRooms = () => {
         <>
         <Sidebar>
             <div className="admin-content">
+            <section className='container' style={{backgroundColor:"whitesmoke"}}>
             {isLoggedIn && userRole === "ROLE_ADMIN" ? (
                 <div className="container">
                     {successMessage && (
@@ -106,7 +107,7 @@ const ExistingRooms = () => {
                     ) : (
                         <>
                             <section className="container ">
-                                <div className="justify-content-between mb-3 mt-5 ">
+                                <div className="justify-content-between ">
                                     <h2>Existing Rooms</h2>
                                 </div>
 
@@ -159,11 +160,12 @@ const ExistingRooms = () => {
                                         ))}
                                     </tbody>
                                 </table>
-                                <RoomPaginator
+                                <div className='d-flex justify-content-center mb-3'><RoomPaginator
                                     currentPage={currentPage}
                                     totalPages={calculateTotalPages(filteredRooms, roomsPerPage, rooms)}
                                     onPageChange={handlePaginationClick}
-                                />
+                                    
+                                /></div>
                             </section>
                         </>
                     )}
@@ -179,6 +181,7 @@ const ExistingRooms = () => {
                     </div>
                 )
             }
+            </section>
             </div>
         </Sidebar>
         </>
