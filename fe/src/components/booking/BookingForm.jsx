@@ -20,11 +20,6 @@ const BookingForm = () => {
         // confirmationCode: ""
     })
 
-    const[roomInfo, setRoomInfo] = useState({
-        photo: "",
-        roomType: "",
-        roomPrice: ""
-    })
 
     // const { isAuthenticated } = useContext(AuthContext);
 
@@ -103,11 +98,12 @@ const BookingForm = () => {
 
     return (
         <>
-            <div className='container mb-5'>
+            <div className='container'>
                 <div className='row'>
-                    <div className='col-md-6'>
+                    <div className='col'>
                         <div className='card card-body mt-5'>
-                            <h4> Reserve Room</h4>
+                            <h1> Reserve Room</h1>
+                            <hr />
                             <Form noValidate validated={isValidated} onSubmit={handleSubmit}>
                                 <Form.Group>
                                     <Form.Label htmlFor='guestFullName' className='hotel-color'>

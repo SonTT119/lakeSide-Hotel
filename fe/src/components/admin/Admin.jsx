@@ -7,7 +7,10 @@ const Admin = () => {
         <div className="admin-container">
             <Sidebar>
                 <div className="admin-content">
-                    <h1>Welcome to admin panner</h1>
+                    <div className="admin-background">
+                        <h1 className="text-admin">Welcome to admin panner</h1>
+                    </div>
+                    
                     
                 </div>
                 

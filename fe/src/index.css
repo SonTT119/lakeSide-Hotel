@@ -72,15 +72,22 @@
   .btn-hotel{
     background-color: rgb(80, 90, 129);
     color: #fff;
+    /* margin-left: 10px; */
+  }
+
+  .btn-detail{
+    background-color: rgb(129, 80, 122);
+    color: #fff;
     margin-left: 10px;
   }
+
   .btn-addRoom{
     background-color: rgb(80, 90, 129);
     color: #fff;
     height: 40px;
     margin-left: 10px;
   }
-  .btn-hotel:hover,.btn-addRoom:hover{
+  .btn-hotel:hover,.btn-addRoom:hover ,.btn-detail:hover{
     background-color: rgb(137, 127, 132);
     color: #fff;
     transition: 0.7s;
@@ -101,6 +108,15 @@
     .vertical-rule{
       border-left: '0.5px solid black';
       height: '100vh'
+    }
+
+    .room-info{
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: #f4eded;
+      padding: 10px;
+
     }
 
   .button-carousel{
@@ -125,8 +141,7 @@
     transition: 0.7s;
     outline-color: transparent;
     outline-style:solid;
-
-
+    bottom: 30px;
   }
   .button-carousel:hover{
     background-color: rgb(137, 127, 132);
@@ -544,7 +559,7 @@ main{
   position: fixed;
   min-height: 100vh;
   top: 9.667%;
-  background: #7c8b86;
+  background: linear-gradient(to bottom, #0095ff, #800080);
   color: #fff;
   width: 200px;
   transition: all 0.5s ease;
@@ -555,10 +570,6 @@ main{
   display: flex;
   align-items:center;
   padding:20px 15px 60px 15px;
-}
-.logo{
-  margin-top: 50px;
-  font-size: 30px;
 }
 .bars{
   display: flex;
@@ -574,6 +585,7 @@ main{
   gap: 15px;
   transition: all 0.5s;
   text-decoration: none;
+  border-radius: 5px;
   
 }
 .link:hover{

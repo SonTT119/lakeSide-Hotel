@@ -1,0 +1,21 @@
+.admin-background{
+    background: url("D:\lakeSide_Hotel\lakeSide-Hotel\fe\src\assets\images\pngtree-technology-round-dashboard-image_908915.jpg") ;
+    width: 80%;
+    height: 100%;
+    background-position: center;
+    position: absolute;
+}
+
+.text-admin{
+    color: rgb(216, 203, 203);
+    font-size: 4    0px;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 10px;
+}

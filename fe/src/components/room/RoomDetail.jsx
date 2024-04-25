@@ -57,10 +57,11 @@ const RoomDetail = () => {
     };
 
     return (
-        <div className="table-roomDetail">
+        <section className='container' style={{backgroundColor:"whitesmoke", padding:"10px"}}>
+        <div className="table-roomDetail ">
             <div className="row">
                 <div className="col-md-5 col-sm-12 col-xs-12">
-                    <img src={`data:image/png;base64, ${room.photo}`} alt="Room photo" style={{ width: '80%', height: '300px' }} />
+                    <img src={`data:image/png;base64, ${room.photo}`} alt="Room photo" style={{ width: '80%', height: '250px', borderRadius: "3%"}} />
                 </div>
                 <div className="col-md-7 col-sm-12 col-xs-12">
                     <h2>Room Type: {room.roomType}</h2>
@@ -107,7 +108,11 @@ const RoomDetail = () => {
                                 
                             </ul>
                         </div>
-                    </div> 
+                    </div>
+                    {/* link đến book phòng */}
+                    <Link to={`/book-room/${roomId}`} className='btn btn-hotel'>
+                        Book Room Now
+                    </Link>
                     
                     {/* <ul>
                     {room.roomService.map((service, index) => (
@@ -117,6 +122,7 @@ const RoomDetail = () => {
                 </div>
             </div>
         </div>
+    </section>
     );
 };
 

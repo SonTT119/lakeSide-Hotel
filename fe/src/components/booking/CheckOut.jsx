@@ -27,9 +27,9 @@ const CheckOut = () => {
     }, [roomId])
     return (
         <div>
-            <section className='container'>
-                <div className='row flex-column flex-md-row align-items-center'>
-                    <div className='col-md-4 mt-5 mb-5'>
+            <section  className='container' style={{backgroundColor:"whitesmoke", padding:"10px"}}>
+                <div className='row flex-column flex-md-row align-items-center mt-5'>
+                    <div className='col'>
                         {isLoaded ? (
                             <p>Loading room information</p>
                         ): error ? (
@@ -83,7 +83,7 @@ const CheckOut = () => {
                     </div>
                     <div className='col-md-8'>
                         <BookingForm/>
-                    </div>  
+                    </div>
                     
                 </div>
             </section>

@@ -2,6 +2,8 @@ package com.example.lakeside_hotel.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -29,7 +31,7 @@ public class BookedRoom {
     private LocalDate checkInDate;
 
     @Column(name = "check_Out")
-    private LocalDate    checkOutDate;
+    private LocalDate checkOutDate;
 
     @Column(name = "guest_Full_Name")
     private String guestFullName;
@@ -51,6 +53,7 @@ public class BookedRoom {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_id")
+    @JsonBackReference(value = "room-booking")
     private Room room;
 
     public void calculateTotalNumOfGuests() {
