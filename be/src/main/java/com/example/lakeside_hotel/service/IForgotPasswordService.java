@@ -13,4 +13,9 @@ public interface IForgotPasswordService {
 
     void deleteById(Long id);
 
+    void sendVerificationEmail(String email);
+
+    String verifyOtp(Integer otp, String email);
+
+    void resetPassword(String email, String newPassword, String confirmPassword);
 }

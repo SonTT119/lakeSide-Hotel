@@ -335,6 +335,17 @@ export async function verifyOTP(data) {
     }
 }
 
+// reset password
+export async function resetPassword(email,data) {
+    try {
+        const response = await api.post(`/forgotPassword/resetPassword/${email}`, data)
+        return response.data
+    } catch (error) {
+        throw new Error(`Error resetting password: ${error.message}`)
+    }
+}
+
+
 //get count users
 export async function getCountUsers() {
     try {
