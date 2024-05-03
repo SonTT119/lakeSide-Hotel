@@ -1452,3 +1452,127 @@ org.eclipse.lsp4j.jsonrpc.ResponseErrorException: Request window/showMessageRequ
 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.lang.Thread.run(Thread.java:840)
 
+2024.05.03 09:11:13 INFO  Started: Metals version 1.3.0 in folders 'D:\lakeSide_Hotel\lakeSide-Hotel' for client Visual Studio Code 1.88.1.
+SLF4J: Class path contains multiple SLF4J providers.
+SLF4J: Found provider [scribe.slf4j.ScribeServiceProvider@65956cb6]
+SLF4J: Found provider [ch.qos.logback.classic.spi.LogbackServiceProvider@41cba7d2]
+SLF4J: See https://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual provider is of type [scribe.slf4j.ScribeServiceProvider@65956cb6]
+2024.05.03 09:11:14 WARN  Flyway upgrade recommended: H2 2.2.224 is newer than this version of Flyway and support has not been tested. The latest supported version of H2 is 2.2.220.
+May 03, 2024 9:11:21 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleNotification
+WARNING: Notification threw an exception: {
+  "jsonrpc": "2.0",
+  "method": "metals/didFocusTextDocument",
+  "params": [
+    "vscode-chat-code-block://fb14a853-9a8b-440f-a3d0-638d17a1ccab/response_77/1#%7B%22references%22%3A%5B%7B%22uri%22%3A%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22d%3A%5C%5ClakeSide_Hotel%5C%5ClakeSide-Hotel%5C%5Cbe%5C%5Csrc%5C%5Cmain%5C%5Cjava%5C%5Ccom%5C%5Cexample%5C%5Clakeside_hotel%5C%5Cmodel%5C%5CForgotPassword.java%22%2C%22_sep%22%3A1%2C%22external%22%3A%22file%3A%2F%2F%2Fd%253A%2FlakeSide_Hotel%2FlakeSide-Hotel%2Fbe%2Fsrc%2Fmain%2Fjava%2Fcom%2Fexample%2Flakeside_hotel%2Fmodel%2FForgotPassword.java%22%2C%22path%22%3A%22%2FD%3A%2FlakeSide_Hotel%2FlakeSide-Hotel%2Fbe%2Fsrc%2Fmain%2Fjava%2Fcom%2Fexample%2Flakeside_hotel%2Fmodel%2FForgotPassword.java%22%2C%22scheme%22%3A%22file%22%7D%2C%22range%22%3A%7B%22startLineNumber%22%3A31%2C%22startColumn%22%3A5%2C%22endLineNumber%22%3A33%2C%22endColumn%22%3A23%7D%7D%5D%7D"
+  ]
+}
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:67)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.notify(GenericEndpoint.java:152)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleNotification(RemoteEndpoint.java:220)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:187)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint.lambda$null$0(GenericEndpoint.java:65)
+	... 11 more
+Caused by: java.nio.file.FileSystemNotFoundException: Provider "vscode-chat-code-block" not installed
+	at java.base/java.nio.file.Path.of(Path.java:212)
+	at java.base/java.nio.file.Paths.get(Paths.java:98)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionURIMtags.toAbsolutePath(MtagsEnrichments.scala:131)
+	at scala.meta.internal.mtags.MtagsEnrichments$XtensionStringMtags.toAbsolutePath(MtagsEnrichments.scala:187)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:732)
+	at scala.meta.internal.metals.MetalsEnrichments$XtensionString.toAbsolutePath(MetalsEnrichments.scala:729)
+	at scala.meta.internal.metals.WorkspaceLspService.didFocus(WorkspaceLspService.scala:639)
+	at scala.meta.metals.lsp.DelegatingScalaService.didFocus(DelegatingScalaService.scala:43)
+	... 16 more
+
+2024.05.03 09:11:34 INFO  no build target found for D:\lakeSide_Hotel\lakeSide-Hotel\be\src\main\java\com\example\lakeside_hotel\model\ForgotPassword.java. Using presentation compiler with project's scala-library version: 3.3.3
+2024.05.03 09:11:35 INFO  restarted 1 presentation compiler
+2024.05.03 09:11:43 INFO  no build target found for D:\lakeSide_Hotel\lakeSide-Hotel\be\src\main\java\com\example\lakeside_hotel\model\ForgotPassword.java. Using presentation compiler with project's scala-library version: 3.3.3
+May 03, 2024 9:11:43 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 35
+May 03, 2024 9:11:43 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 32
+May 03, 2024 9:11:43 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 38
+2024.05.03 09:11:43 WARN  no build target for: D:\lakeSide_Hotel\lakeSide-Hotel\be\src\main\java\com\example\lakeside_hotel\model\ForgotPassword.java
+May 03, 2024 9:11:48 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-11-48-822.md
+May 03, 2024 9:11:49 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-11-49-143.md
+May 03, 2024 9:11:49 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-11-49-899.md
+May 03, 2024 9:12:07 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-12-07-951.md
+May 03, 2024 9:12:14 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-12-14-723.md
+May 03, 2024 9:12:16 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-12-15-999.md
+May 03, 2024 9:12:56 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-12-56-451.md
+May 03, 2024 9:13:12 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-13-12-513.md
+May 03, 2024 9:13:40 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-13-40-849.md
+May 03, 2024 9:14:05 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-14-05-230.md
+May 03, 2024 9:14:06 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-14-06-443.md
+May 03, 2024 9:14:07 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-14-07-027.md
+2024.05.03 09:14:08 WARN  no build target for: D:\lakeSide_Hotel\lakeSide-Hotel\be\src\main\java\com\example\lakeside_hotel\model\ForgotPassword.java
+May 03, 2024 9:14:09 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-14-09-193.md
+May 03, 2024 9:14:22 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-14-22-103.md
+May 03, 2024 9:14:24 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-14-24-890.md
+May 03, 2024 9:14:46 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-14-46-809.md
+May 03, 2024 9:14:49 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-14-49-458.md
+May 03, 2024 9:14:50 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-14-50-560.md
+May 03, 2024 9:14:54 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-14-54-795.md
+May 03, 2024 9:14:55 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-14-55-461.md
+May 03, 2024 9:14:55 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-14-55-877.md
+2024.05.03 09:14:57 WARN  no build target for: D:\lakeSide_Hotel\lakeSide-Hotel\be\src\main\java\com\example\lakeside_hotel\model\User.java
+May 03, 2024 9:14:58 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-14-58-141.md
+May 03, 2024 9:14:59 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-14-59-322.md
+May 03, 2024 9:15:47 AM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_09-15-47-837.md
+May 03, 2024 9:16:48 AM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+2024.05.03 09:17:11 INFO  Shutting down server
+2024.05.03 09:17:11 INFO  shutting down Metals
+2024.05.03 09:17:11 ERROR Unexpected error initializing server: 
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: Request window/showMessageRequest failed with message: Canceled
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:209)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:193)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:194)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:94)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:113)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.lang.Thread.run(Thread.java:840)
+
+2024.05.03 09:17:11 INFO  Exiting server

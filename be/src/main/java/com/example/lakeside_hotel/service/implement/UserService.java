@@ -80,8 +80,8 @@ public class UserService implements IUserService {
                     "Password must contain at least one digit, one lowercase letter, one uppercase letter, one special character and no whitespace");
         }
 
-        // user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setPassword(user.getPassword());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        // user.setPassword(user.getPassword());
         System.out.println(user.getPassword());
         Role userRole = roleRepository.findByName("ROLE_USER").get();
         user.setRoles(Collections.singletonList(userRole));

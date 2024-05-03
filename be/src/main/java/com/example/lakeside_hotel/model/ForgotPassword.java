@@ -2,8 +2,6 @@ package com.example.lakeside_hotel.model;
 
 import java.util.Date;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,7 +26,6 @@ public class ForgotPassword {
 
     private Date expiryDate;
 
-    @OneToOne(mappedBy = "forgotPassword")
-    @JsonBackReference
+    @OneToOne
     private User user;
 }
