@@ -27,10 +27,13 @@ public class RoomService implements IRoomService {
     private final RoomRepository roomRepository;
 
     @Override
-    public Room addNewRoom(MultipartFile file, String roomType, BigDecimal roomPrice) throws SQLException, IOException {
+    public Room addNewRoom(MultipartFile file, String roomType, BigDecimal roomPrice, int maxAdults, int maxChildren)
+            throws SQLException, IOException {
         Room room = new Room();
         room.setRoomType(roomType);
         room.setRoomPrice(roomPrice);
+        room.setMaxAdults(maxAdults); // handle new field
+        room.setMaxChildren(maxChildren); // handle new field
         if (!file.isEmpty()) {
             byte[] photoBytes = file.getBytes();
             Blob photoBlob = new SerialBlob(photoBytes);
@@ -71,13 +74,17 @@ public class RoomService implements IRoomService {
 
     }
 
-    @Override
-    public Room updateRoom(Long roomId, String roomType, BigDecimal roomPrice, byte[] photoBytes) {
-        Room room = roomRepository.findById(roomId).get();
+    public Room updateRoom(Long roomId, String roomType, BigDecimal roomPrice, byte[] photoBytes, int maxAdults,
+            int maxChildren) {
+        Room room = roomRepository.findById(roomId).orElseThrow(() -> new ResourceNotFoundException("Room not found"));
         if (roomType != null)
             room.setRoomType(roomType);
         if (roomPrice != null)
             room.setRoomPrice(roomPrice);
+        if (maxAdults > 0)
+            room.setMaxAdults(maxAdults); // handle new field
+        if (maxChildren > 0)
+            room.setMaxChildren(maxChildren); // handle new field
         if (photoBytes != null && photoBytes.length > 0) {
             try {
                 room.setPhoto(new SerialBlob(photoBytes));
