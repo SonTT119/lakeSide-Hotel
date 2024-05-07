@@ -5,7 +5,7 @@ import { getAllRooms } from "../utils/ApiFunctions";
 
 
 const RoomCarousel = () => {
-    const[rooms, setRooms] = useState([{id:"", roomType:"", roomPrice:"", photo:""}])
+    const[rooms, setRooms] = useState([{id:"", roomType:"", roomPrice:"", photo:"", maxAdults:"", maxChildren:""}])
     const[errorMessage, setErrorMessage] = useState("")
     const[isLoading, setIsLoading] = useState(false)
 
@@ -55,8 +55,12 @@ const RoomCarousel = () => {
                                                     {room.roomType}
                                                 </Card.Title>
                                                 <Card.Title className="room-price">
-                                                    {room.roomPrice} / night
+                                                    ${room.roomPrice} / night
                                                 </Card.Title>
+                                                <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: "'Roboto', sans-serif", fontSize:"13px", color:"aquamarine"}}>
+                                                    <Card.Text>Max Adults: {room.maxAdults}</Card.Text> 
+                                                    <Card.Text>Max Children: {room.maxChildren}</Card.Text>
+                                                </div>
                                                 <div className="d-flex">
                                                     <div className="mr-3">
                                                         <Link to={`/book-room/${room.id}`} className="btn btn-hotel btn-sm">

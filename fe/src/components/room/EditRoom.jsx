@@ -6,7 +6,9 @@ const EditRoom = () => {
 	const [room, setRoom] = useState({
 		photo: "",
 		roomType: "",
-		roomPrice: ""
+		roomPrice: "",
+		maxAdults: "",
+		maxChildren: ""
 	})
 
 	const [imagePreview, setImagePreview] = useState("")
@@ -101,6 +103,43 @@ const EditRoom = () => {
 									value={room.roomPrice}
 									onChange={handleInputChange}
 								/>
+							</div>
+							<div className="row">
+								<div className="col-md-6">
+									<div className="mb-3">
+										<label htmlFor="maxAdults" className="form-label">
+											Max Adults
+										</label>
+										<input
+											className="form-control"
+											required
+											id="maxAdults"
+											type="number"
+											name="maxAdults"
+											min="1"
+											value={room.maxAdults} // new field
+											onChange={handleInputChange}
+										/>
+									</div>
+								</div>
+
+								<div className="col-md-6">
+									<div className="mb-3">
+										<label htmlFor="maxChildren" className="form-label">
+											Max Children
+										</label>
+										<input
+											className="form-control"
+											required
+											id="maxChildren"
+											type="number"
+											name="maxChildren"
+											min="0"
+											value={room.maxChildren} // new field
+											onChange={handleInputChange}
+										/>
+									</div>
+								</div>
 							</div>
 
 							<div className="mb-3">

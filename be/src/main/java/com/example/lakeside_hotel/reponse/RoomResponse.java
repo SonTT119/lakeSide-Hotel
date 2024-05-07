@@ -16,22 +16,28 @@ public class RoomResponse {
     private BigDecimal roomPrice;
     private boolean isBooked;
     private String photo;
+    private int maxAdults; // new field
+    private int maxChildren; // new field
 
     private List<BookingResponse> bookings;
 
-    public RoomResponse(Long id, String roomType, BigDecimal roomPrice) {
+    public RoomResponse(Long id, String roomType, BigDecimal roomPrice, int maxAdults, int maxChildren) {
         this.id = id;
         this.roomType = roomType;
         this.roomPrice = roomPrice;
+        this.maxAdults = maxAdults; // handle new field
+        this.maxChildren = maxChildren; // handle new field
     }
 
     public RoomResponse(Long id, String roomType, BigDecimal roomPrice, boolean isBooked, byte[] photoBytes,
-            List<BookingResponse> bookings) {
+            List<BookingResponse> bookings, int maxAdults, int maxChildren) {
         this.id = id;
         this.roomType = roomType;
         this.roomPrice = roomPrice;
         this.isBooked = isBooked;
         this.photo = photoBytes != null ? Base64.encodeBase64String(photoBytes) : null;
         this.bookings = bookings;
+        this.maxAdults = maxAdults; // handle new field
+        this.maxChildren = maxChildren; // handle new field
     }
 }

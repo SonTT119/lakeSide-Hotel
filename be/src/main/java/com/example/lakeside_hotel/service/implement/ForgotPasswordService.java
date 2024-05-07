@@ -25,7 +25,6 @@ public class ForgotPasswordService implements IForgotPasswordService {
     private final ForgotPasswordRepository forgotPasswordRepository;
     private final PasswordEncoder passwordEncoder;
 
-
     @Override
     public void save(ForgotPassword forgotPassword) {
         forgotPasswordRepository.save(forgotPassword);
@@ -95,9 +94,9 @@ public class ForgotPasswordService implements IForgotPasswordService {
             throw new IllegalArgumentException(
                     "Password must contain at least one digit, one lowercase letter, one uppercase letter, one special character and no whitespace");
         }
-        //mã hóa mật khẩu
+        // mã hóa mật khẩu
         String encodedPassword = passwordEncoder.encode(newPassword);
-        userService.updatePasswordByEmail(email, encodedPassword);
+        userService.resetPasswordByEmail(email, encodedPassword);
     }
 
     // Validate email address format

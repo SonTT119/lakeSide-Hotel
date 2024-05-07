@@ -1,55 +1,41 @@
-// import React, { useEffect, useState } from 'react'
-// import Header from '../common/Header'
-// import { getAllReviews } from '../utils/ApiFunctions'
-// import ReviewTable from './ReviewTable'
+import React, { useEffect, useState } from 'react';
+import { FaRegStar, FaStar } from 'react-icons/fa';
+import { useParams } from 'react-router-dom';
 
+const ReviewRoom = () => {
+    const [reviewData, setReviewData] = useState({ email: '', review: '', rating: '' });
+    const { roomId } = useParams();
 
-// const Review = () => {
-//     const[review, setReview] = useState([{id: "", comment: "", rating: "", user: {id: "", email: "", firstName: "", lastName: ""}}])
-//     const[isLoading, setIsLoading] = useState(false)
-//     const[errorMessage, setErrorMessage] = useState("")
-//     const[successMessage, setSuccessMessage] = useState("")
-//     const[currentPage, setCurrentPage] = useState(1)
-//     const[reviewsPerPage, setReviewsPerPage] = useState(8)
+    useEffect(() => {
+        getAllReviewsByRoomId(roomId).then((response) => {
+            setReviewData(response);
+        });
+    }, [roomId]);
 
-//     useEffect(() => {
-//         fetchReviews()
-//     },[])
+    const renderStars = (rating) => {
+        const stars = [];
+        const maxStars = 5;
+        const roundedRating = Math.round(reviewData.rating);
 
-//     const fetchReviews = async () =>{
-//         setIsLoading(true)
-//         try {
-//             const result = await getAllReviews()
-//             setReview(result)
-//             setIsLoading(false)
-//         } catch (error) {
-//             setErrorMessage(error.message)
-//             setIsLoading(false)
-//         }
-//     }
+        for (let i = 0; i < maxStars; i++) {
+            if (i < roundedRating) {
+                stars.push(<FaStar key={i} className='color-star' />); // Sao đầy
+            } else {
+                stars.push(<FaRegStar key={i} className='star'/>); // Sao trắng
+            }
+        }
 
-//     const handlePaginationClick = (pageNumber) => {
-//         setCurrentPage(pageNumber)
-//     }
+        return stars;
+    };
+    
+    return (
+        <div>
+            <h2>ReviewRoom</h2>
+            <div>Email: {reviewData.email}</div>
+            <div>Review: {reviewData.review}</div>
+            <div>Rating: {renderStars()}</div>
+        </div>
+    );
+};
 
-//     const calculateTotalPages = () => {
-//         return Math.ceil(review.length / reviewsPerPage)
-//     }
-
-//     return (
-//         <div>
-//             <section className='container'>
-//                 <Header title={"Existing Reviews"}/>
-//                 {errorMessage && (<div className='text-danger'>{errorMessage}</div>)}
-//                 {isLoading ? (<div>Loading Existing Reviews </div>):(
-//                     <ReviewTable review={review}
-//                     handlePaginationClick={handlePaginationClick}
-//                     calculateTotalPages={calculateTotalPages} />
-//                 )}
-//             </section>
-//         </div>
-//     )
-
-// }
-
-// export default Review
+export default ReviewRoom;

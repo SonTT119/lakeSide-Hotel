@@ -1576,3 +1576,144 @@ org.eclipse.lsp4j.jsonrpc.ResponseErrorException: Request window/showMessageRequ
 	at java.lang.Thread.run(Thread.java:840)
 
 2024.05.03 09:17:11 INFO  Exiting server
+2024.05.03 14:46:38 INFO  Started: Metals version 1.3.0 in folders 'D:\lakeSide_Hotel\lakeSide-Hotel' for client Visual Studio Code 1.89.0.
+SLF4J: Class path contains multiple SLF4J providers.
+SLF4J: Found provider [scribe.slf4j.ScribeServiceProvider@65956cb6]
+SLF4J: Found provider [ch.qos.logback.classic.spi.LogbackServiceProvider@41cba7d2]
+SLF4J: See https://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual provider is of type [scribe.slf4j.ScribeServiceProvider@65956cb6]
+2024.05.03 14:46:39 WARN  Flyway upgrade recommended: H2 2.2.224 is newer than this version of Flyway and support has not been tested. The latest supported version of H2 is 2.2.220.
+May 03, 2024 2:46:40 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 2
+May 03, 2024 2:46:43 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 11
+2024.05.03 14:46:57 INFO  no build target found for D:\lakeSide_Hotel\lakeSide-Hotel\be\src\main\java\com\example\lakeside_hotel\controller\ForgoPasswordController.java. Using presentation compiler with project's scala-library version: 3.3.3
+May 03, 2024 2:47:01 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-47-01-335.md
+May 03, 2024 2:47:01 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-47-01-694.md
+May 03, 2024 2:47:03 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-47-03-806.md
+May 03, 2024 2:47:06 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-47-06-685.md
+May 03, 2024 2:47:08 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 69
+May 03, 2024 2:47:10 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-47-10-241.md
+May 03, 2024 2:47:18 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-47-18-935.md
+May 03, 2024 2:47:19 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-47-19-172.md
+May 03, 2024 2:47:20 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-47-20-771.md
+May 03, 2024 2:47:23 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-47-23-002.md
+May 03, 2024 2:47:26 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-47-26-556.md
+May 03, 2024 2:47:27 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-47-27-272.md
+May 03, 2024 2:47:37 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-47-37-105.md
+May 03, 2024 2:47:40 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-47-40-218.md
+May 03, 2024 2:47:46 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-47-45-995.md
+May 03, 2024 2:47:47 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-47-47-112.md
+May 03, 2024 2:47:49 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-47-49-662.md
+May 03, 2024 2:47:57 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-47-57-777.md
+May 03, 2024 2:48:02 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-48-02-738.md
+May 03, 2024 2:48:08 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-48-08-661.md
+May 03, 2024 2:48:10 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-48-10-005.md
+May 03, 2024 2:48:10 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-48-10-910.md
+May 03, 2024 2:48:15 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-48-15-008.md
+May 03, 2024 2:48:16 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-48-16-238.md
+May 03, 2024 2:48:17 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-48-17-451.md
+May 03, 2024 2:48:18 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-48-18-372.md
+2024.05.03 14:48:20 WARN  no build target for: D:\lakeSide_Hotel\lakeSide-Hotel\be\src\main\java\com\example\lakeside_hotel\service\implement\ForgotPasswordService.java
+May 03, 2024 2:48:21 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-48-21-196.md
+May 03, 2024 2:49:27 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 247
+May 03, 2024 2:49:45 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-49-45-411.md
+May 03, 2024 2:50:12 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-50-12-734.md
+May 03, 2024 2:50:36 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-50-36-213.md
+May 03, 2024 2:50:59 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-50-59-805.md
+May 03, 2024 2:51:05 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-51-05-607.md
+May 03, 2024 2:51:06 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-51-06-359.md
+May 03, 2024 2:51:12 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-51-12-048.md
+May 03, 2024 2:51:12 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-51-12-919.md
+May 03, 2024 2:51:14 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-51-14-918.md
+May 03, 2024 2:51:15 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-51-15-735.md
+May 03, 2024 2:51:20 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-51-20-369.md
+May 03, 2024 2:51:21 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-51-21-095.md
+May 03, 2024 2:51:24 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-51-24-264.md
+May 03, 2024 2:51:27 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-51-27-362.md
+May 03, 2024 2:53:36 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-53-36-182.md
+May 03, 2024 2:53:38 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_14-53-38-537.md
+May 03, 2024 3:03:45 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_15-03-44-986.md
+May 03, 2024 3:03:46 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_15-03-46-923.md
+May 03, 2024 3:03:50 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_15-03-50-933.md
+May 03, 2024 3:03:50 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 446
+May 03, 2024 3:10:58 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_15-10-58-385.md
+May 03, 2024 3:14:58 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_15-14-58-609.md
+May 03, 2024 4:01:12 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_16-01-12-516.md
+May 03, 2024 4:08:15 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_16-08-15-783.md
+May 03, 2024 4:08:21 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_16-08-21-377.md
+May 03, 2024 4:08:21 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_16-08-21-841.md
+May 03, 2024 4:08:24 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_16-08-24-015.md
+May 03, 2024 4:08:25 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_16-08-25-007.md
+May 03, 2024 4:08:25 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_16-08-25-296.md
+May 03, 2024 4:08:25 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_16-08-25-767.md
+May 03, 2024 4:08:26 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_16-08-26-346.md
+May 03, 2024 4:10:23 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_16-10-23-060.md
+May 03, 2024 4:10:23 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_16-10-23-349.md
+May 03, 2024 4:17:59 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_16-17-59-894.md
+May 03, 2024 4:19:22 PM scala.meta.internal.pc.CompilerAccess handleError
+SEVERE: A severe compiler error occurred, full details of the error can be found in the error report D:\lakeSide_Hotel\lakeSide-Hotel\.metals\.reports\metals-full\2024-05-03\r_compiler-error_16-19-22-101.md
+2024.05.03 17:14:51 INFO  Shutting down server
+2024.05.03 17:14:51 INFO  shutting down Metals

@@ -21,7 +21,7 @@ public interface IUserService {
 
     Optional<User> getUserById(Long userId);
 
-    User updateUser(Long userId, String firstName, String lastName, String email);
+    User updateUser(Long userId, String firstName, String lastName, String phone, String address);
 
     // void updatePassword(String email, String password);
 
@@ -30,10 +30,14 @@ public interface IUserService {
     void deleteUserById(Long userId);
 
     // User getUserById(Long userId);
-    void updatePasswordByEmail(String email, String password);
+    void resetPasswordByEmail(String email, String password);
 
     JwtResponse authenticateUser(LoginRequest loginRequest);
 
     // count the number of users
     long countUsers();
+
+    void updateAvatar(Long userId, byte[] photoBytes);
+
+    byte[] getAvatarByUserId(Long userId);
 }

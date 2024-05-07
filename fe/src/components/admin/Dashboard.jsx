@@ -77,7 +77,7 @@ const Dashboard = () => {
                             <span className='title'>Bookings</span>
                             <span className="counter">{countBookings}</span>
                             <span>
-                                <Link to={"/existing-booking"} className="links">View all bookings</Link>
+                                <Link to={"/existing-bookings"} className="links">View all bookings</Link>
                             </span>
                         </div>
                         <div className="right">

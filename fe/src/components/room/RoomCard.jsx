@@ -1,10 +1,19 @@
 import React from "react";
 import { Card, Col } from "react-bootstrap";
-import { FaWifi } from 'react-icons/fa';
+import { FaTshirt, FaTv, FaUtensils, FaWifi, FaWineGlassAlt } from 'react-icons/fa';
 import { Link } from "react-router-dom";
 
+const RoomCard = ({room}) => {
+    const wifiTexts = [
+        <Card.Text key={1}><FaWifi className="icon" /> Free Wifi</Card.Text>,
+        <Card.Text key={2}><FaTv className="icon"/> Netflix Premium</Card.Text>,
+        <Card.Text key={3}><FaUtensils className="icon"/> Breakfast</Card.Text>,
+        <Card.Text key={4}><FaTshirt className="icon"/> Laundry</Card.Text>,
+        <Card.Text key={5}><FaWineGlassAlt className="icon"/> Mini Bar</Card.Text>
+    ];
 
-const RoomCard = ({room}) =>{
+    const randomWifiTexts = shuffleArray(wifiTexts).slice(0, 3);
+
     return(
         <Col className="mb-4" xs={12} key={room.id}>
             <Card className="card-room">
@@ -25,8 +34,21 @@ const RoomCard = ({room}) =>{
                         <Card.Title className="room-price">
                             ${room.roomPrice} / night
                         </Card.Title>
+                        <div style={{ fontFamily: "'Roboto', sans-serif", fontSize:"13px", color:"aquamarine"}}>
+                            <Card.Text>Max Adults: {room.maxAdults}</Card.Text> 
+                            <Card.Text>Max Children: {room.maxChildren}</Card.Text>
+                        </div>
                         <hr />
-                        <Card.Text><FaWifi className="icon" /> Free Wifi</Card.Text>
+                        <div className="d-flex">
+                            {randomWifiTexts.map((text, index) => (
+                                <React.Fragment key={text.key}>
+                                    {index > 0 && <span className="mx-1">|</span>}
+                                    <div className="mr-1">
+                                        {text}
+                                    </div>
+                                </React.Fragment>
+                            ))}
+                        </div>
                     </div>
                     <div className="d-flex">
                         <div className="mr-3">
@@ -40,11 +62,19 @@ const RoomCard = ({room}) =>{
                             </Link>
                         </div>
                     </div>
-        
                 </Card.Body>
             </Card>
         </Col>
-    )
+    );
+};
+
+// Function to shuffle an array
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
 }
 
 export default RoomCard;

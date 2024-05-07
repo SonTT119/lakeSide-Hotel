@@ -1,7 +1,7 @@
 import moment from "moment"
 import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { deleteUser, getBookingsByUserId, getUser } from "../utils/ApiFunctions"
+import { getBookingsByUserId, getUser, updateAvatar } from "../utils/ApiFunctions"
 
 const Profile = () => {
 	const [user, setUser] = useState({
@@ -9,6 +9,7 @@ const Profile = () => {
 		email: "",
 		firstName: "",
 		lastName: "",
+		
 		roles: [{ id: "", name: "" }]
 	})
 
@@ -21,12 +22,42 @@ const Profile = () => {
 			bookingConfirmationCode: ""
 		}
 	])
+
+	const [avatar, setAvatar] = useState("")
+
 	const [message, setMessage] = useState("")
 	const [errorMessage, setErrorMessage] = useState("")
 	const navigate = useNavigate()
 
 	const userId = localStorage.getItem("userId")
 	const token = localStorage.getItem("token")
+
+	const handleAvatarChange = (e) => {
+		const selectedAvatar = e.target.files[0]
+		setAvatar(URL.createObjectURL(selectedAvatar))
+	}
+
+	const handleSubmitAvatar = async (e) => {
+		e.preventDefault()
+
+		const formData = new FormData()
+		formData.append("avatar", avatar)
+
+		try {
+			const response = await updateAvatar(userId, formData, token)
+			if (response !== undefined) {
+				setMessage("Avatar updated successfully!")
+				const updatedUserData = await getUser(userId, token)
+				setAvatar(updatedUserData.avatar)
+				setErrorMessage("")
+			} else {
+				setErrorMessage("Error updating avatar")
+			}
+		} catch (error) {
+			console.error(error)
+			setErrorMessage(error.message)
+		}
+	}
 
 	useEffect(() => {
 		const fetchUser = async () => {
@@ -55,33 +86,33 @@ const Profile = () => {
 		fetchBookings()
 	}, [userId])
 
-	const handleDeleteAccount = async () => {
-		const confirmed = window.confirm(
-			"Are you sure you want to delete your account? This action cannot be undone."
-		)
-		if (confirmed) {
-			await deleteUser(userId)
-				.then((response) => {
-					setMessage(response.data)
-					localStorage.removeItem("token")
-					localStorage.removeItem("userId")
-					localStorage.removeItem("userRole")
-					navigate("/")
-					window.location.reload()
-				})
-				.catch((error) => {
-					setErrorMessage(error.data)
-				})
-		}
-	}
+	// const handleDeleteAccount = async () => {
+	// 	const confirmed = window.confirm(
+	// 		"Are you sure you want to delete your account? This action cannot be undone."
+	// 	)
+	// 	if (confirmed) {
+	// 		await deleteUser(userId)
+	// 			.then((response) => {
+	// 				setMessage(response.data)
+	// 				localStorage.removeItem("token")
+	// 				localStorage.removeItem("userId")
+	// 				localStorage.removeItem("userRole")
+	// 				navigate("/")
+	// 				window.location.reload()
+	// 			})
+	// 			.catch((error) => {
+	// 				setErrorMessage(error.data)
+	// 			})
+	// 	}
+	// }
 
-	const handleStatus = (status) => {
-		if (status === "CANCELLED") {
-			return "Cancelled"
-		} else {
-			return "On-going"
-		}
-	}
+	// const handleStatus = (status) => {
+	// 	if (status === "CANCELLED") {
+	// 		return "Cancelled"
+	// 	} else {
+	// 		return "On-going"
+	// 	}
+	// }
 
 	return (
 		<div className="container">
@@ -94,25 +125,51 @@ const Profile = () => {
 						<div className="col-md-10 mx-auto">
 							<div className="card mb-3 shadow">
 								<div className="row g-0">
-									<div className="col-md-2">
-										<div className="d-flex justify-content-center align-items-center mb-4">
-											<img
-												src="https://themindfulaimanifesto.org/wp-content/uploads/2020/09/male-placeholder-image.jpeg"
-												alt="Profile"
-												className="rounded-circle"
-												style={{ width: "150px", height: "150px", objectFit: "cover" }}
-											/>
-										</div>
-									</div>
+									
+										<div className="col-md-2">
+										<form onSubmit={handleSubmitAvatar}>
+											<div className="d-flex justify-content-center align-items-center mb-4">
+												<img
+													src={user.avatar || "https://themindfulaimanifesto.org/wp-content/uploads/2020/09/male-placeholder-image.jpeg"}
+													alt="Profile"
+													className="rounded-circle"
+													style={{ width: "150px", height: "150px", objectFit: "cover" }}
+												/>
+												
+										
+											</div>
+											<span>
+												<input
+													required
+													type="file"
+													className="form-control"
+													id="avatar"
+													name="avatar"
+													onChange={handleAvatarChange}
+												/>
+												{avatar && (
+													<img
+														src={`data:image/jpeg;base64,${avatar}`}
+														alt="Room preview"
+														style={{ maxWidth: "400px", maxHeight: "400px" }}
+														className="mt-3"
+													/>
+												)}
+											</span>
 
+											<button type="submit" className="btn btn-outline-primary mt-2">
+												Update Avatar
+											</button>
+										</form>
+										</div>
 									<div className="col-md-10">
 										<div className="card-body">
-											<div className="form-group row">
+											{/* <div className="form-group row">
 												<label className="col-md-2 col-form-label fw-bold">ID:</label>
 												<div className="col-md-10">
 													<p className="card-text">{user.id}</p>
 												</div>
-											</div>
+											</div> */}
 											<hr />
 
 											<div className="form-group row">
@@ -138,6 +195,20 @@ const Profile = () => {
 												</div>
 											</div>
 											<hr />
+											<div className="form-group row">
+												<label className="col-md-2 col-form-label fw-bold">Phone:</label>
+												<div className="col-md-10">
+													<p className="card-text">{user.phone}</p>
+												</div>
+											</div>
+											<hr />
+											<div className="form-group row">
+												<label className="col-md-2 col-form-label fw-bold">Address:</label>
+												<div className="col-md-10">
+													<p className="card-text">{user.address}</p>
+												</div>
+											</div>
+											<hr />
 
 											<div className="form-group row">
 												<label className="col-md-2 col-form-label fw-bold">Roles:</label>
@@ -154,6 +225,15 @@ const Profile = () => {
 										</div>
 									</div>
 								</div>
+							</div>
+
+							<div className="d-grid gap-2 d-md-flex mt-2">
+								<Link to="/edit-profile" className="btn btn-outline-warning">
+									Edit Profile
+								</Link>
+								{/* <button className="btn btn-outline-danger" onClick={handleDeleteAccount}>
+									Delete Account
+								</button> */}
 							</div>
 
 							<h4 className="card-title text-center">Booking History</h4>
@@ -186,7 +266,7 @@ const Profile = () => {
 														.format("MMM Do, YYYY")}
 												</td>
 												<td>{booking.bookingConfirmationCode}</td>
-												<td className="text-success">On-going</td>
+												<td>{booking.status}</td>
 											</tr>
 										))}
 									</tbody>
@@ -195,14 +275,7 @@ const Profile = () => {
 								<p>You have not made any bookings yet.</p>
 							)}
 
-							<div className="d-grid gap-2 d-md-flex mt-2">
-								<Link to="/edit-profile" className="btn btn-outline-warning">
-									Edit Profile
-								</Link>
-								{/* <button className="btn btn-outline-danger" onClick={handleDeleteAccount}>
-									Delete Account
-								</button> */}
-							</div>
+							
 						</div>
 					</div>
 				</div>

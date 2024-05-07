@@ -12,7 +12,7 @@ import { deleteRoom, getAllRooms } from "../utils/ApiFunctions";
 
 const ExistingRooms = () => {
 
-    const [rooms, setRooms] = useState([{ id: "", roomType: "", roomPrice: "" }])
+    const [rooms, setRooms] = useState([{ id: "", roomType: "", roomPrice: "", maxAdults: "", maxChildren: "" }])
     const[currentPage, setCurrentPage] = useState(1)
     const[roomsPerPage, setRoomsPerPage] = useState(8)
     const[isLoading, setIsLoading] = useState(false)
@@ -129,7 +129,10 @@ const ExistingRooms = () => {
                                             <th>ID</th>
                                             <th>Room Type</th>
                                             <th>Room Price</th>
+                                            <th>Max Adults</th>
+                                            <th>Max Children</th>
                                             <th>Actions</th>
+
                                         </tr>
                                     </thead>
 
@@ -139,6 +142,8 @@ const ExistingRooms = () => {
                                                 <td>{room.id}</td>
                                                 <td>{room.roomType}</td>
                                                 <td>{room.roomPrice}</td>
+                                                <td>{room.maxAdults}</td>
+                                                <td>{room.maxChildren}</td>
                                                 <td className="gap-2">
                                                     <Link to={`/edit-room/${room.id}`}>
                                                         <span className="btn btn-info btn-sm">

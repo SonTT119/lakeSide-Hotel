@@ -1,11 +1,26 @@
+file:///D:/lakeSide_Hotel/lakeSide-Hotel/be/src/main/java/com/example/lakeside_hotel/controller/UserController.java
+### java.util.NoSuchElementException: next on empty iterator
+
+occurred in the presentation compiler.
+
+presentation compiler configuration:
+Scala version: 3.3.3
+Classpath:
+<HOME>\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala3-library_3\3.3.3\scala3-library_3-3.3.3.jar [exists ], <HOME>\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala-library\2.13.12\scala-library-2.13.12.jar [exists ]
+Options:
+
+
+
+action parameters:
+offset: 6134
+uri: file:///D:/lakeSide_Hotel/lakeSide-Hotel/be/src/main/java/com/example/lakeside_hotel/controller/UserController.java
+text:
+```scala
 package com.example.lakeside_hotel.controller;
 
-import java.sql.Blob;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
-
-import javax.sql.rowset.serial.SerialBlob;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +33,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.example.lakeside_hotel.exception.ResourceNotFoundException;
 import com.example.lakeside_hotel.model.User;
@@ -127,18 +141,17 @@ public class UserController {
             @PathVariable Long userId,
             @RequestParam(required = false) String firstName,
             @RequestParam(required = false) String lastName,
-            @RequestParam(required = false) String phone, // new
-            @RequestParam(required = false) String address) { // new
+            @RequestParam(required = false) String email) {
 
         try {
-            User updatedUser = userService.updateUser(userId, firstName, lastName, phone, address); // updated
+            User updatedUser = userService.updateUser(userId, firstName, lastName, email);
             UserResponse userResponse = new UserResponse(updatedUser.getId(), updatedUser.getFirstName(),
-                    updatedUser.getLastName(), updatedUser.getPhone(), updatedUser.getAddress()); // updated
+                    updatedUser.getLastName(), updatedUser.getEmail());
             return ResponseEntity.ok(userResponse);
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null); // User not found
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null); // Other errors
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ER@@ROR).body(null); // Other errors
         }
     }
 
@@ -160,26 +173,6 @@ public class UserController {
         }
     }
 
-    // update avatar user
-    @PutMapping("/update-avatar/{userId}")
-    public ResponseEntity<String> updateAvatar(@RequestParam Long userId,
-            @RequestParam(required = false) MultipartFile photo) {
-        try {
-            byte[] photoBytes = photo != null && !photo.isEmpty() ? photo.getBytes()
-                    : userService.getAvatarByUserId(userId);
-            Blob photoBlob = photoBytes != null && photoBytes.length > 0 ? new SerialBlob(photoBytes) : null;
-
-            User theUser = userService.getUserById(userId)
-                    .orElseThrow(() -> new ResourceNotFoundException("User not found"));
-            theUser.setAvatar(photoBlob.getBytes(1, (int) photoBlob.length())); // Convert Blob to byte[]
-            return ResponseEntity.ok("Avatar updated successfully");
-        } catch (UsernameNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating avatar");
-        }
-    }
-
     // get the number of users
     @GetMapping("/count")
     public ResponseEntity<Long> countUsers() {
@@ -187,3 +180,25 @@ public class UserController {
         return ResponseEntity.ok(count);
     }
 }
+
+```
+
+
+
+#### Error stacktrace:
+
+```
+scala.collection.Iterator$$anon$19.next(Iterator.scala:973)
+	scala.collection.Iterator$$anon$19.next(Iterator.scala:971)
+	scala.collection.mutable.MutationTracker$CheckedIterator.next(MutationTracker.scala:76)
+	scala.collection.IterableOps.head(Iterable.scala:222)
+	scala.collection.IterableOps.head$(Iterable.scala:222)
+	scala.collection.AbstractIterable.head(Iterable.scala:933)
+	dotty.tools.dotc.interactive.InteractiveDriver.run(InteractiveDriver.scala:168)
+	scala.meta.internal.pc.MetalsDriver.run(MetalsDriver.scala:45)
+	scala.meta.internal.pc.HoverProvider$.hover(HoverProvider.scala:34)
+	scala.meta.internal.pc.ScalaPresentationCompiler.hover$$anonfun$1(ScalaPresentationCompiler.scala:368)
+```
+#### Short summary: 
+
+java.util.NoSuchElementException: next on empty iterator

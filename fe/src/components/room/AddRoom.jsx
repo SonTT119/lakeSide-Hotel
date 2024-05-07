@@ -10,7 +10,9 @@ const AddRoom = () => {
     const[newRoom, setNewRoom] = useState({
         photo: null,
         roomType: "",
-        roomPrice: ""
+        roomPrice: "",
+        maxAdults: "",
+        maxChildren: ""
     })
 
     const[imagePreview, setImagePreview] = useState("")
@@ -20,10 +22,11 @@ const AddRoom = () => {
     const handleRoomInputChange = (e) => {
         const name = e.target.name
         let value = e.target.value
-        if(name === "roomPrice"){
+        if(name === "roomPrice" || name === "maxAdults" || name === "maxChildren"){
             if(!isNaN(value)){
                 value = parseInt(value)
-            }else{
+            }
+            else{
                 value = ""
             }
         }
@@ -46,7 +49,9 @@ const AddRoom = () => {
                 setNewRoom({
                     photo: null,
                     roomType: "",
-                    roomPrice: ""
+                    roomPrice: "",
+                    maxAdults: "",
+                    maxChildren: ""
                 })
                 setImagePreview("")
             
@@ -109,6 +114,45 @@ const AddRoom = () => {
                                         onChange={handleRoomInputChange}
                                     />
                                 </div>
+
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="mb-3">
+                                            <label htmlFor="maxAdults" className="form-label">
+                                                Max Adults
+                                            </label>
+                                            <input
+                                                className="form-control"
+                                                required
+                                                id="maxAdults"
+                                                type="number"
+                                                name="maxAdults"
+                                                min="1"
+                                                value={newRoom.maxAdults} // new field
+                                                onChange={handleRoomInputChange}
+                                            />
+                                        </div>
+                                    </div>
+
+                                    <div className="col-md-6">
+                                        <div className="mb-3">
+                                            <label htmlFor="maxChildren" className="form-label">
+                                                Max Children
+                                            </label>
+                                            <input
+                                                className="form-control"
+                                                required
+                                                id="maxChildren"
+                                                type="number"
+                                                name="maxChildren"
+                                                min="0"
+                                                value={newRoom.maxChildren} // new field
+                                                onChange={handleRoomInputChange}
+                                            />
+                                        </div>
+                                    </div>
+                                </div>
+
 
                                 <div className="mb-3">
                                     <label htmlFor="photo" className="form-label">

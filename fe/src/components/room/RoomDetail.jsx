@@ -14,6 +14,8 @@ const RoomDetail = () => {
         photo: '',
         roomType: '',
         roomPrice: '',
+        maxAdults: '',
+        maxChildren: '',
         // roomService: []
     });
     const [rating, setRating] = useState(null);
@@ -75,7 +77,16 @@ const RoomDetail = () => {
                     <div className='room-price-detail'>
                         <h3>${room.roomPrice} / night</h3>
                     </div>
-
+                    <hr />
+                    <div className="row">
+                        <div className="col-md-6">
+                            <h5 >Max Adults: {room.maxAdults}</h5>
+                        </div>
+                        <div className="col-md-6">
+                            <h5>Max Children: {room.maxChildren}</h5>
+                        </div>
+                    </div>
+                        <hr />
                     <div className="row" style={{ display: 'flex', alignItems: 'center' }}>
                         <h5 >Room Service</h5>
                         <div className="col-md-6">

@@ -1,3 +1,21 @@
+file:///D:/lakeSide_Hotel/lakeSide-Hotel/be/src/main/java/com/example/lakeside_hotel/controller/RoomController.java
+### java.util.NoSuchElementException: next on empty iterator
+
+occurred in the presentation compiler.
+
+presentation compiler configuration:
+Scala version: 3.3.3
+Classpath:
+<HOME>\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala3-library_3\3.3.3\scala3-library_3-3.3.3.jar [exists ], <HOME>\AppData\Local\Coursier\cache\v1\https\repo1.maven.org\maven2\org\scala-lang\scala-library\2.13.12\scala-library-2.13.12.jar [exists ]
+Options:
+
+
+
+action parameters:
+offset: 2914
+uri: file:///D:/lakeSide_Hotel/lakeSide-Hotel/be/src/main/java/com/example/lakeside_hotel/controller/RoomController.java
+text:
+```scala
 package com.example.lakeside_hotel.controller;
 
 import java.io.IOException;
@@ -49,12 +67,11 @@ public class RoomController {
     @PostMapping("/add/new-room")
     // @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<RoomResponse> addNewRoom(@RequestParam MultipartFile photo,
-            @RequestParam String roomType, @RequestParam BigDecimal roomPrice, @RequestParam int maxAdults,
-            @RequestParam int maxChildren)
+            @RequestParam String roomType, @RequestParam BigDecimal roomPrice)
             throws SQLException, IOException {
-        Room savedRoom = roomService.addNewRoom(photo, roomType, roomPrice, maxAdults, maxChildren);
+        Room savedRoom = roomService.addNewRoom(photo, roomType, roomPrice);
         RoomResponse roomResponse = new RoomResponse(savedRoom.getId(), savedRoom.getRoomType(),
-                savedRoom.getRoomPrice(), savedRoom.getMaxAdults(), savedRoom.getMaxChildren());
+                savedRoom.getRoomPrice());
         return ResponseEntity.ok(roomResponse);
     }
 
@@ -67,7 +84,7 @@ public class RoomController {
     public ResponseEntity<List<RoomResponse>> getAllRooms() throws SQLException {
         List<Room> rooms = roomService.getAllRooms();
         List<RoomResponse> roomResponses = new ArrayList<>();
-        for (Room room : rooms) {
+        f@@or (Room room : rooms) {
             byte[] photoBytes = roomService.getRoomPhotoByRoomId(room.getId());
             if (photoBytes != null && photoBytes.length > 0) {
                 String base64Photo = Base64.encodeBase64String(photoBytes);
@@ -90,13 +107,11 @@ public class RoomController {
     public ResponseEntity<RoomResponse> updateRoom(@PathVariable Long roomId,
             @RequestParam(required = false) String roomType,
             @RequestParam(required = false) BigDecimal roomPrice,
-            @RequestParam(required = false) MultipartFile photo,
-            @RequestParam(required = false) Integer maxAdults,
-            @RequestParam(required = false) Integer maxChildren) throws SerialException, SQLException, IOException {
+            @RequestParam(required = false) MultipartFile photo) throws SerialException, SQLException, IOException {
         byte[] photoBytes = photo != null && !photo.isEmpty() ? photo.getBytes()
                 : roomService.getRoomPhotoByRoomId(roomId);
         Blob photoBlob = photoBytes != null && photoBytes.length > 0 ? new SerialBlob(photoBytes) : null;
-        Room theRoom = roomService.updateRoom(roomId, roomType, roomPrice, photoBytes, maxAdults, maxChildren);
+        Room theRoom = roomService.updateRoom(roomId, roomType, roomPrice, photoBytes);
         theRoom.setPhoto(photoBlob);
         RoomResponse roomResponse = getRoomResponse(theRoom);
         return ResponseEntity.ok(roomResponse);
@@ -159,8 +174,7 @@ public class RoomController {
         }
         return new RoomResponse(room.getId(),
                 room.getRoomType(), room.getRoomPrice(),
-                room.isBooked(), photoBytes, bookingInfo,
-                room.getMaxAdults(), room.getMaxChildren()); // handle new fields
+                room.isBooked(), photoBytes, bookingInfo);
     }
 
     private List<BookedRoom> getAllBookingsByRoomId(Long roomId) {
@@ -168,3 +182,25 @@ public class RoomController {
     }
 
 }
+
+```
+
+
+
+#### Error stacktrace:
+
+```
+scala.collection.Iterator$$anon$19.next(Iterator.scala:973)
+	scala.collection.Iterator$$anon$19.next(Iterator.scala:971)
+	scala.collection.mutable.MutationTracker$CheckedIterator.next(MutationTracker.scala:76)
+	scala.collection.IterableOps.head(Iterable.scala:222)
+	scala.collection.IterableOps.head$(Iterable.scala:222)
+	scala.collection.AbstractIterable.head(Iterable.scala:933)
+	dotty.tools.dotc.interactive.InteractiveDriver.run(InteractiveDriver.scala:168)
+	scala.meta.internal.pc.MetalsDriver.run(MetalsDriver.scala:45)
+	scala.meta.internal.pc.HoverProvider$.hover(HoverProvider.scala:34)
+	scala.meta.internal.pc.ScalaPresentationCompiler.hover$$anonfun$1(ScalaPresentationCompiler.scala:368)
+```
+#### Short summary: 
+
+java.util.NoSuchElementException: next on empty iterator

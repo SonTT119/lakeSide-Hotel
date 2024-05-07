@@ -20,6 +20,9 @@ const BookingForm = () => {
         // confirmationCode: ""
     })
 
+    const [room, setRoom] = useState(null);
+
+
 
     // const { isAuthenticated } = useContext(AuthContext);
 
@@ -36,6 +39,7 @@ const BookingForm = () => {
         try {
             const response = await getRoomById(roomId)
             setRoomPrice(response.roomPrice)
+            setRoom(response);
         } catch (error) {
             throw new Error(error)
         }
@@ -70,17 +74,28 @@ const BookingForm = () => {
         }
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        const form = e.currentTarget
-       
-        if (form.checkValidity() === false || !isGuestCountValid() || !isCheckOutDateValid()){
-            e.stopPropagation()
-        }else{
-            setIsSubmitted(true)
+    const isGuestCountWithinRoomCapacity = async () => {
+        try {
+            const room = await getRoomById(roomId);
+            const adultCount = parseInt(booking.numOfAdults);
+            const childrenCount = parseInt(booking.numOfChildren);
+            return adultCount <= room.maxAdults && childrenCount <= room.maxChildren;
+        } catch (error) {
+            console.error(error);
+            return false;
         }
-        setIsValidated(true)
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const form = e.currentTarget;
         
+        if (form.checkValidity() === false || !isGuestCountValid() || !isCheckOutDateValid() || !(await isGuestCountWithinRoomCapacity())){
+            e.stopPropagation();
+        }else{
+            setIsSubmitted(true);
+        }
+        setIsValidated(true);
     }
 
     const handleBooking = async() => {
@@ -205,6 +220,9 @@ const BookingForm = () => {
                                             onChange={handleInputChange}
                                             placeholder='0'
                                             min={1}
+                                            max={room ? room.maxAdults : undefined} // Set max value
+
+
                                             />
                                             <Form.Control.Feedback type='invalid'>
                                                 Please select at least 1 adult.
@@ -223,6 +241,8 @@ const BookingForm = () => {
                                             onChange={handleInputChange}
                                             placeholder='0'
                                             min={0}
+                                            max={room ? room.maxChildren : undefined} // Set max value
+
                                             />
                                             <Form.Control.Feedback type="invalid">
 												Select 0 if no children

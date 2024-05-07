@@ -1,10 +1,13 @@
 package com.example.lakeside_hotel.service.implement;
 
+import java.sql.Blob;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import javax.sql.rowset.serial.SerialBlob;
 
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -100,7 +103,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User updateUser(Long userId, String firstName, String lastName, String email) {
+    public User updateUser(Long userId, String firstName, String lastName, String phone, String address) {
         Optional<User> optionalUser = userRepository.findById(userId);
         User user = optionalUser.orElseThrow(() -> new NoSuchElementException("No user found with id " + userId));
 
@@ -112,8 +115,15 @@ public class UserService implements IUserService {
             user.setLastName(lastName);
         }
 
-        if (email != null) {
-            user.setEmail(email);
+        if (phone != null) {
+            if (phone.length() != 10) {
+                throw new IllegalArgumentException("Phone number must have exactly 10 digits");
+            }
+            user.setPhone(phone);
+        }
+
+        if (address != null) {
+            user.setAddress(address);
         }
 
         userRepository.save(user);
@@ -156,7 +166,7 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void updatePasswordByEmail(String email, String newPassword) {
+    public void resetPasswordByEmail(String email, String newPassword) {
 
         User user = getUserByEmail(email);
 
@@ -201,6 +211,33 @@ public class UserService implements IUserService {
     @Override
     public long countUsers() {
         return userRepository.count();
+    }
+
+    @Override
+    public void updateAvatar(Long userId, byte[] photoBytes) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new NoSuchElementException("No user found with id " + userId));
+        user.setAvatar(photoBytes);
+        userRepository.save(user);
+    }
+
+    @Override
+    public byte[] getAvatarByUserId(Long userId) {
+        Optional<User> theUser = userRepository.findById(userId);
+        if (theUser.isEmpty()) {
+            throw new NoSuchElementException("No user found with id " + userId);
+        }
+        Blob photoBlob = null;
+        byte[] photoBytes = theUser.get().getAvatar();
+        if (photoBytes != null) {
+            try {
+                photoBlob = new SerialBlob(photoBytes);
+                return photoBlob.getBytes(1, (int) photoBlob.length());
+            } catch (Exception e) {
+                throw new UserAlreadyExistException("Error retrieving photo");
+            }
+        }
+        return photoBytes;
     }
 
 }

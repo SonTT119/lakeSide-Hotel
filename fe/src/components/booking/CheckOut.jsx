@@ -10,7 +10,7 @@ import BookingForm from './BookingForm'
 const CheckOut = () => {
     const[error, setError] = useState("")
     const[isLoaded, setIsLoaded] = useState(true)
-    const[roomInfo, setRoomInfo] = useState({photo: "", roomType: "", roomPrice: ""})
+    const[roomInfo, setRoomInfo] = useState({photo: "", roomType: "", roomPrice: "", maxAdults: "", maxChildren: ""})
 
     const {roomId} = useParams()
     useEffect(() => {
@@ -46,6 +46,14 @@ const CheckOut = () => {
                                         <tr>
                                             <th>Price per night:</th>
                                             <th>${roomInfo.roomPrice} / night</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Max Adults:</th>
+                                            <th>{roomInfo.maxAdults}</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Max Children:</th>
+                                            <th>{roomInfo.maxChildren}</th>
                                         </tr>
                                         <tr>
                                             <th>Room Service</th>

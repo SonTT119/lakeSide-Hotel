@@ -68,6 +68,8 @@ export async function updateRoom(roomId, roomData){
     formData.append('roomType', roomData.roomType);
     formData.append('roomPrice', roomData.roomPrice);
     formData.append('photo', roomData.photo);
+    formData.append('maxAdults', roomData.maxAdults);
+    formData.append('maxChildren', roomData.maxChildren);
     const response = await api.put(`/rooms/update-room/${roomId}`, formData)
     return response
 }
@@ -204,6 +206,14 @@ export async function getUser(userId, token) {
 	}
 }
 
+// update avatar user
+export async function updateAvatar(userId, avatar) {
+    const formData = new FormData();
+    formData.append('avatar', avatar);
+    const response = await api.put(`/users/update-avatar/${userId}`, formData)
+    return response
+}
+
 export async function getBookingsByUserId(userId, token) {
 	try {
 		const response = await api.get(`/bookings/user/${userId}/bookings`, {
@@ -241,7 +251,8 @@ export async function updateUser(userId, userData){
     const formData = new FormData();
     formData.append('firstName', userData.firstName);
     formData.append('lastName', userData.lastName);
-    formData.append('email', userData.email);
+    formData.append('phone', userData.phone);
+    formData.append('address', userData.address);
     const response = await api.put(`/users/update/${userId}`, formData)
     return response
 }

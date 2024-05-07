@@ -69,7 +69,7 @@ const EditUser = () => {
 
 
     return (
-        <>
+        <section className='container'>
             {isLoggedIn && userRole === "ROLE_ADMIN" && (
                 <div className="container mt-5 mb-5">
                     <div className='row justify-content-center'>
@@ -110,7 +110,7 @@ const EditUser = () => {
                                     <button className="btn btn-outline-warning"
                                     onClick={handleSubmit}
                                     >
-                                        Edit Room
+                                        Edit User
                                     </button>
                                 </div>
                             </form>
@@ -130,7 +130,7 @@ const EditUser = () => {
                 </div>
             )}
             
-        </>
+        </section>
     )
 }
 

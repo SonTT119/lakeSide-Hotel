@@ -38,6 +38,12 @@ public class BookingService implements IBookingService {
         List<BookedRoom> existingBookings = room.getBookings();
         boolean roomIsAvailable = roomIsAvailable(bookingRequest, existingBookings);
         if (roomIsAvailable) {
+            // Check if the number of adults and children exceeds the room's capacity
+            if (bookingRequest.getNumOfAdults() + bookingRequest.getNumOfChildren() > room.getMaxAdults()
+                    + room.getMaxChildren()) {
+                throw new InvalidBookingRequestException(
+                        "The number of adults or children exceeds the room's capacity");
+            }
             room.addBooking(bookingRequest);
             bookingRepository.save(bookingRequest);
         } else {
