@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { FaCar, FaParking, FaTshirt, FaTv, FaUtensils, FaWifi, FaWineGlassAlt } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
-import RoomCarousel from '../common/RoomCarousel'
-import AddReview from '../review/AddReview'
 // import Review from '../review/Review'
+import SimilarRooms from '../common/SimilarRooms'
+import RoomReview from '../review/RoomReview'
 import { getRoomById } from '../utils/ApiFunctions'
 import BookingForm from './BookingForm'
 
@@ -27,7 +27,7 @@ const CheckOut = () => {
     }, [roomId])
     return (
         <div>
-            <section  className='container' style={{backgroundColor:"whitesmoke", padding:"10px"}}>
+            <section  className='container room-similar' style={{backgroundColor:"whitesmoke", padding:"10px"}}>
                 <div className='row flex-column flex-md-row align-items-center mt-5'>
                     <div className='col'>
                         {isLoaded ? (
@@ -36,7 +36,7 @@ const CheckOut = () => {
                             <p>{error}</p>
                         ): (
                             <div className='room-info'>
-                                <img src={`data:image/png;base64, ${roomInfo.photo}`} alt="Room photo" style={{width:"100%", height: "200px"}}/>
+                                <img src={`data:image/png;base64, ${roomInfo.photo}`} alt="Room photo" style={{width:"100%", height: "200px", marginTop:"15px"}}/>
                                 <table className='table table-bordered'>
                                     <tbody>
                                         <tr>
@@ -98,8 +98,10 @@ const CheckOut = () => {
             <div className='container'>
                 {/* <Review id={roomId}/> */}
                 {/* <Review/> */}
-                <AddReview/>
-                <RoomCarousel/>
+                {/* <AddReview/> */}
+                {/* <RoomReview roomId={roomId}/> */}
+                <RoomReview/>
+                {roomInfo.roomType && <SimilarRooms roomInfo={roomInfo.roomType} />}
             </div>
         </div>
     )

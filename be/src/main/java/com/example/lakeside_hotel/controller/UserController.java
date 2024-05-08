@@ -1,11 +1,14 @@
 package com.example.lakeside_hotel.controller;
 
+import java.io.IOException;
 import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.lakeside_hotel.exception.PhotoRetrievalException;
 import com.example.lakeside_hotel.exception.ResourceNotFoundException;
 import com.example.lakeside_hotel.model.User;
 import com.example.lakeside_hotel.reponse.UserResponse;
@@ -142,11 +146,6 @@ public class UserController {
         }
     }
 
-    private UserResponse getUserResponse(User existingUser) {
-        return new UserResponse(existingUser.getId(), existingUser.getFirstName(), existingUser.getLastName(),
-                existingUser.getEmail());
-    }
-
     // update password
     @PutMapping("/update-password")
     public ResponseEntity<String> updatePassword(@RequestBody UpdatePasswordRequest updatePasswordRequest) {
@@ -162,22 +161,16 @@ public class UserController {
 
     // update avatar user
     @PutMapping("/update-avatar/{userId}")
-    public ResponseEntity<String> updateAvatar(@RequestParam Long userId,
-            @RequestParam(required = false) MultipartFile photo) {
-        try {
-            byte[] photoBytes = photo != null && !photo.isEmpty() ? photo.getBytes()
-                    : userService.getAvatarByUserId(userId);
-            Blob photoBlob = photoBytes != null && photoBytes.length > 0 ? new SerialBlob(photoBytes) : null;
-
-            User theUser = userService.getUserById(userId)
-                    .orElseThrow(() -> new ResourceNotFoundException("User not found"));
-            theUser.setAvatar(photoBlob.getBytes(1, (int) photoBlob.length())); // Convert Blob to byte[]
-            return ResponseEntity.ok("Avatar updated successfully");
-        } catch (UsernameNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating avatar");
-        }
+    public ResponseEntity<UserResponse> updateAvatar(@PathVariable Long userId,
+            @RequestParam(required = false) MultipartFile avatar)
+            throws SerialException, IOException, SQLException {
+        byte[] avatarBytes = avatar != null && !avatar.isEmpty() ? avatar.getBytes()
+                : userService.getAvatarByUserId(userId);
+        Blob photoBlob = avatarBytes != null && avatarBytes.length > 0 ? new SerialBlob(avatarBytes) : null;
+        User theUser = userService.updateAvatar(userId, avatarBytes);
+        theUser.setAvatar(photoBlob);
+        UserResponse userResponse = getUserResponse(theUser);
+        return ResponseEntity.ok(userResponse);
     }
 
     // get the number of users
@@ -185,5 +178,19 @@ public class UserController {
     public ResponseEntity<Long> countUsers() {
         long count = userService.countUsers();
         return ResponseEntity.ok(count);
+    }
+
+    private UserResponse getUserResponse(User existingUser) {
+        byte[] avatarBytes = null;
+        Blob avatarBlob = existingUser.getAvatar();
+        if (avatarBlob != null) {
+            try {
+                avatarBytes = avatarBlob.getBytes(1, (int) avatarBlob.length());
+            } catch (SQLException e) {
+                throw new PhotoRetrievalException("Error retrieving photo");
+            }
+        }
+        return new UserResponse(existingUser.getId(), existingUser.getFirstName(), existingUser.getLastName(),
+                existingUser.getEmail(), existingUser.getPhone(), existingUser.getAddress(), avatarBytes);
     }
 }

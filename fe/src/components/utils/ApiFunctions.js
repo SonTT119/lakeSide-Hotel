@@ -49,6 +49,17 @@ export async function getAllRooms(){
     }
 }
 
+export async function getSimilarRooms(roomType){
+    try {
+        const response = await api.get(`/rooms/similar-rooms/${roomType}`, {
+            headers: getHeader()
+        });
+        return response.data; // Trả về dữ liệu từ API
+    } catch (error) {
+        throw new Error("Error fetching rooms"); // Ném lỗi nếu có lỗi xảy ra
+    }
+}
+
 /* this function deletes a room from the database */
 export async function deleteRoom(roomId){
     try {
@@ -171,17 +182,6 @@ export async function login(login) {
 
 }
 
-export async function getUserProfile(userId, token) {
-    try {
-        const result = await api.get(`/auth/profile/${userId}`,{
-            headers: getHeader()
-        })
-        return result.data
-    } catch (error) {
-        throw new Error(`Error fetching user profile: ${error.message}`)
-    }
-}
-
 /* This isthe function to delete a user */
 export async function deleteUser(email) {
 	try {
@@ -207,11 +207,13 @@ export async function getUser(userId, token) {
 }
 
 // update avatar user
-export async function updateAvatar(userId, avatar) {
+export async function updateAvatar(userId, avatarData) {
     const formData = new FormData();
-    formData.append('avatar', avatar);
-    const response = await api.put(`/users/update-avatar/${userId}`, formData)
-    return response
+    formData.append("avatar", avatarData.avatar); // Truyền dữ liệu hình đại diện vào FormData
+
+    const response = await api.put(`/users/update-avatar/${userId}`, formData);
+    
+    return response;
 }
 
 export async function getBookingsByUserId(userId, token) {

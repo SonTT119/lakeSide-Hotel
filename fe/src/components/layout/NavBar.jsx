@@ -13,9 +13,7 @@ const Navbar = () => {
         setShowAccount(!showAccount);
     };
 
-    console.log('Is logged in:', isLoggedIn);
-    console.log('User:', user);
-
+	const currentUser = localStorage.getItem("userId")
 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary px-5 shadow mt-5 sticky-top">
@@ -76,7 +74,7 @@ const Navbar = () => {
 											style={{ width: "30px", height: "30px", objectFit: "cover" }}
 										/>
                                         {/* get name user */}
-                                        {user.firstName}
+                                        {currentUser}
                                     </span>
                                 ) : (
                                     "Account"

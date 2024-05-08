@@ -7,7 +7,7 @@
     border: 1px solid #ccc; 
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #dcd5d5;
+    background-color: #e7e7e7;
     padding: 20px; 
     border-collapse: collapse;
 }
@@ -48,7 +48,7 @@ h5{
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 10px;
-    background-color: #c6bfbf;
+    background-color: #e9e9e9;
     margin-top: 10px;
     margin-bottom: 10px;
 }
@@ -69,8 +69,41 @@ h5{
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 2px;
-    background-color: #c6bfbf;
+    background-color: #c6c6c6;
     margin-top: 10px;
     margin-bottom: 10px;
 
+}
+
+.room-similar {
+    border: 1px solid #d1d1d1;
+    padding: 10px;
+    background-color: #f5f3f3;
+    box-shadow: 0 0 10px rgba(235, 232, 232, 0.1);
+}
+.room-rating{
+    background: #fff;
+    border-radius: .125rem;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .05);
+    margin-top: .9375rem;
+    overflow: hidden;
+    overflow: visible;
+    padding: 1.5625rem;
+}
+
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+}
+
+.small-image {
+    width: 100%;
+    height: auto;
+    border-radius: 3%;
+    cursor: pointer;
+}
+
+.small-image:hover {
+    border: 2px solid #007bff;
 }

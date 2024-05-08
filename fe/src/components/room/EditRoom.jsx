@@ -8,7 +8,8 @@ const EditRoom = () => {
 		roomType: "",
 		roomPrice: "",
 		maxAdults: "",
-		maxChildren: ""
+		maxChildren: "",
+		// description: "",
 	})
 
 	const [imagePreview, setImagePreview] = useState("")

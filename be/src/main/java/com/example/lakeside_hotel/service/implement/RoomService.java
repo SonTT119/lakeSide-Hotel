@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -109,5 +110,19 @@ public class RoomService implements IRoomService {
     @Override
     public long getRoomCount() {
         return roomRepository.count();
+    }
+
+    @Override
+    public List<Room> getRoomsByType(String roomType) {
+        List<Room> allRooms = getAllRooms(); // This method should return all available rooms
+        List<Room> filteredRooms = new ArrayList<>();
+
+        for (Room room : allRooms) {
+            if (room.getRoomType().equals(roomType)) {
+                filteredRooms.add(room);
+            }
+        }
+
+        return filteredRooms;
     }
 }

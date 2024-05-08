@@ -63,6 +63,22 @@ public class RoomController {
         return roomService.getAllRoomTypes();
     }
 
+    @GetMapping("/similar-rooms/{roomType}")
+    public ResponseEntity<List<RoomResponse>> getSimilarRooms(@PathVariable String roomType) throws SQLException {
+        List<Room> rooms = roomService.getRoomsByType(roomType);
+        List<RoomResponse> roomResponses = new ArrayList<>();
+        for (Room room : rooms) {
+            byte[] photoBytes = roomService.getRoomPhotoByRoomId(room.getId());
+            if (photoBytes != null && photoBytes.length > 0) {
+                String base64Photo = Base64.encodeBase64String(photoBytes);
+                RoomResponse roomResponse = getRoomResponse(room);
+                roomResponse.setPhoto(base64Photo);
+                roomResponses.add(roomResponse);
+            }
+        }
+        return ResponseEntity.ok(roomResponses);
+    }
+
     @GetMapping("/all-rooms")
     public ResponseEntity<List<RoomResponse>> getAllRooms() throws SQLException {
         List<Room> rooms = roomService.getAllRooms();

@@ -1,5 +1,6 @@
 package com.example.lakeside_hotel.service;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,7 +38,7 @@ public interface IUserService {
     // count the number of users
     long countUsers();
 
-    void updateAvatar(Long userId, byte[] photoBytes);
+    User updateAvatar(Long userId, byte[] avatarBytes) throws SQLException;
 
-    byte[] getAvatarByUserId(Long userId);
+    byte[] getAvatarByUserId(Long userId) throws SQLException;
 }

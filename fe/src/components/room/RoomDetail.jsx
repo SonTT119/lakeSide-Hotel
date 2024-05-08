@@ -7,6 +7,7 @@ import { FaCar, FaParking, FaTshirt, FaTv, FaUtensils, FaWifi, FaWineGlassAlt } 
 
 
 // import css
+import RoomReview from '../review/RoomReview';
 import './RoomDetail.css';
 
 const RoomDetail = () => {
@@ -60,18 +61,25 @@ const RoomDetail = () => {
 
     return (
         <section className='container' style={{backgroundColor:"whitesmoke", padding:"10px"}}>
-        <div className="table-roomDetail ">
+        <div className="room-similar ">
             <div className="row">
-                <div className="col-md-5 col-sm-12 col-xs-12">
-                    <img src={`data:image/png;base64, ${room.photo}`} alt="Room photo" style={{ width: '80%', height: '250px', borderRadius: "3%"}} />
-                </div>
+            <div className="col-md-5 col-sm-12 col-xs-12">
+                        <img src={`data:image/png;base64, ${room.photo}`} alt="Room photo" style={{ width: '100%', height: '350px', borderRadius: "3%", marginBottom:"5px"}} />
+                        {/* Grid of small images */}
+                        <div className="image-grid">
+                            <img src={`data:image/png;base64, ${room.photo}`} alt="Room photo" className="small-image" />
+                            <img src={`data:image/png;base64, ${room.photo}`} alt="Room photo" className="small-image" />
+                            <img src={`data:image/png;base64, ${room.photo}`} alt="Room photo" className="small-image" />
+                            {/* Add more images here */}
+                        </div>
+                    </div>
                 <div className="col-md-7 col-sm-12 col-xs-12">
                     <h2>Room Type: {room.roomType}</h2>
                     {rating !== null &&
                         <div style={{ display: 'flex', alignItems: 'center' }}>
-                            <Link to={"/"} className='rating-link'>{rating}</Link>
+                            <a href="#reviews" className='rating-link'>{rating}</a>
                             <h5>{renderStars(rating)}| </h5>
-                            <Link to={"/"} className='rating-link'>{evaluate}</Link>
+                            <a href="#reviews" className='rating-link'>{evaluate}</a>
                             <h5>Evaluate |</h5>
                         </div>}
                     <div className='room-price-detail'>
@@ -133,6 +141,8 @@ const RoomDetail = () => {
                 </div>
             </div>
         </div>
+
+        <RoomReview roomId={roomId} />
     </section>
     );
 };

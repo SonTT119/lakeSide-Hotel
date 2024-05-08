@@ -1,5 +1,6 @@
 package com.example.lakeside_hotel.model;
 
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -40,7 +41,7 @@ public class User {
     private String address;
 
     @Lob
-    private byte[] avatar;
+    private Blob avatar;
 
     @Transient
     private String confirmPassword;

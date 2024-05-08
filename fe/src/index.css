@@ -112,10 +112,10 @@
 
     .room-info{
       border: 1px solid #ccc;
-      border-radius: 10px;
+      border-radius: 6px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       background-color: #f4eded;
-      padding: 10px;
+      padding: 5px;
 
     }
 

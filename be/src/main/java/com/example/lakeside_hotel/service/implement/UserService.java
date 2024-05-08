@@ -1,6 +1,7 @@
 package com.example.lakeside_hotel.service.implement;
 
 import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -214,30 +215,36 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void updateAvatar(Long userId, byte[] photoBytes) {
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new NoSuchElementException("No user found with id " + userId));
-        user.setAvatar(photoBytes);
-        userRepository.save(user);
-    }
-
-    @Override
-    public byte[] getAvatarByUserId(Long userId) {
+    public User updateAvatar(Long userId, byte[] photoBytes) throws SQLException {
         Optional<User> theUser = userRepository.findById(userId);
         if (theUser.isEmpty()) {
             throw new NoSuchElementException("No user found with id " + userId);
         }
-        Blob photoBlob = null;
-        byte[] photoBytes = theUser.get().getAvatar();
-        if (photoBytes != null) {
+        if (photoBytes != null && photoBytes.length > 0) {
             try {
-                photoBlob = new SerialBlob(photoBytes);
-                return photoBlob.getBytes(1, (int) photoBlob.length());
+                theUser.get().setAvatar(new SerialBlob(photoBytes));
             } catch (Exception e) {
-                throw new UserAlreadyExistException("Error retrieving photo");
+                throw new AccessDeniedException("Error updating photo");
             }
         }
-        return photoBytes;
+        return userRepository.save(theUser.get());
+    }
+
+    @Override
+    public byte[] getAvatarByUserId(Long userId) throws SQLException {
+        Optional<User> theUser = userRepository.findById(userId);
+        if (theUser.isEmpty()) {
+            throw new NoSuchElementException("No user found with id " + userId);
+        }
+        Blob avatarBlob = theUser.get().getAvatar();
+        if (avatarBlob != null) {
+            try {
+                return avatarBlob.getBytes(1, (int) avatarBlob.length());
+            } catch (Exception e) {
+                throw new AccessDeniedException("Error retrieving photo");
+            }
+        }
+        return null;
     }
 
 }

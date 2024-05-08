@@ -1,0 +1,136 @@
+.review-section {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.review-section-container {
+    width: 100%;
+}
+
+.review-section-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    border: 1px solid #150404;
+    background-color: #150404;
+}
+
+/* CSS đơn giản để hiển thị nút button */
+.buttonn {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #8a8b8d;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+}
+
+/* CSS cho các nút button trong dạng inline-block */
+.review-section-header button {
+    margin-right: 0.1px; /* Để tạo ra khoảng cách giữa các nút */
+}
+
+/* CSS cho các nút button trong dạng block */
+.add-review-form button {
+    margin-top: 10px; /* Để tạo ra khoảng cách từ form */
+}
+
+
+.add-review-form,
+.review-list {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.add-review-form h2,
+.review-list h2 {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+}
+
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #ccc;
+
+}
+.form-group {
+    margin-bottom: 15px;
+    
+}
+
+.review-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.review-card-body {
+    display: flex;
+}
+
+.review-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.review-user {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.review-rating {
+    margin-bottom: 5px;
+}
+
+.review-comment {
+    margin-bottom: 5px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination button {
+    margin-right: 5px;
+    border: none;
+    background-color: #000000;
+    cursor: pointer;
+}
+
+.pagination button:hover,
+.pagination button:focus {
+    background-color: #f0f0f0;
+}
+.star-rating {
+    display: inline-block;
+    font-size: 0; /* Đảm bảo không có phần trống giữa các biểu tượng */
+  }
+  
+  .star {
+    font-size: 1.5rem; /* Kích thước của biểu tượng sao */
+    cursor: pointer;
+  }
+  
+  .filled {
+    color: #ffc107; /* Màu của biểu tượng sao đã được chọn */
+  }
+  
+  .comment-rating-container {
+    margin-bottom: 15px;
+}
+
+.comment-rating-container label {
+    display: block;
+    margin-bottom: 5px;
+}

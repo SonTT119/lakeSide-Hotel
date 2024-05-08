@@ -1,5 +1,7 @@
 package com.example.lakeside_hotel.reponse;
 
+import org.apache.tomcat.util.codec.binary.Base64;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +14,8 @@ public class UserResponse {
     private String email;
     private String phone;
     private String address;
+
+    private String avatar;
 
     public UserResponse(Long id, String firstName, String lastName, String email) {
         this.id = id;
@@ -32,6 +36,22 @@ public class UserResponse {
         this.lastName = lastName;
         this.phone = phone;
         this.address = address;
+    }
+
+    public UserResponse(Long id, byte[] avatarBytes) {
+        this.id = id;
+        this.avatar = avatarBytes != null ? Base64.encodeBase64String(avatarBytes) : null;
+    }
+
+    public UserResponse(Long id, String firstName, String lastName, String email, String phone, String address,
+            byte[] avatarBytes) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.avatar = avatarBytes != null ? Base64.encodeBase64String(avatarBytes) : null;
     }
 
 }
