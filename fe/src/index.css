@@ -635,3 +635,17 @@ main{
   margin-bottom: 10px;
   
 }
+.li-favorite{
+  list-style-type: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: #f4eded;
+  margin-bottom: 10px;
+}
+
+.favorite-item {
+  display: flex;
+  align-items: center;
+}

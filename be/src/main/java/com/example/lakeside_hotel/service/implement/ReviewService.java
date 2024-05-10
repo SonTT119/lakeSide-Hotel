@@ -1,6 +1,7 @@
 package com.example.lakeside_hotel.service.implement;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ReviewService implements IReviewService {
     private final ReviewRepository reviewRepository;
+    private final RoomService roomService;
 
     @Override
     public void deleteReview(Long reviewId) {
@@ -29,8 +31,14 @@ public class ReviewService implements IReviewService {
 
     @Override
     public List<Review> getReviewsByUserId(Long userId) {
-        // TODO Auto-generated method stub
-        return null;
+        List<Review> reviews = reviewRepository.findByUserId(userId);
+        if (reviews != null) {
+            for (Review review : reviews) {
+                Optional<Room> room = roomService.getRoomById(review.getRoom().getId());
+                review.setRoom(room.get());
+            }
+        }
+        return reviews;
     }
 
     @Override

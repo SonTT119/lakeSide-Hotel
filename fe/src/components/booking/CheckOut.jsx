@@ -14,7 +14,6 @@ const CheckOut = () => {
 
     const {roomId} = useParams()
     useEffect(() => {
-        setTimeout(()=>{
             getRoomById(roomId).then((response) =>{
                 setRoomInfo(response)
                 setIsLoaded(false)
@@ -23,7 +22,9 @@ const CheckOut = () => {
                 setIsLoaded(false)
             
             })
-        }, 2000)
+        
+        // console.log("Room ID changed:", roomId);
+
     }, [roomId])
     return (
         <div>

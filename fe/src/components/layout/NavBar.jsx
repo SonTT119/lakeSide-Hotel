@@ -51,6 +51,11 @@ const Navbar = () => {
 
                     <ul className="d-flex navbar-nav">
                         <li className="nav-item">
+                            <NavLink className="nav-link" to={"/favorites"}>
+                                Room Favorites
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
                             <NavLink className="nav-link" to={"/find-bookings"}>
                                 Find My Bookings
                             </NavLink>

@@ -9,6 +9,8 @@ const EditUser = () => {
         email: "",
         firstName: "",
         lastName: "",
+        phone: "",
+        address: ""
         // roles: [{ id: "", name: "" }]
     })
 
@@ -102,6 +104,15 @@ const EditUser = () => {
                                     <label htmlFor="role" className="form-label">Role</label>
                                     <input type="text" className="form-control" id="role" name="role" value={user.roles[0].name} onChange={handleInputChange} required />
                                 </div> */}
+
+                                <div className="mb-3">
+                                    <label htmlFor="phone" className="form-label">Phone</label>
+                                    <input type="text" className="form-control" id="phone" name="phone" value={users.phone} onChange={handleInputChange} required />
+                                </div>
+                                <div className="mb-3">
+                                    <label htmlFor="address" className="form-label">Address</label>
+                                    <input type="text" className="form-control" id="address" name="address" value={users.address} onChange={handleInputChange} required />
+                                </div>
                                 <div className="d-grid gap-2 d-md-flex mt-2">
                                     <Link to={"/existing-users"} className="btn btn-outline-info ml-5">
                                         back

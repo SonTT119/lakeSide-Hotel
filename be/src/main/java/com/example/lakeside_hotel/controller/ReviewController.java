@@ -75,6 +75,19 @@ public class ReviewController {
         return ResponseEntity.ok(reviews);
     }
 
+    // get all reviews by user id
+    @GetMapping("/users/{userId}/reviews")
+    public ResponseEntity<List<ReviewResponse>> getReviewsByUser(@PathVariable Long userId) {
+        List<Review> reviews = reviewService.getReviewsByUserId(userId);
+        List<ReviewResponse> reviewResponses = new ArrayList<>();
+        for (Review review : reviews) {
+            ReviewResponse reviewResponse = new ReviewResponse(review.getReviewId(), review.getComment(),
+                    review.getRating(), review.getUser(), review.getRoom());
+            reviewResponses.add(reviewResponse);
+        }
+        return ResponseEntity.ok(reviewResponses);
+    }
+
     private User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return userService.getUserByEmail(authentication.getName());

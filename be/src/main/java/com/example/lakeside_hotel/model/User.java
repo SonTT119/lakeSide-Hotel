@@ -59,6 +59,10 @@ public class User {
     @JsonManagedReference(value = "user-review")
     private List<Review> reviews = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference(value = "user-favorite-room")
+    private List<UserFavoriteRoom> favoriteRooms = new ArrayList<>();
+
     public String getPassword() {
         return password;
     }

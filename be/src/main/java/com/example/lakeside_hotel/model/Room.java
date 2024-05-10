@@ -48,6 +48,10 @@ public class Room {
     @JsonManagedReference(value = "room-review")
     private List<Review> reviews = new ArrayList<>();
 
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference(value = "room-favorite-room")
+    private List<UserFavoriteRoom> userFavoriteRooms = new ArrayList<>();
+
     public Room() {
         this.bookings = new ArrayList<>();
     }

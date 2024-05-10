@@ -22,7 +22,7 @@ const BookingForm = () => {
 
     const [room, setRoom] = useState(null);
 
-
+    const [isEmailValid, setIsEmailValid] = useState(true);
 
     // const { isAuthenticated } = useContext(AuthContext);
 
@@ -31,7 +31,14 @@ const BookingForm = () => {
 
     const handleInputChange = (e) => {
         const {name, value} = e.target
-        setBooking({...booking, [name]: value})
+        if (name === 'guestEmail') {
+            const userEmail = localStorage.getItem("userId");
+            setIsEmailValid(value === userEmail);
+        }
+        setBooking((prevBooking) => ({
+            ...prevBooking,
+            [name]: value,
+        }));
         setErrorMessages("")
     }
 
@@ -89,6 +96,16 @@ const BookingForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.currentTarget;
+
+        // Lấy email của người dùng từ localStorage
+        const userEmail = localStorage.getItem("userId");
+
+        // Kiểm tra xem email người dùng nhập vào có khớp với email đã lưu không
+        if (booking.guestEmail !== userEmail) {
+            setIsEmailValid(false);
+            e.stopPropagation();
+            return;
+        }
         
         if (form.checkValidity() === false || !isGuestCountValid() || !isCheckOutDateValid() || !(await isGuestCountWithinRoomCapacity())){
             e.stopPropagation();
@@ -143,16 +160,17 @@ const BookingForm = () => {
                                         Email :
                                     </Form.Label>
                                     <Form.Control
-                                    required
-                                    type='email'
-                                    id='guestEmail'
-                                    name='guestEmail'
-                                    value={booking.guestEmail}
-                                    placeholder='Enter your email'
-                                    onChange={handleInputChange}
+                                        required
+                                        type='email'
+                                        id='guestEmail'
+                                        name='guestEmail'
+                                        value={booking.guestEmail}
+                                        placeholder='Enter your email'
+                                        onChange={handleInputChange}
+                                        isInvalid={!isEmailValid} // Thêm dòng này
                                     />
                                     <Form.Control.Feedback type='invalid'>
-                                        Please enter your email address
+                                        {isEmailValid ? 'Please enter your email address' : 'Please enter the correct email that you registered with.'}
                                     </Form.Control.Feedback>
                                 </Form.Group>
 

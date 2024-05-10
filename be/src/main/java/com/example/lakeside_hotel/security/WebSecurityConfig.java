@@ -59,7 +59,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**", "/auth/login", "/rooms/**", "/bookings/**", "/users/**",
                                 "/review/**",
-                                "/forgotPassword/**")
+                                "/forgotPassword/**", "/user-favorite-room/**")
                         .permitAll().requestMatchers("/roles/**").hasRole("ADMIN")
                         .anyRequest().authenticated());
         http.authenticationProvider(authenticationProvider());

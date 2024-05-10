@@ -1,5 +1,6 @@
 package com.example.lakeside_hotel.reponse;
 
+import com.example.lakeside_hotel.model.Room;
 import com.example.lakeside_hotel.model.User;
 
 import lombok.AllArgsConstructor;
@@ -14,7 +15,7 @@ public class ReviewResponse {
     private String comment;
     private int rating;
     private String user;
-    private RoomResponse room;
+    private String room;
 
     public ReviewResponse(Long reviewId, String comment, int rating) {
         this.reviewId = reviewId;
@@ -28,5 +29,13 @@ public class ReviewResponse {
         this.rating = rating;
         this.user = user.getEmail();
 
+    }
+
+    public ReviewResponse(Long reviewId, String comment, int rating, User user, Room room) {
+        this.reviewId = reviewId;
+        this.comment = comment;
+        this.rating = rating;
+        this.user = user.getEmail();
+        this.room = room.getRoomType();
     }
 }

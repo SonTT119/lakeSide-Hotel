@@ -6,8 +6,8 @@ import Sidebar from '../layout/Sidebar'
 import { deleteUserById, getAllUsers } from '../utils/ApiFunctions'
 
 
-// import UserFilter from '../common/UserFilter'
-// import { Col, Row } from 'react-bootstrap'
+import { Col, Row } from 'react-bootstrap'
+import UserFilter from '../common/UserFilter'
 
 const ExistingUsers = () => {
 
@@ -109,11 +109,11 @@ const ExistingUsers = () => {
                                     <div className='d-flex justify-content-between mb-3 mt-5'>
                                         <h2>Existing Users</h2>
                                     </div>
-                                    {/* <Row>
+                                    <Row>
                                         <Col md={6} className='mb-3 mb-md-0'>
                                             <UserFilter data={users} setFilteredData = {setFilteredUsers}/>
                                         </Col>
-                                    </Row> */}
+                                    </Row>
                                     <table className='table table-bordered table-hover'>
                                         <thead>
                                             <tr className='text-center'>

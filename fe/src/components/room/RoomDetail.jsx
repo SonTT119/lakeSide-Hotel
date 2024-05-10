@@ -5,6 +5,10 @@ import { getCountById, getRatingById, getRoomById } from '../utils/ApiFunctions'
 
 import { FaCar, FaParking, FaTshirt, FaTv, FaUtensils, FaWifi, FaWineGlassAlt } from 'react-icons/fa';
 
+import { addToFavorite, getAllUserFavorites, removeFromFavorite } from '../utils/ApiFunctions';
+
+// import heart icon
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
 // import css
 import RoomReview from '../review/RoomReview';
@@ -19,10 +23,22 @@ const RoomDetail = () => {
         maxChildren: '',
         // roomService: []
     });
+
+    const [isFavorite, setIsFavorite] = useState(false);
+
+    const [favorites, setFavorites] = useState([]);
+
+
     const [rating, setRating] = useState(null);
     const [evaluate, setEvaluate] = useState(null);
 
     const { roomId } = useParams();
+
+    const userEmail = localStorage.getItem('userId');
+
+    const [successMessage, setSuccessMessage] = useState("");
+
+    const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(() => {
         getRoomById(roomId).then((response) => {
@@ -42,6 +58,13 @@ const RoomDetail = () => {
         });
     }, []);
 
+    useEffect(() => {
+        getAllUserFavorites(userEmail).then((response) => {
+            setFavorites(response);
+        });
+    }, [userEmail]);
+    
+
     // Function to convert numerical rating to stars
     const renderStars = (rating) => {
         const stars = [];
@@ -58,6 +81,37 @@ const RoomDetail = () => {
 
         return stars;
     };
+
+    const addToFavorites = async () => {
+        try {
+            if (!isFavorite) {
+                await addToFavorite(userEmail, roomId);
+                setIsFavorite(true);
+                setSuccessMessage("Room added to favorites successfully");
+            } else {
+                await removeFromFavorite(userEmail, roomId);
+                setIsFavorite(false);
+                setSuccessMessage("Room removed from favorites successfully");
+            }
+        } catch (error) {
+            console.log(error);
+            setErrorMessage("Failed to update favorites");
+        }
+        setTimeout(() => {
+            setSuccessMessage("");
+            setErrorMessage("");
+        }, 3000);
+    };
+    
+    // Check if the room is in the user's favorites
+    // useEffect(() => {
+    //     if (favorites.length !== 0) {
+    //         const found = favorites.find((favorite) => favorite.roomId === roomId);
+    //         setIsFavorite(found);
+    //     } else {
+    //         setIsFavorite(false);
+    //     }
+    // }, [favorites, roomId]);
 
     return (
         <section className='container' style={{backgroundColor:"whitesmoke", padding:"10px"}}>
@@ -129,6 +183,13 @@ const RoomDetail = () => {
                         </div>
                     </div>
                     {/* link đến book phòng */}
+                    <hr />
+                    <div onClick={addToFavorites} style={{ cursor: 'pointer' }}>
+                        {isFavorite ? <FaHeart color="red" /> : <FaRegHeart />}
+                        <span>{isFavorite ? "Remove from Favorites" : "Add to Favorites"}</span>
+                    </div>
+                    <p style={{color:"green"}}>{successMessage}</p>
+                    <p style={{color:"red"}}>{errorMessage}</p>
                     <Link to={`/book-room/${roomId}`} className='btn btn-hotel'>
                         Book Room Now
                     </Link>

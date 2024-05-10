@@ -18,10 +18,12 @@ import com.example.lakeside_hotel.exception.InvalidBookingRequestException;
 import com.example.lakeside_hotel.exception.ResourceNotFoundException;
 import com.example.lakeside_hotel.model.BookedRoom;
 import com.example.lakeside_hotel.model.Room;
+import com.example.lakeside_hotel.model.User;
 import com.example.lakeside_hotel.reponse.BookingResponse;
 import com.example.lakeside_hotel.reponse.RoomResponse;
 import com.example.lakeside_hotel.service.IBookingService;
 import com.example.lakeside_hotel.service.IRoomService;
+import com.example.lakeside_hotel.service.IUserService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -32,6 +34,7 @@ import lombok.RequiredArgsConstructor;
 public class BookingController {
     private final IBookingService bookingService;
     private final IRoomService roomService;
+    private final IUserService userService;
 
     @GetMapping("/all-bookings")
     // @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -60,6 +63,11 @@ public class BookingController {
     @PostMapping(value = "/room/{roomId}/booking", consumes = "application/json")
     public ResponseEntity<?> saveBooking(@PathVariable Long roomId, @RequestBody BookedRoom bookingRequest) {
         try {
+            // Kiểm tra xem email có phải của người dùng không
+            User user = userService.getUserByEmail(bookingRequest.getGuestEmail());
+            if (user == null) {
+                return ResponseEntity.badRequest().body("Please enter the correct email that you registered with.");
+            }
             String confirmationCode = bookingService.saveBooking(roomId, bookingRequest);
             return ResponseEntity
                     .ok("Room booked successfully, your booking confirmation code is: " + confirmationCode);

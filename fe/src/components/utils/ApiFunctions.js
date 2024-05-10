@@ -95,6 +95,40 @@ export async function getRoomById(roomId){
     }
 }
 
+/* add room to favorite */
+export async function addToFavorite(userEmail, roomId) {
+    try {
+        const response = await api.post(`/user-favorite-room/add-room/${roomId}/user/${userEmail}`, {
+            headers: getHeader()
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error(`Error adding room to favorite: ${error.message}`);
+    }
+}
+
+/* delete room from favorite */
+export async function removeFromFavorite(userEmail, roomId) {
+    try {
+        const response = await api.delete(`/user-favorite-room/remove-room/${roomId}/user/${userEmail}`, {
+            headers: getHeader()
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error(`Error deleting room from favorite: ${error.message}`);
+    }
+}
+
+/* get all user favorite rooms */
+export async function getAllUserFavorites(userEmail) {
+    try {
+        const response = await api.get(`/user-favorite-room/user/${userEmail}`);
+        return response.data;
+    } catch (error) {
+        throw new Error(`Error fetching favorite rooms: ${error.message}`);
+    }
+}
+
 /* this function save a  new booking room to the database */
 export async function bookRoom(roomId, booking){
     try{
