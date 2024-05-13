@@ -41,4 +41,6 @@ public interface IUserService {
     User updateAvatar(Long userId, byte[] avatarBytes) throws SQLException;
 
     byte[] getAvatarByUserId(Long userId) throws SQLException;
+
+    User createUser(User user, String roleName);
 }

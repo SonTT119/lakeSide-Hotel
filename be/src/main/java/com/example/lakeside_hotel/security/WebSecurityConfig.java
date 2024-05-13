@@ -58,9 +58,9 @@ public class WebSecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**", "/auth/login", "/rooms/**", "/bookings/**", "/users/**",
-                                "/review/**",
+                                "/review/**", "/roles/**",
                                 "/forgotPassword/**", "/user-favorite-room/**")
-                        .permitAll().requestMatchers("/roles/**").hasRole("ADMIN")
+                        .permitAll()
                         .anyRequest().authenticated());
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);

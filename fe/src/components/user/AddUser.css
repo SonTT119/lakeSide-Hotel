@@ -1,0 +1,53 @@
+
+  /* Thiết kẻ thẻ select */
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    background: rgb(228, 229, 230);
+    background-image: none;
+  }
+  
+  .select {
+    position: relative;
+    display: flex;
+    width: 21em;
+    height: 3em;
+    line-height: 3;
+    background: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 1.5em;
+    overflow: hidden;
+    border-radius: 1.5em;
+  }
+  select {
+    flex: 1;
+    padding: 0 .5em;
+    color: #963d3d;
+    cursor: pointer;
+  }
+  /* thiết kế dấu mũi tên */
+  .select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: rgb(187, 192, 197);
+    cursor: pointer;
+    pointer-events: none;
+    -webkit-transition: .25s all ease;
+    -o-transition: .25s all ease;
+    transition: .25s all ease;
+    color: rgb(25, 22, 22);
+  }
+  /* Transition */
+  .select:hover::after {
+    color: rgb(60, 54, 54);
+  }
+  

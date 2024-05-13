@@ -247,4 +247,39 @@ public class UserService implements IUserService {
         return null;
     }
 
+    @Override
+    public User createUser(User user, String roleName) {
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new UserAlreadyExistException(user.getEmail() + " already exists");
+        }
+
+        // check if the password equals the confirm password
+        String password = user.getPassword();
+        String confirmPassword = user.getConfirmPassword();
+        if (!password.equals(confirmPassword)) {
+            throw new UserAlreadyExistException("Passwords do not match");
+        }
+
+        String passwordPattern = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
+        if (!password.matches(passwordPattern)) {
+            throw new UserAlreadyExistException(
+                    "Password must contain at least one digit, one lowercase letter, one uppercase letter, one special character and no whitespace");
+        }
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        System.out.println(user.getPassword());
+
+        Optional<Role> optionalRole = roleRepository.findByName(roleName);
+
+        // Check if the role exists
+        if (!optionalRole.isPresent()) {
+            throw new IllegalArgumentException("Role " + roleName + " does not exist");
+        }
+
+        // Set the role on the user
+        Role userRole = optionalRole.get();
+        user.setRoles(Collections.singletonList(userRole));
+
+        return userRepository.save(user);
+    }
 }

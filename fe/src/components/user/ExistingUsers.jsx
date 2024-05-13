@@ -113,6 +113,12 @@ const ExistingUsers = () => {
                                         <Col md={6} className='mb-3 mb-md-0'>
                                             <UserFilter data={users} setFilteredData = {setFilteredUsers}/>
                                         </Col>
+
+                                        <Col md={6} className="d-flex justify-content-end">
+                                        <Link to={"/add-Admin"} className="btn btn-addRoom">
+                                            ADD USER
+                                        </Link>
+                                    </Col>
                                     </Row>
                                     <table className='table table-bordered table-hover'>
                                         <thead>

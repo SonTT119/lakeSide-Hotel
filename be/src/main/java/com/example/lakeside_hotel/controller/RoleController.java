@@ -28,7 +28,7 @@ public class RoleController {
 
     @GetMapping("/all-roles")
     public ResponseEntity<List<Role>> getAllRoles() {
-        return new ResponseEntity<>(roleService.getRoles(), HttpStatus.FOUND);
+        return new ResponseEntity<>(roleService.getRoles(), HttpStatus.OK);
     }
 
     @PostMapping("/create-new-role")

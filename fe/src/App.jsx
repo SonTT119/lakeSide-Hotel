@@ -15,16 +15,17 @@ import CheckOut from "./components/booking/CheckOut";
 import FindBooking from "./components/booking/FindBooking";
 import Home from "./components/home/Home";
 import Navbar from "./components/layout/NavBar";
+import AllRoles from "./components/role/AllRoles";
 import AddRoom from "./components/room/AddRoom";
 import EditRoom from "./components/room/EditRoom";
 import ExistingRooms from "./components/room/ExistingRooms";
 import RoomDetail from "./components/room/RoomDetail";
 import RoomFavorites from "./components/room/RoomFavorites";
 import RoomListing from "./components/room/RoomListing";
+import AddUser from "./components/user/AddUser";
 import EditUser from "./components/user/EditUser";
 import ExistingUsers from "./components/user/ExistingUsers";
 import "/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
-
 
 function App() {
   return (
@@ -58,6 +59,8 @@ function App() {
             <Route path="/dashboard" element={<Dashboard/>} />
             <Route path="/roomdetail/:roomId" element={<RoomDetail />} />
             <Route path="/favorites" element={<RoomFavorites/>} />
+            <Route path="/existing-roles" element={<AllRoles/>} />
+            <Route path="/add-Admin" element={<AddUser/>} />
           </Routes>
         </Router>
         

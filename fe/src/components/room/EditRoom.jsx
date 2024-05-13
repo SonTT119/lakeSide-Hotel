@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
+import RoomTypeSelector from "../common/RoomTypeSelector"
 import { getRoomById, updateRoom } from "../utils/ApiFunctions"
 
 const EditRoom = () => {
@@ -79,19 +80,15 @@ const EditRoom = () => {
 							</div>
 						)}
 						<form onSubmit={handleSubmit}>
-							<div className="mb-3">
-								<label htmlFor="roomType" className="form-label hotel-color">
-									Room Type
-								</label>
-								<input
-									type="text"
-									className="form-control"
-									id="roomType"
-									name="roomType"
-									value={room.roomType}
-									onChange={handleInputChange}
-								/>
-							</div>
+						<div className="mb-3">
+							<label htmlFor="roomType" className="form-label hotel-color">Room Type</label>
+							{/* <select className="form-control" id="roomType" name="roomType" value={room.roomType} onChange={handleInputChange} required>
+								{roomTypes.map(roomType => (
+									<option key={roomType.id} value={roomType.id}>{roomType}</option>
+								))}
+							</select> */}
+							<RoomTypeSelector handleRoomInputChange={handleInputChange} newRoom={room}/>
+						</div>
 							<div className="mb-3">
 								<label htmlFor="roomPrice" className="form-label hotel-color">
 									Room Price

@@ -10,7 +10,7 @@ const FindBooking = () => {
 	const [bookingInfo, setBookingInfo] = useState({
 		id: "",
 		bookingConfirmationCode: "",
-		room: { id: "", roomType: "" },
+		room: { id: "", roomType: "", roomPrice: ""	},
 		roomNumber: "",
 		checkInDate: "",
 		checkOutDate: "",
@@ -24,7 +24,7 @@ const FindBooking = () => {
 	const emptyBookingInfo = {
 		id: "",
 		bookingConfirmationCode: "",
-		room: { id: "", roomType: "" },
+		room: { id: "", roomType: "" , roomPrice: "" },
 		roomNumber: "",
 		checkInDate: "",
 		checkOutDate: "",
@@ -128,6 +128,15 @@ const FindBooking = () => {
 		}
 	}
 
+	const calculateTotalPrice = () => {
+		const checkInDate = new Date(bookingInfo.checkInDate);
+		const checkOutDate = new Date(bookingInfo.checkOutDate);
+		const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+		const diffDays = Math.round(Math.abs((checkInDate - checkOutDate) / oneDay));
+	
+		return diffDays * bookingInfo.room.roomPrice;
+	}
+
 	return (
 		<section className="container"  style={{backgroundColor:"whitesmoke"}} >
 			<div className="container mt-5 d-flex flex-column justify-content-center align-items-center">
@@ -164,6 +173,7 @@ const FindBooking = () => {
                         <hr />
 						<p>Room Number: {bookingInfo.room.id}</p>
 						<p>Room Type: {bookingInfo.room.roomType}</p>
+						<p>Room Price: ${bookingInfo.room.roomPrice}</p>
 						<p>Check-In Date:  {bookingInfo.checkInDate}</p>
                         <p>Check-Out Date: {bookingInfo.checkOutDate}</p>
 						<p>Full Name: {bookingInfo.guestFullName}</p>
@@ -171,6 +181,7 @@ const FindBooking = () => {
 						<p>Adults: {bookingInfo.numOfAdults}</p>
 						<p>Children: {bookingInfo.numOfChildren}</p>
 						<p>Total Guest: {bookingInfo.totalNumOfGuests}</p>
+						<p>Total Price: ${calculateTotalPrice()}</p>
 						{isLoggedIn && userRole === "ROLE_ADMIN" && (
 							!isDeleted && (
 							<button

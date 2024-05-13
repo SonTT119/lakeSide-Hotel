@@ -187,6 +187,33 @@ export async function getAvailableRooms(checkInDate, checkOutDate, roomType) {
 	return result
 }
 
+/* this function gets all roles from the database */
+export async function getAllRoles(){
+    try {
+        const response = await api.get("/roles/all-roles")
+        if (response.status >= 200 && response.status < 350) {
+			return response.data
+		} else {
+			return null
+		}
+    } catch (error) {
+        throw new Error("Error fetching roles")
+    }
+}
+
+/* this function deletes a role from the database */
+export async function deleteRoleById(roleId){
+    try {
+        const response = await api.delete(`/roles/delete/${roleId}`,
+        {
+            headers: getHeader()
+        })
+        return response.data
+    } catch (error) {
+        throw new Error(`Error deleting role ${roleId}: ${error.message}`)
+    }
+}
+
 export async function registration(registration) {
     try {
         const result = await api.post("/auth/register", registration)
@@ -197,6 +224,17 @@ export async function registration(registration) {
         } else {
             throw new Error(`Error registering user: ${error.message}`)
         }
+    }
+}
+
+export async function addAdmin(admin, roleName) {
+    try {
+        const response = await api.post(`/users/create-admin/${roleName}`, admin, {
+            headers: getHeader()
+        })
+        return response.data
+    } catch (error) {
+        throw new Error(`Error adding admin: ${error.message}`)
     }
 }
 

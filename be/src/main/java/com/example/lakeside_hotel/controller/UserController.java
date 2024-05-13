@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -192,5 +193,19 @@ public class UserController {
         }
         return new UserResponse(existingUser.getId(), existingUser.getFirstName(), existingUser.getLastName(),
                 existingUser.getEmail(), existingUser.getPhone(), existingUser.getAddress(), avatarBytes);
+    }
+
+    // create user
+    @PutMapping("/create")
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        User newUser = userService.registerUser(user);
+        return ResponseEntity.ok(newUser);
+    }
+
+    // create admin
+    @PostMapping("/create-admin/{roleName}")
+    public ResponseEntity<User> createAdmin(@RequestBody User user, @PathVariable String roleName) {
+        User newUser = userService.createUser(user, roleName);
+        return ResponseEntity.ok(newUser);
     }
 }

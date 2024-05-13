@@ -478,9 +478,12 @@ const Profile = () => {
 								<table className="table table-bordered table-hover shadow">
 									<thead>
 										<tr>
-											<th scope="col">Booking ID</th>
-											<th scope="col">Room ID</th>
+											{/* <th scope="col">Booking ID</th>
+											<th scope="col">Room ID</th> */}
+											<th scope="col">S/N</th>
 											<th scope="col">Room Type</th>
+											<th scope="col">Room price</th>
+											
 											<th scope="col">Check In Date</th>
 											<th scope="col">Check Out Date</th>
 											<th scope="col">Confirmation Code</th>
@@ -490,9 +493,11 @@ const Profile = () => {
 									<tbody>
 										{bookings.map((booking, index) => (
 												<tr key={index}>
-													<td>{booking.id}</td>
-													<td>{booking.room.id}</td>
+													{/* <td>{booking.id}</td>
+													<td>{booking.room.id}</td> */}
+													<td>{index + 1}</td>
 													<td>{booking.room.roomType}</td>
+													<td>${booking.room.roomPrice}</td>
 													<td>
 														{moment(booking.checkInDate).subtract(1, "month").format("MMM Do, YYYY")}
 													</td>
