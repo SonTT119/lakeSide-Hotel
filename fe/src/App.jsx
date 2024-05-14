@@ -15,6 +15,8 @@ import CheckOut from "./components/booking/CheckOut";
 import FindBooking from "./components/booking/FindBooking";
 import Home from "./components/home/Home";
 import Navbar from "./components/layout/NavBar";
+import EditReview from "./components/review/EditReview";
+import ExistingReview from "./components/review/ExistingReview";
 import AllRoles from "./components/role/AllRoles";
 import AddRoom from "./components/room/AddRoom";
 import EditRoom from "./components/room/EditRoom";
@@ -61,6 +63,8 @@ function App() {
             <Route path="/favorites" element={<RoomFavorites/>} />
             <Route path="/existing-roles" element={<AllRoles/>} />
             <Route path="/add-Admin" element={<AddUser/>} />
+            <Route path="/existing-review" element={<ExistingReview/>} />
+            <Route path="/review/edit/:reviewId" element={<EditReview/>} />
           </Routes>
         </Router>
         

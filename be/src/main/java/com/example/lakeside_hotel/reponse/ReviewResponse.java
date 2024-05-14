@@ -15,7 +15,8 @@ public class ReviewResponse {
     private String comment;
     private int rating;
     private String user;
-    private String room;
+    private String roomId;
+    private String roomType;
 
     public ReviewResponse(Long reviewId, String comment, int rating) {
         this.reviewId = reviewId;
@@ -36,6 +37,7 @@ public class ReviewResponse {
         this.comment = comment;
         this.rating = rating;
         this.user = user.getEmail();
-        this.room = room.getRoomType();
+        this.roomId = room.getId().toString();
+        this.roomType = room.getRoomType();
     }
 }

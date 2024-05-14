@@ -650,3 +650,14 @@ main{
   align-items: center;
 }
 
+.mr-3 {
+  margin-right: 1rem; /* Adjust this value based on your specific requirements */
+}
+
+.link-home {
+  color: blue; /* Adjust this value based on your specific requirements */
+}
+
+.link-login {
+  color: red; /* Adjust this value based on your specific requirements */
+}

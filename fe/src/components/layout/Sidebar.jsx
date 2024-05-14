@@ -1,6 +1,7 @@
 import React from 'react';
-import { FaUsers } from "react-icons/fa";
+import { FaRegComment, FaUsers } from "react-icons/fa";
 import { FaCartFlatbed } from "react-icons/fa6";
+import { IoAccessibilityOutline } from "react-icons/io5";
 import { MdBedroomParent, MdOutlineDashboard } from "react-icons/md";
 import { Link, NavLink } from 'react-router-dom';
 import logoImage from "../../assets/images/download.png";
@@ -18,7 +19,8 @@ const Sidebar = ({children}) => {
         {
             name: "Existing Roles",
             path: "/existing-roles",
-            icon: <FaUsers />
+            icon: <IoAccessibilityOutline />
+
         },
         {
             name: "Existing Users",
@@ -32,12 +34,13 @@ const Sidebar = ({children}) => {
             icon: <MdBedroomParent />
 
         },
-        // {
-        //     name: "Add Room",
-        //     path: "/add-room",
-        //     icon: <MdOutlineAddHome />
+        {
+            name: "Existing Reviews",
+            path: "/existing-review",
+            icon: <FaRegComment />
 
-        // },
+
+        },
         
         {
             name: "Existing Bookings",

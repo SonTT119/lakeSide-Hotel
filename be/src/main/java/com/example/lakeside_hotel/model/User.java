@@ -67,4 +67,8 @@ public class User {
         return password;
     }
 
+    public User(String email) {
+        this.email = email;
+    }
+
 }

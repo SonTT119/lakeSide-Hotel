@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import { AuthContext } from '../auth/AuthProvider'
 import Sidebar from '../layout/Sidebar'
 import { deleteRoleById, getAllRoles } from '../utils/ApiFunctions'
@@ -187,11 +188,14 @@ const AllRoles = () => {
                 )}
               </div>
             ) : (
-              <div className="container">
-                <div className="alert alert-danger mt-5" role="alert">
-                  You are not authorized to view this page
+              <div className="container mt-5">
+              <div className="row justify-content-center">
+                <div className='col-md-8 col-lg-6'>
+                  <h2 className='mt-5 mb-2'>You are not authorized to view this page</h2>
+                  <Link to={"/"} className="btn btn-outline-info">Back to Home</Link>
                 </div>
               </div>
+            </div>
             )}
           </section>
         </div>

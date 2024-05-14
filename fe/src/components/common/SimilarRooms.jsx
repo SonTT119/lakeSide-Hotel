@@ -62,14 +62,14 @@ const SimilarRooms = ({ roomInfo }) => {
                                             <Card.Text>Max Children: {room.maxChildren}</Card.Text>
                                         </div>
                                         <div className="d-flex">
-                                            <div className="mr-3">
+                                            {/* <div className="mr-3">
                                                 <Link to={`/book-room/${room.id}`} className="btn btn-hotel btn-sm">
                                                     Book Now
                                                 </Link>
-                                            </div>
+                                            </div> */}
                                             <div className="mr-3">
                                                 <Link to={`/roomdetail/${room.id}`} className="btn btn-detail btn-sm">
-                                                    Details
+                                                View Room details
                                                 </Link>
                                             </div>
                                         </div>

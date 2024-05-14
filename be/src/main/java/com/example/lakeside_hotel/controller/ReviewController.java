@@ -6,9 +6,11 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -70,9 +72,16 @@ public class ReviewController {
 
     // get all reviews
     @GetMapping("/get_all_reviews")
-    public ResponseEntity<List<Review>> getAllReviews() {
+    public ResponseEntity<List<ReviewResponse>> getAllReviews() {
         List<Review> reviews = reviewService.getAllReviews();
-        return ResponseEntity.ok(reviews);
+        List<ReviewResponse> reviewResponses = new ArrayList<>();
+        for (Review review : reviews) {
+            ReviewResponse reviewResponse = getReviewResponse(review);
+            reviewResponse.setRoomId(review.getRoom().getId().toString());
+            reviewResponse.setRoomType(review.getRoom().getRoomType());
+            reviewResponses.add(reviewResponse);
+        }
+        return ResponseEntity.ok(reviewResponses);
     }
 
     // get all reviews by user id
@@ -86,6 +95,38 @@ public class ReviewController {
             reviewResponses.add(reviewResponse);
         }
         return ResponseEntity.ok(reviewResponses);
+    }
+
+    // get review by review id
+    @GetMapping("/get_review/{reviewId}")
+    public ResponseEntity<ReviewResponse> getReview(@PathVariable Long reviewId) {
+        Review review = reviewService.getReview(reviewId);
+        ReviewResponse reviewResponse = new ReviewResponse(review.getReviewId(), review.getComment(),
+                review.getRating(), review.getUser(), review.getRoom());
+        return ResponseEntity.ok(reviewResponse);
+    }
+
+    // delete review by review id
+    @DeleteMapping("/delete_review/{reviewId}")
+    public ResponseEntity<String> deleteReview(@PathVariable Long reviewId) {
+        reviewService.deleteReview(reviewId);
+        return ResponseEntity.ok("Review deleted successfully");
+    }
+
+    // edit review by review id
+    @PutMapping("/update_review/{reviewId}")
+    public ResponseEntity<ReviewResponse> editReview(@PathVariable Long reviewId, @RequestBody Review review) {
+        Review savedReview = reviewService.updateReview(reviewId, review.getComment(), review.getRating());
+        ReviewResponse reviewResponse = new ReviewResponse(savedReview.getReviewId(), savedReview.getComment(),
+                savedReview.getRating());
+        return ResponseEntity.ok(reviewResponse);
+    }
+
+    // get all count reviews
+    @GetMapping("/get_all_count_reviews")
+    public ResponseEntity<Long> getAllCountReviews() {
+        long count = reviewService.getAllReviews().size();
+        return ResponseEntity.ok(count);
     }
 
     private User getCurrentUser() {

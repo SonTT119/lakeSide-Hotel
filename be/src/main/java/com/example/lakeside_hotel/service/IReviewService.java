@@ -20,4 +20,6 @@ public interface IReviewService {
     double calculateAverageRating(Long roomId);
 
     long getReviewCount(Long roomId);
+
+    Review getReview(Long reviewId);
 }

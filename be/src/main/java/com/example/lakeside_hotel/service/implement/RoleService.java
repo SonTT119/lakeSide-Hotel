@@ -87,4 +87,9 @@ public class RoleService implements IRoleService {
         return role.map(Role::getUsers).map(Collection::stream).orElse(null).findFirst();
     }
 
+    @Override
+    public Object countRoles() {
+        return roleRepository.count();
+    }
+
 }

@@ -26,7 +26,10 @@ const RoomDetail = () => {
 
     const [isFavorite, setIsFavorite] = useState(false);
 
-    const [favorites, setFavorites] = useState([]);
+    const [favorites, setFavorites] = useState([{
+        roomId: '',
+        userEmail: ''
+    }]);
 
 
     const [rating, setRating] = useState(null);
@@ -65,6 +68,11 @@ const RoomDetail = () => {
     }, [userEmail]);
     
 
+    useEffect(() => {
+        const found = favorites.find((favorite) => favorite.roomId === roomId);
+        setIsFavorite(!!found);
+    }, [favorites, roomId]);
+
     // Function to convert numerical rating to stars
     const renderStars = (rating) => {
         const stars = [];
@@ -95,7 +103,7 @@ const RoomDetail = () => {
             }
         } catch (error) {
             console.log(error);
-            setErrorMessage("Failed to update favorites");
+            setErrorMessage("This room is already in your favorites list");
         }
         setTimeout(() => {
             setSuccessMessage("");
@@ -103,15 +111,6 @@ const RoomDetail = () => {
         }, 3000);
     };
     
-    // Check if the room is in the user's favorites
-    // useEffect(() => {
-    //     if (favorites.length !== 0) {
-    //         const found = favorites.find((favorite) => favorite.roomId === roomId);
-    //         setIsFavorite(found);
-    //     } else {
-    //         setIsFavorite(false);
-    //     }
-    // }, [favorites, roomId]);
 
     return (
         <section className='container' style={{backgroundColor:"whitesmoke", padding:"10px"}}>
@@ -184,16 +183,18 @@ const RoomDetail = () => {
                     </div>
                     {/* link đến book phòng */}
                     <hr />
-                    <div onClick={addToFavorites} style={{ cursor: 'pointer' }}>
-                        {isFavorite ? <FaHeart color="red" /> : <FaRegHeart />}
-                        <span>{isFavorite ? "Remove from Favorites" : "Add to Favorites"}</span>
-                    </div>
-                    <p style={{color:"green"}}>{successMessage}</p>
-                    <p style={{color:"red"}}>{errorMessage}</p>
-                    <Link to={`/book-room/${roomId}`} className='btn btn-hotel'>
-                        Book Room Now
-                    </Link>
-                    
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <div onClick={addToFavorites} className='btn btn-outline-info'>
+                            {isFavorite ? <FaHeart color="red" /> : <FaRegHeart />}
+                            <span>{isFavorite ? " Remove from Favorites" : " Add to Favorites"}</span>
+                        </div>
+                        <Link to={`/book-room/${roomId}`} className='btn btn-hotel'>
+                            Book Room Now
+                        </Link>
+                        </div>
+                        <p style={{color:"green"}}>{successMessage}</p>
+                        <p style={{color:"red"}}>{errorMessage}</p>
+                                            
                     {/* <ul>
                     {room.roomService.map((service, index) => (
                         <li key={index}>{service}</li>

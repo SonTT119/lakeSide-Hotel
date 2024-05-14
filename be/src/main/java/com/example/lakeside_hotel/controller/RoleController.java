@@ -71,4 +71,10 @@ public class RoleController {
     public ResponseEntity<?> getUsersWithRole(@PathVariable Long roleId) {
         return ResponseEntity.ok(roleService.getUsersWithRole(roleId));
     }
+
+    // get count role
+    @GetMapping("/count")
+    public ResponseEntity<Object> countRoles() {
+        return ResponseEntity.ok(roleService.countRoles());
+    }
 }

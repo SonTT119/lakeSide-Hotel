@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
 import RoomTypeSelector from "../common/RoomTypeSelector"
+import Sidebar from "../layout/Sidebar"
 import { getRoomById, updateRoom } from "../utils/ApiFunctions"
 
 const EditRoom = () => {
@@ -64,6 +65,7 @@ const EditRoom = () => {
 
 	return (
 		<>
+		<Sidebar>
 			<div className="admin-content">
 			<div className="container mt-5 mb-5">
 				<h3 className="text-center mb-5 mt-5">Edit Room</h3>
@@ -177,6 +179,7 @@ const EditRoom = () => {
 				</div>
 			</div>
 			</div>
+			</Sidebar>
 		</>
 	)
 }

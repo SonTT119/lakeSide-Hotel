@@ -23,4 +23,6 @@ public interface IRoleService {
 
     Role removeAllUserFromRole(Long roleId);
 
+    Object countRoles();
+
 }

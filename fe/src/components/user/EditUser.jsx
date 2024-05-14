@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { AuthContext } from '../auth/AuthProvider'
+import Sidebar from '../layout/Sidebar'
 import { getUserById, updateUser } from '../utils/ApiFunctions'
 
 const EditUser = () => {
@@ -71,77 +72,83 @@ const EditUser = () => {
 
 
     return (
-        <section className='container'>
-            {isLoggedIn && userRole === "ROLE_ADMIN" && (
-                <div className="container mt-5 mb-5">
-                    <div className='row justify-content-center'>
-                        <div className="col-md-8 col-lg-6">
-                            <h2 className="mt-5 mb-2">Edit User</h2>
-                            {message && (
-                                <div className="alert alert-success alert-dismissible fade show" role="alert">
-                                    {message}
-                                </div>
-                            )}
-                            {errorMessage && (
-                                <div className="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {errorMessage}
-                                </div>
-                            )}
-                            <form onSubmit={handleSubmit}>
-                                {/* <div className="mb-3">
-                                    <label htmlFor="email" className="form-label">Email</label>
-                                    <input type="email" className="form-control" id="email" name="email" value={user.email} onChange={handleInputChange} required />
-                                </div> */}
-                                <div className="mb-3">
-                                    <label htmlFor="firstName" className="form-label">First Name</label>
-                                    <input type="text" className="form-control" id="firstName" name="firstName" value={users.firstName} onChange={handleInputChange} required />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="lastName" className="form-label">Last Name</label>
-                                    <input type="text" className="form-control" id="lastName" name="lastName" value={users.lastName} onChange={handleInputChange} required />
-                                </div>
-                                {/* <div className="mb-3">
-                                    <label htmlFor="role" className="form-label">Role</label>
-                                    <input type="text" className="form-control" id="role" name="role" value={user.roles[0].name} onChange={handleInputChange} required />
-                                </div> */}
+        <>
+        <Sidebar>
+            <div className='admin-content'>
+                <section className='container'>
+                {isLoggedIn && userRole === "ROLE_ADMIN" && (
+                    <div className="container mt-5 mb-5">
+                        <div className='row justify-content-center'>
+                            <div className="col-md-8 col-lg-6">
+                                <h2 className="mt-5 mb-2">Edit User</h2>
+                                {message && (
+                                    <div className="alert alert-success alert-dismissible fade show" role="alert">
+                                        {message}
+                                    </div>
+                                )}
+                                {errorMessage && (
+                                    <div className="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {errorMessage}
+                                    </div>
+                                )}
+                                <form onSubmit={handleSubmit}>
+                                    {/* <div className="mb-3">
+                                        <label htmlFor="email" className="form-label">Email</label>
+                                        <input type="email" className="form-control" id="email" name="email" value={user.email} onChange={handleInputChange} required />
+                                    </div> */}
+                                    <div className="mb-3">
+                                        <label htmlFor="firstName" className="form-label">First Name</label>
+                                        <input type="text" className="form-control" id="firstName" name="firstName" value={users.firstName} onChange={handleInputChange} required />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="lastName" className="form-label">Last Name</label>
+                                        <input type="text" className="form-control" id="lastName" name="lastName" value={users.lastName} onChange={handleInputChange} required />
+                                    </div>
+                                    {/* <div className="mb-3">
+                                        <label htmlFor="role" className="form-label">Role</label>
+                                        <input type="text" className="form-control" id="role" name="role" value={user.roles[0].name} onChange={handleInputChange} required />
+                                    </div> */}
 
-                                <div className="mb-3">
-                                    <label htmlFor="phone" className="form-label">Phone</label>
-                                    <input type="text" className="form-control" id="phone" name="phone" value={users.phone} onChange={handleInputChange} required />
-                                </div>
-                                <div className="mb-3">
-                                    <label htmlFor="address" className="form-label">Address</label>
-                                    <input type="text" className="form-control" id="address" name="address" value={users.address} onChange={handleInputChange} required />
-                                </div>
-                                <div className="d-grid gap-2 d-md-flex mt-2">
-                                    <Link to={"/existing-users"} className="btn btn-outline-info ml-5">
-                                        back
-                                    </Link>
-                                    
-                                    <button className="btn btn-outline-warning"
-                                    onClick={handleSubmit}
-                                    >
-                                        Edit User
-                                    </button>
-                                </div>
-                            </form>
+                                    <div className="mb-3">
+                                        <label htmlFor="phone" className="form-label">Phone</label>
+                                        <input type="text" className="form-control" id="phone" name="phone" value={users.phone} onChange={handleInputChange} required />
+                                    </div>
+                                    <div className="mb-3">
+                                        <label htmlFor="address" className="form-label">Address</label>
+                                        <input type="text" className="form-control" id="address" name="address" value={users.address} onChange={handleInputChange} required />
+                                    </div>
+                                    <div className="d-grid gap-2 d-md-flex mt-2">
+                                        <Link to={"/existing-users"} className="btn btn-outline-info ml-5">
+                                            back
+                                        </Link>
+                                        
+                                        <button className="btn btn-outline-warning"
+                                        onClick={handleSubmit}
+                                        >
+                                            Edit User
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
+                )}
 
-            {(!isLoggedIn || userRole !== "ROLE_ADMIN") && (
-                <div className="container mt-5">
-                    <div className="row justify-content-center">
-                        <div className="col-md-8 col-lg-6">
-                            <h2 className="mt-5 mb-2">You are not authorized to view this page</h2>
-                            <Link to={"/"} className="btn btn-outline-info">Back to Home</Link>
+                {(!isLoggedIn || userRole !== "ROLE_ADMIN") && (
+                    <div className="container mt-5">
+                        <div className="row justify-content-center">
+                            <div className="col-md-8 col-lg-6">
+                                <h2 className="mt-5 mb-2">You are not authorized to view this page</h2>
+                                <Link to={"/"} className="btn btn-outline-info">Back to Home</Link>
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
-            
-        </section>
+                )}
+                
+            </section>
+            </div>
+        </Sidebar>
+        </>
     )
 }
 

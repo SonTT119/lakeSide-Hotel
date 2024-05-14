@@ -359,12 +359,43 @@ export async function deleteUserById(userId) {
     }
 }
 
-export async function getAllReview() {
+export async function getAllReviews() {
     try {
-        const response = await api.get("/review/get-all-reviews")
+        const response = await api.get("/review/get_all_reviews")
         return response.data
     } catch (error) {
         throw new Error("Error fetching reviews")
+    }
+}
+
+export async function deleteReview(reviewId) {
+    try {
+        const response = await api.delete(`/review/delete_review/${reviewId}`,{
+            headers: getHeader()
+        })
+        return response.data
+    } catch (error) {
+        throw new Error(`Error deleting review ${reviewId}: ${error.message}`)
+    }
+}
+
+export async function getReviewById(reviewId) {
+    try {
+        const response = await api.get(`/review/get_review/${reviewId}`)
+        return response.data
+    } catch (error) {
+        throw new Error(`Error fetching review ${reviewId}: ${error.message}`)
+    }
+}
+
+export async function updateReview(reviewId, reviewData) {
+    try {
+        const response = await api.put(`/review/update_review/${reviewId}`, reviewData,{
+            headers: getHeader()
+        })
+        return response.data
+    } catch (error) {
+        throw new Error(`Error updating review ${reviewId}: ${error.message}`)
     }
 }
 
@@ -458,6 +489,26 @@ export async function getCountBookings() {
         return count.data
     } catch (error) {
         throw new Error("Error fetching bookings")
+    }
+}
+
+//get count reviews
+export async function getCountReviews() {
+    try {
+        const count = await api.get("/review/get_all_count_reviews")
+        return count.data
+    } catch (error) {
+        throw new Error("Error fetching reviews")
+    }
+}
+
+// get count roles
+export async function getCountRoles() {
+    try {
+        const count = await api.get("/roles/count")
+        return count.data
+    } catch (error) {
+        throw new Error("Error fetching roles")
     }
 }
 

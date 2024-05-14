@@ -43,8 +43,10 @@ public class ReviewService implements IReviewService {
 
     @Override
     public Review updateReview(Long reviewId, String comment, int rating) {
-        // TODO Auto-generated method stub
-        return null;
+        Review review = reviewRepository.findById(reviewId).get();
+        review.setComment(comment);
+        review.setRating(rating);
+        return reviewRepository.save(review);
     }
 
     @Override
@@ -86,6 +88,11 @@ public class ReviewService implements IReviewService {
         review.setComment(comment);
         review.setRating(rating);
         return reviewRepository.save(review);
+    }
+
+    @Override
+    public Review getReview(Long reviewId) {
+        return reviewRepository.findById(reviewId).get();
     }
 
 }

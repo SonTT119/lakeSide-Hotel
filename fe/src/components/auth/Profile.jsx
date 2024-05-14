@@ -487,7 +487,7 @@ const Profile = () => {
 											<th scope="col">Check In Date</th>
 											<th scope="col">Check Out Date</th>
 											<th scope="col">Confirmation Code</th>
-											<th scope="col">Status</th>
+											{/* <th scope="col">Status</th> */}
 										</tr>
 									</thead>
 									<tbody>
@@ -497,7 +497,7 @@ const Profile = () => {
 													<td>{booking.room.id}</td> */}
 													<td>{index + 1}</td>
 													<td>{booking.room.roomType}</td>
-													<td>${booking.room.roomPrice}</td>
+													<td>${booking.room.roomPrice}/night</td>
 													<td>
 														{moment(booking.checkInDate).subtract(1, "month").format("MMM Do, YYYY")}
 													</td>
@@ -505,7 +505,7 @@ const Profile = () => {
 														{moment(booking.checkOutDate).subtract(1, "month").format("MMM Do, YYYY")}
 													</td>
 													<td>{booking.bookingConfirmationCode}</td>
-													<td>{booking.status}</td>
+													{/* <td>{booking.status}</td> */}
 												</tr>
 										))}
 									</tbody>

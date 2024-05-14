@@ -1,10 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { AuthContext } from '../auth/AuthProvider';
 import { getAllUserFavorites, getRoomById, removeFromFavorite } from '../utils/ApiFunctions';
 import RoomCardFavorite from './RoomCardFavorite';
 
 const RoomFavorites = () => {
   const [favorites, setFavorites] = useState([]);
   const [roomData, setRoomData] = useState({});
+
+  const {user} = useContext(AuthContext)
+
+  const isLoggedIn = user !== null;
 
   const userEmail = localStorage.getItem('userId');
 
@@ -41,7 +47,9 @@ const RoomFavorites = () => {
 
   
   return (
-    <section className="bg-light p-2 mb-5 mt-5 shadow">
+    <>
+    {isLoggedIn && (
+      <section className="bg-light p-2 mb-5 mt-5 shadow">
       <h2>My Favorite Rooms</h2>
       <ul className="favorite-list">
         {favorites.map((favorite) => (
@@ -54,6 +62,16 @@ const RoomFavorites = () => {
         ))}
       </ul>
     </section>
+    )}
+    {!isLoggedIn && (
+      <section className="bg-light p-2 mb-5 mt-5 shadow">
+        <h2>My Favorite Rooms</h2>
+        <p>Please log in to see your favorite rooms</p>
+        <Link to={"/"} className="btn btn-outline-info mr-3 link-home">Back to Home</Link>
+        <Link to={"/login"} className="btn btn-outline-info link-login">Login</Link>
+      </section>
+    )}
+    </>
   );
 }
 
