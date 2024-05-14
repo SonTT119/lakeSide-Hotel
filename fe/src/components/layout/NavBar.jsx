@@ -1,13 +1,36 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../auth/AuthProvider";
 import Logout from "../auth/Logout";
+import { getUser } from "../utils/ApiFunctions";
 
 const Navbar = () => {
     const [showAccount, setShowAccount] = useState(false);
+    const [showUser, setShowUser] = useState({
+        id: "",
+        email: "",
+        firstName: "",
+        lastName: "",
+        avatar: "",
+        roles: [{ id: "", name: "" }]
+    })
     const { user } = useContext(AuthContext);
     const isLoggedIn = user !== null;
     const userRole = localStorage.getItem("userRole");
+    const userId = localStorage.getItem("userId")
+	const token = localStorage.getItem("token")
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const showUser = await getUser(userId, token);
+                setShowUser(showUser);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchUser();
+    }, [userId, token]);
 
     const handleAccountClick = () => {
         setShowAccount(!showAccount);
@@ -72,6 +95,7 @@ const Navbar = () => {
                             >
                                 {isLoggedIn ? (
                                     <span>
+                                        {showUser.firstName} {showUser.lastName}
                                         <img
 											src={user.avatar || "https://themindfulaimanifesto.org/wp-content/uploads/2020/09/male-placeholder-image.jpeg"}
 											alt="Profile"
@@ -79,7 +103,7 @@ const Navbar = () => {
 											style={{ width: "30px", height: "30px", objectFit: "cover" }}
 										/>
                                         {/* get name user */}
-                                        {currentUser}
+                                        
                                     </span>
                                 ) : (
                                     "Account"
