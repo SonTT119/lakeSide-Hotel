@@ -59,7 +59,7 @@ const Payment = () => {
                 <li><span className="booking-detail-label">Check-Out Date:</span> {booking.checkOutDate}</li>
                 <li><span className="booking-detail-label">Number of Adults:</span> {booking.numOfAdults}</li>
                 <li><span className="booking-detail-label">Number of Children:</span> {booking.numOfChildren}</li>
-                <li><span className="booking-detail-label">Total Amount:</span> {calculatePayment()} VND</li>
+                <li><span className="booking-detail-label">Total Amount:</span> {calculatePayment().toLocaleString()} VND</li>
             </ul>
             <button onClick={handlePayment} className='btn btn-success payment-button'>Proceed to Payment</button>
         </div>

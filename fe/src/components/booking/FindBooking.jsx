@@ -173,7 +173,7 @@ const FindBooking = () => {
                         <hr />
 						<p>Room Number: {bookingInfo.room.id}</p>
 						<p>Room Type: {bookingInfo.room.roomType}</p>
-						<p>Room Price: ${bookingInfo.room.roomPrice}</p>
+						<p>Room Price: {bookingInfo.room.roomPrice.toLocaleString()} VND</p>
 						<p>Check-In Date:  {bookingInfo.checkInDate}</p>
                         <p>Check-Out Date: {bookingInfo.checkOutDate}</p>
 						<p>Full Name: {bookingInfo.guestFullName}</p>
@@ -181,7 +181,7 @@ const FindBooking = () => {
 						<p>Adults: {bookingInfo.numOfAdults}</p>
 						<p>Children: {bookingInfo.numOfChildren}</p>
 						<p>Total Guest: {bookingInfo.totalNumOfGuests}</p>
-						<p>Total Price: ${calculateTotalPrice()}</p>
+						<p>Total Price: {calculateTotalPrice().toLocaleString()} VND</p>
 						{isLoggedIn && userRole === "ROLE_ADMIN" && (
 							!isDeleted && (
 							<button

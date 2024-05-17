@@ -47,7 +47,7 @@ const CheckOut = () => {
                                         </tr>
                                         <tr>
                                             <th>Price per night:</th>
-                                            <th>{roomInfo.roomPrice} VND / night</th>
+                                            <th>{roomInfo.roomPrice.toLocaleString()} VND / night</th>
                                         </tr>
                                         <tr>
                                             <th>Max Adults:</th>

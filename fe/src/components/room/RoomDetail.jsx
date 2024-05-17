@@ -138,7 +138,7 @@ const RoomDetail = () => {
                                 <h5>Evaluate |</h5>
                             </div>}
                         <div className='room-price-detail'>
-                            <h3>{room.roomPrice} VND / night</h3>
+                            <h3>{room.roomPrice.toLocaleString()} VND / night</h3>
                         </div>
                         <hr />
                         <div className="row">

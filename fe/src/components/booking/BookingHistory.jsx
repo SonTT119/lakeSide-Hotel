@@ -49,14 +49,14 @@ const BookingHistory = () => {
                                 <tr key={index}>
                                     <td>{index + 1}</td>
                                     <td>{booking.room.roomType}</td>
-                                    <td>${booking.room.roomPrice}/night</td>
+                                    <td>{booking.room.roomPrice.toLocaleString()} VND/night</td>
                                     <td>
                                         {moment(booking.checkInDate).subtract(1, "month").format("MMM Do, YYYY")}
                                     </td>
                                     <td>
                                         {moment(booking.checkOutDate).subtract(1, "month").format("MMM Do, YYYY")}
                                     </td>
-                                    <td>{calculateTotalPrice(booking.checkInDate, booking.checkOutDate, booking.room.roomPrice)} VND</td>
+                                    <td>{calculateTotalPrice(booking.checkInDate, booking.checkOutDate, booking.room.roomPrice).toLocaleString()} VND</td>
                                     <td>{booking.bookingConfirmationCode}</td>
                                 </tr>
                         ))}

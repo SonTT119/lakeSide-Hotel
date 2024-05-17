@@ -1,3 +1,4 @@
+import moment from 'moment';
 import React, { useEffect, useState } from 'react';
 import DateSlider from '../common/DateSlider';
 
@@ -70,7 +71,7 @@ const BookingTable = ({ bookingInfo, handleBookingCancellation }) => {
                             <td>{booking.numOfAdults}</td>
                             <td>{booking.numOfChildren}</td>
                             <td>{booking.totalNumOfGuests}</td>
-                            <td>${calculateTotalPrice(booking.checkInDate, booking.checkOutDate, booking.room.roomPrice)}</td>
+                            <td>{calculateTotalPrice(booking.checkInDate, booking.checkOutDate, booking.room.roomPrice).toLocaleString()} VND</td>
                             <td>{booking.bookingConfirmationCode}</td>
                             <td>
                                 <button className='btn btn-danger btn-sm' onClick={() => handleBookingCancellation(booking.id)}>Cancel</button>

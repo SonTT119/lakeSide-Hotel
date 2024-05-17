@@ -32,7 +32,7 @@ const RoomCard = ({room, handleDelete}) => {
                             {room.roomType}
                         </Card.Title>
                         <Card.Title className="room-price">
-                            {room.roomPrice} VND / night
+                            {room.roomPrice.toLocaleString()} VND / night
                         </Card.Title>
                         <div style={{ fontFamily: "'Roboto', sans-serif", fontSize:"13px", color:"aquamarine"}}>
                             <Card.Text>Max Adults: {room.maxAdults}</Card.Text> 

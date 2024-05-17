@@ -60,7 +60,7 @@ const BookingSummary = ({ booking, payment, isFormValid, onConfirm }) => {
 				{payment > 0 ? (
 					<>
 						<p>
-							Total payment: <strong>{payment} VND</strong>
+							Total payment: <strong>{payment.toLocaleString()} VND</strong>
 						</p>
 
 						{isFormValid && !isBookingConfirmed ? (
