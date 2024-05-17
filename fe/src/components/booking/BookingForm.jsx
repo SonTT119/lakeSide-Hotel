@@ -120,7 +120,8 @@ const BookingForm = () => {
             const confirmationCode = await bookRoom(roomId, booking)
             // setBooking({...booking, confirmationCode: confirmationCode})
             setIsSubmitted(true)
-            navigate("/booking-success", {state: {message: confirmationCode}})
+            navigate("/payment", { state: { booking, roomPrice , message: confirmationCode} });
+            // navigate("/booking-success", {state: {message: confirmationCode}})
             
         } catch (error) {
             setErrorMessages(error.message)

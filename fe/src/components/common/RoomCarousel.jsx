@@ -56,7 +56,7 @@ const RoomCarousel = () => {
                                             </Link>
                                             <Card.Body className="">
                                                 <Card.Title className="hotel-color">{room.roomType}</Card.Title>
-                                                <Card.Title className="room-price">${room.roomPrice} / night</Card.Title>
+                                                <Card.Title className="room-price">{room.roomPrice} VND / night</Card.Title>
                                                 <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "'Roboto', sans-serif", fontSize: "13px", color: "aquamarine" }}>
                                                     <Card.Text>Max Adults: {room.maxAdults}</Card.Text>
                                                     <Card.Text>Max Children: {room.maxChildren}</Card.Text>

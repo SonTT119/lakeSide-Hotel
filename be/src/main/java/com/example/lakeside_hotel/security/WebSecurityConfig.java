@@ -59,7 +59,7 @@ public class WebSecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**", "/auth/login", "/rooms/**", "/bookings/**", "/users/**",
                                 "/review/**", "/roles/**",
-                                "/forgotPassword/**", "/user-favorite-room/**")
+                                "/forgotPassword/**", "/user-favorite-room/**", "/payment/**")
                         .permitAll()
                         .anyRequest().authenticated());
         http.authenticationProvider(authenticationProvider());

@@ -1,0 +1,58 @@
+.payment-container {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.payment-title {
+    color: #343a40;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.payment-summary {
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.booking-details-title {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.booking-details-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.booking-details-list li {
+    margin-bottom: 10px;
+}
+.booking-detail-label {
+    font-weight: bold;
+    color: #5e7a8c;
+}
+
+.payment-button {
+    background-color: #28a745;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition-duration: 0.4s;
+}
+
+.payment-button:hover {
+    background-color: white; 
+    color: #257338;
+    border: 2px solid #27903f;
+}

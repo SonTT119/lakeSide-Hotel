@@ -70,7 +70,8 @@ public class BookingController {
             }
             String confirmationCode = bookingService.saveBooking(roomId, bookingRequest);
             return ResponseEntity
-                    .ok("Room booked successfully, your booking confirmation code is: " + confirmationCode);
+                    .ok("Your booking confirmation code is: " + confirmationCode
+                            + ". Please pay to complete your booking.");
         } catch (InvalidBookingRequestException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

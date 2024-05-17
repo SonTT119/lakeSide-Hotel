@@ -63,7 +63,8 @@ public class BookingService implements IBookingService {
     private boolean roomIsAvailable(BookedRoom bookingRequest, List<BookedRoom> existingBookings) {
         return existingBookings.stream()
                 .noneMatch(existingBooking -> bookingRequest.getCheckInDate().equals(existingBooking.getCheckInDate())
-                        || bookingRequest.getCheckOutDate().isBefore(existingBooking.getCheckOutDate())
+                        // ||
+                        // bookingRequest.getCheckOutDate().isBefore(existingBooking.getCheckOutDate())
                         || (bookingRequest.getCheckInDate().isAfter(existingBooking.getCheckInDate())
                                 && bookingRequest.getCheckInDate().isBefore(existingBooking.getCheckOutDate()))
                         || (bookingRequest.getCheckInDate().isBefore(existingBooking.getCheckInDate())

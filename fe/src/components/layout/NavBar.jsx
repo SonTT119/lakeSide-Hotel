@@ -95,7 +95,7 @@ const Navbar = () => {
                             >
                                 {isLoggedIn ? (
                                     <span>
-                                        {showUser.firstName} {showUser.lastName}
+                                        {showUser.firstName} {showUser.lastName} &nbsp;
                                         <img
 											src={user.avatar || "https://themindfulaimanifesto.org/wp-content/uploads/2020/09/male-placeholder-image.jpeg"}
 											alt="Profile"
@@ -116,8 +116,14 @@ const Navbar = () => {
                                 {isLoggedIn ? (
                                     <>
                                         <li>
+                                            <Link className="dropdown-item" to={"/booking-history"}>
+                                                Booking History
+                                            </Link>
+                                        </li>
+                                        <li>
                                             <Logout />
                                         </li>
+
                                     </>
                                 ) : (
                                     <li>

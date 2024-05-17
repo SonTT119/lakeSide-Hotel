@@ -112,7 +112,12 @@ const ExistingReview = () => {
                             <td>{review.roomId}</td>
                             <td>{review.roomType}</td>
                             <td>{review.user}</td>
-                            <td>{review.comment}</td>
+                            <td>{review.comment.split('\n').map((line, index) => (
+                                <span key={index}>
+                                    {line}
+                                    <br />
+                                </span>
+                            ))}</td>
                             <td>{review.rating}</td>
                             <td className="gap-2">
                               <Link to={`/review/edit/${review.reviewId}`}>

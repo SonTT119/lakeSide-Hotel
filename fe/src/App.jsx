@@ -9,10 +9,13 @@ import ForgotPass from "./components/auth/ForgotPass";
 import Login from "./components/auth/Login";
 import Profile from "./components/auth/Profile";
 import Registration from "./components/auth/Registration";
+import BookingHistory from "./components/booking/BookingHistory";
 import BookingSuccess from "./components/booking/BookingSuccess";
 import Bookings from "./components/booking/Bookings";
 import CheckOut from "./components/booking/CheckOut";
 import FindBooking from "./components/booking/FindBooking";
+import Payment from "./components/booking/Payment";
+import PaymentSuccess from "./components/booking/PaymentSucess";
 import Home from "./components/home/Home";
 import Navbar from "./components/layout/NavBar";
 import EditReview from "./components/review/EditReview";
@@ -65,7 +68,11 @@ function App() {
             <Route path="/add-Admin" element={<AddUser/>} />
             <Route path="/existing-review" element={<ExistingReview/>} />
             <Route path="/review/edit/:reviewId" element={<EditReview/>} />
+            <Route path="/payment" element={<Payment/>} />
+            <Route path="/payment-success" element={<PaymentSuccess/>} />
+            <Route path="/booking-history" element={<BookingHistory/>} />
           </Routes>
+          {/* <Footer/> */}
         </Router>
         
         

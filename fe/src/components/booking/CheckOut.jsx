@@ -3,6 +3,7 @@ import { FaCar, FaParking, FaTshirt, FaTv, FaUtensils, FaWifi, FaWineGlassAlt } 
 import { useParams } from 'react-router-dom'
 // import Review from '../review/Review'
 import SimilarRooms from '../common/SimilarRooms'
+import Footer from '../layout/Footer'
 import RoomReview from '../review/RoomReview'
 import { getRoomById } from '../utils/ApiFunctions'
 import BookingForm from './BookingForm'
@@ -46,7 +47,7 @@ const CheckOut = () => {
                                         </tr>
                                         <tr>
                                             <th>Price per night:</th>
-                                            <th>${roomInfo.roomPrice} / night</th>
+                                            <th>{roomInfo.roomPrice} VND / night</th>
                                         </tr>
                                         <tr>
                                             <th>Max Adults:</th>
@@ -104,6 +105,7 @@ const CheckOut = () => {
                 <RoomReview/>
                 {roomInfo.roomType && <SimilarRooms roomInfo={roomInfo.roomType} />}
             </div>
+            <Footer/>
         </div>
     )
 }

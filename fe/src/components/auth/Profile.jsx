@@ -292,10 +292,9 @@
 
 // export default Profile
 
-import moment from "moment"
 import React, { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { getBookingsByUserId, getUser, updateAvatar } from "../utils/ApiFunctions"
+import { getUser, updateAvatar } from "../utils/ApiFunctions"
 
 const Profile = () => {
 	const [user, setUser] = useState({
@@ -353,20 +352,6 @@ const Profile = () => {
 			setErrorMessage(error.message);
 		}
 	}
-	
-
-	useEffect(() => {
-		const fetchBookings = async () => {
-			try {
-				const response = await getBookingsByUserId(userId, token)
-				setBookings(response)
-			} catch (error) {
-				console.error("Error fetching bookings:", error.message)
-				setErrorMessage(error.message)
-			}
-		}
-		fetchBookings()
-	}, [userId, token])
 
 	return (
 		<div className="container">
@@ -471,48 +456,6 @@ const Profile = () => {
 									Edit Profile
 								</Link>
 							</div>
-
-							<h4 className="card-title text-center">Booking History</h4>
-
-							{bookings.length > 0 ? (
-								<table className="table table-bordered table-hover shadow">
-									<thead>
-										<tr>
-											{/* <th scope="col">Booking ID</th>
-											<th scope="col">Room ID</th> */}
-											<th scope="col">S/N</th>
-											<th scope="col">Room Type</th>
-											<th scope="col">Room price</th>
-											
-											<th scope="col">Check In Date</th>
-											<th scope="col">Check Out Date</th>
-											<th scope="col">Confirmation Code</th>
-											{/* <th scope="col">Status</th> */}
-										</tr>
-									</thead>
-									<tbody>
-										{bookings.map((booking, index) => (
-												<tr key={index}>
-													{/* <td>{booking.id}</td>
-													<td>{booking.room.id}</td> */}
-													<td>{index + 1}</td>
-													<td>{booking.room.roomType}</td>
-													<td>${booking.room.roomPrice}/night</td>
-													<td>
-														{moment(booking.checkInDate).subtract(1, "month").format("MMM Do, YYYY")}
-													</td>
-													<td>
-														{moment(booking.checkOutDate).subtract(1, "month").format("MMM Do, YYYY")}
-													</td>
-													<td>{booking.bookingConfirmationCode}</td>
-													{/* <td>{booking.status}</td> */}
-												</tr>
-										))}
-									</tbody>
-								</table>
-							) : (
-								<p>You have not made any bookings yet.</p>
-							)}
 						</div>
 					</div>
 				</div>

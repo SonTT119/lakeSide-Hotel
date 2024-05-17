@@ -5,6 +5,7 @@ import HotelService from "../common/HotelService";
 import Parallax from "../common/Parallax";
 import RoomCarousel from "../common/RoomCarousel";
 import RoomSearch from "../common/RoomSearch";
+import Footer from "../layout/Footer";
 import MainHeader from "../layout/MainHeader";
 
 const Home = () => {
@@ -33,7 +34,9 @@ const Home = () => {
                 <RoomCarousel/>
                 
             </section>
+            <Footer/>
         </section>
+        
     );
 }
 

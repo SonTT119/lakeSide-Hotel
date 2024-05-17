@@ -71,7 +71,7 @@ const EditReview = () => {
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label htmlFor="comment">Comment</label>
-                                <input type="text" className="form-control" id="comment" name="comment" value={review.comment} onChange={handleInputChange} />
+                                <textarea className="form-control" id="comment" name="comment" value={review.comment} onChange={handleInputChange} />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="rating">Rating</label>

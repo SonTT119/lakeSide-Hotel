@@ -28,6 +28,11 @@ const BookingTable = ({ bookingInfo, handleBookingCancellation }) => {
         return date.toLocaleDateString();
     }
 
+    const calculateTotalPrice = (checkInDate, checkOutDate, roomPrice) => {
+        const days = moment(checkOutDate).diff(moment(checkInDate), 'days');
+        return days * roomPrice;
+    }
+
     return (
         <section className='p-4'>
             <DateSlider onDateChange={filterBookingsByDate} onFilterChange={filterBookingsByDate} />
@@ -46,6 +51,7 @@ const BookingTable = ({ bookingInfo, handleBookingCancellation }) => {
                         <th>Adults</th>
                         <th>Children</th>
                         <th>Total Guest</th>
+                        <th>Total Price</th>
                         <th>Confirmation Code</th>
                         <th colSpan={2}>Action</th>
                     </tr>
@@ -64,6 +70,7 @@ const BookingTable = ({ bookingInfo, handleBookingCancellation }) => {
                             <td>{booking.numOfAdults}</td>
                             <td>{booking.numOfChildren}</td>
                             <td>{booking.totalNumOfGuests}</td>
+                            <td>${calculateTotalPrice(booking.checkInDate, booking.checkOutDate, booking.room.roomPrice)}</td>
                             <td>{booking.bookingConfirmationCode}</td>
                             <td>
                                 <button className='btn btn-danger btn-sm' onClick={() => handleBookingCancellation(booking.id)}>Cancel</button>

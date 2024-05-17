@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../auth/AuthProvider';
+import Footer from '../layout/Footer';
 import { getAllUserFavorites, getRoomById, removeFromFavorite } from '../utils/ApiFunctions';
 import RoomCardFavorite from './RoomCardFavorite';
 
@@ -48,19 +49,23 @@ const RoomFavorites = () => {
   
   return (
     <>
+    <section className="bg-light p-2 mb-5 mt-5 shadow">
     {isLoggedIn && (
       <section className="bg-light p-2 mb-5 mt-5 shadow">
       <h2>My Favorite Rooms</h2>
-      <ul className="favorite-list">
-        {favorites.map((favorite) => (
-          <li className='li-favorite' key={favorite.id}>
-            <div className="favorite-item">
-              {roomData[favorite.roomId] && <RoomCardFavorite room={roomData[favorite.roomId]} handleDelete={() =>removeRoomFromFavorites(favorite.roomId)}/>}
-              {/* <button className="remove-button" onClick={() => removeRoomFromFavorites(favorite.roomId)}>Remove from favorites</button> */}
-            </div>
-          </li> 
-        ))}
-      </ul>
+      {favorites.length > 0 ? (
+        <ul className="favorite-list">
+          {favorites.map((favorite) => (
+            <li className='li-favorite' key={favorite.id}>
+              <div className="favorite-item">
+                {roomData[favorite.roomId] && <RoomCardFavorite room={roomData[favorite.roomId]} handleDelete={() =>removeRoomFromFavorites(favorite.roomId)}/>}
+              </div>
+            </li> 
+          ))}
+        </ul>
+      ) : (
+        <p>No rooms in your favorite list.</p>
+      )}
     </section>
     )}
     {!isLoggedIn && (
@@ -71,6 +76,8 @@ const RoomFavorites = () => {
         <Link to={"/login"} className="btn btn-outline-info link-login">Login</Link>
       </section>
     )}
+    </section>
+    <Footer/>
     </>
   );
 }
