@@ -19,7 +19,6 @@ import com.example.lakeside_hotel.model.Review;
 import com.example.lakeside_hotel.model.User;
 import com.example.lakeside_hotel.reponse.ReviewResponse;
 import com.example.lakeside_hotel.service.IReviewService;
-import com.example.lakeside_hotel.service.IRoomService;
 import com.example.lakeside_hotel.service.IUserService;
 
 import lombok.RequiredArgsConstructor;
@@ -30,7 +29,7 @@ import lombok.RequiredArgsConstructor;
 public class ReviewController {
     private final IReviewService reviewService;
     private final IUserService userService;
-    private final IRoomService roomService;
+    // private final IRoomService roomService;
 
     // create a new review
     @PostMapping("/add_review/room/{roomId}")
