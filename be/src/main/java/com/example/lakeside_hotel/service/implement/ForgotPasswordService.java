@@ -6,6 +6,7 @@ import java.util.Random;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.example.lakeside_hotel.email.IEmailService;
 import com.example.lakeside_hotel.email.MailBody;
@@ -61,7 +62,7 @@ public class ForgotPasswordService implements IForgotPasswordService {
         // Save OTP and user info in database
         ForgotPassword forgotPassword = new ForgotPassword();
         forgotPassword.setOtp(otp);
-        forgotPassword.setExpiryDate(Date.from(Instant.now().plusSeconds(70)));
+        forgotPassword.setExpiryDate(Date.from(Instant.now().plusSeconds(180)));
         forgotPassword.setUser(user);
         forgotPasswordRepository.save(forgotPassword);
     }
@@ -108,6 +109,41 @@ public class ForgotPasswordService implements IForgotPasswordService {
     private Integer otpGenerator() {
         Random random = new Random();
         return random.nextInt(100_000, 999_999);
+    }
+
+    @Transactional
+    public void resendVerificationEmail(String email) {
+        if (!isValidEmail(email)) {
+            throw new IllegalArgumentException("Invalid email address");
+        }
+        User user = userService.getUserByEmail(email);
+        if (user == null) {
+            throw new IllegalArgumentException("User not found");
+        }
+
+        Integer otp = otpGenerator();
+        // Send verification email
+        MailBody mailBody = MailBody.builder().to(email)
+                .subject("OTP for Forgot Password request")
+                .text("This is the OTP for your Forgot Password request: " + otp)
+                .build();
+
+        emailService.sendSimpleMessage(mailBody);
+        // Save OTP and user info in database
+        ForgotPassword existingRecord = forgotPasswordRepository.findByUserId(user.getId());
+        if (existingRecord != null) {
+            // Update existing record
+            existingRecord.setOtp(otp);
+            existingRecord.setExpiryDate(Date.from(Instant.now().plusSeconds(180)));
+            forgotPasswordRepository.save(existingRecord);
+        } else {
+            // Insert new record
+            ForgotPassword forgotPassword = new ForgotPassword();
+            forgotPassword.setOtp(otp);
+            forgotPassword.setExpiryDate(Date.from(Instant.now().plusSeconds(180)));
+            forgotPassword.setUser(user);
+            forgotPasswordRepository.save(forgotPassword);
+        }
     }
 
 }

@@ -1,0 +1,10 @@
+.icon-ps {
+  z-index: 10;
+  position:flex;
+  color: #161616;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+.form-control {
+  padding-right: 40px;
+}

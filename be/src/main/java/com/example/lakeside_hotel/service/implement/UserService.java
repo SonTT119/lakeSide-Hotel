@@ -132,10 +132,12 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void updatePassword(UpdatePasswordRequest updatePasswordRequest) {
-        User currentUser = getCurrentUserLogin();
+    public void updatePasswordById(Long userId, UpdatePasswordRequest updatePasswordRequest) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new NoSuchElementException("No user found with id " + userId));
+
         String currentPassword = new String(updatePasswordRequest.getOldPassword());
-        if (!passwordEncoder.matches(currentPassword, currentUser.getPassword())) {
+        if (!passwordEncoder.matches(currentPassword, user.getPassword())) {
             throw new UserAlreadyExistException("Wrong credentials!");
         }
 
@@ -151,14 +153,8 @@ public class UserService implements IUserService {
                     "Password must contain at least one digit, one lowercase letter, one uppercase letter, one special character and no whitespace");
         }
 
-        currentUser.setPassword(passwordEncoder.encode(newPassword));
-        userRepository.save(currentUser);
-
-    }
-
-    private User getCurrentUserLogin() {
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        return getUserByEmail(email);
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
     }
 
     @Override
@@ -282,4 +278,5 @@ public class UserService implements IUserService {
 
         return userRepository.save(user);
     }
+
 }

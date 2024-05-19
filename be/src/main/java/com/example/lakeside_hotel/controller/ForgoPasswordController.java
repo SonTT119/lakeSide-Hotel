@@ -25,6 +25,13 @@ public class ForgoPasswordController {
         return ResponseEntity.ok("Email sent for verification");
     }
 
+    // gửi lại email
+    @PostMapping("/resendEmail/{email}")
+    public ResponseEntity<?> resendEmail(@PathVariable String email) {
+        forgotPasswordService.resendVerificationEmail(email);
+        return ResponseEntity.ok("Email sent for verification");
+    }
+
     @PostMapping("/verifyOtp/{otp}/{email}")
     public ResponseEntity<String> verifyOtp(@PathVariable Integer otp, @PathVariable String email) {
         return ResponseEntity.ok(forgotPasswordService.verifyOtp(otp, email));

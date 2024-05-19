@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { FaEye, FaEyeSlash, FaUser } from 'react-icons/fa'
 import { MdEmail } from 'react-icons/md'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { registration } from '../utils/ApiFunctions'
+
 
 const Registration = () => {
     const [registrationData, setRegistrationData] = useState({
@@ -16,6 +17,7 @@ const Registration = () => {
     const [errorMessages, setErrorMessages] = useState("")
     const [successMessages, setSuccessMessages] = useState("")
     const [showPassword, setShowPassword] = useState(false) // State để xác định xem mật khẩu có được hiển thị hay không
+    const navigate = useNavigate();
 
     const handleInputChange = (e) => {
         setRegistrationData({
@@ -39,6 +41,9 @@ const Registration = () => {
                     confirmPassword: ""
                 })
             }
+            setTimeout(() => {
+                navigate("/login")
+            }, 2000);
         } catch (error) {
             setSuccessMessages("")
             setErrorMessages(`Error registering user: ${error.message}`)
@@ -59,8 +64,10 @@ const Registration = () => {
             <div className='wrapper'>
                 <form onSubmit={handleFormSubmit}>
                     <h1>Sign Up</h1>
-                    {errorMessages && <div className="error-message">{errorMessages}</div>}
-                    {successMessages && <div className="alert alert-success">{successMessages}</div>}
+                    {errorMessages && <div className="text text-center" style={{ color: "crimson", backgroundColor: "rgba(20, 10, 30, 0.5)", borderRadius: "4px" }}>
+                            {errorMessages}
+                        </div>}
+                    {successMessages && <div className="text text-center" style={{ color: "limegreen", backgroundColor: "rgba(20, 10, 30, 0.5)", borderRadius: "4px" }}>{successMessages}</div>}
                     <div className='input-group'>
                         <div className="input-item">
                             <input

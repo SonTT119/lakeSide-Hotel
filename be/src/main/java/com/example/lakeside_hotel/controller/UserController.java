@@ -26,6 +26,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.lakeside_hotel.exception.PhotoRetrievalException;
 import com.example.lakeside_hotel.exception.ResourceNotFoundException;
+import com.example.lakeside_hotel.exception.UserAlreadyExistException;
 import com.example.lakeside_hotel.model.User;
 import com.example.lakeside_hotel.reponse.UserResponse;
 import com.example.lakeside_hotel.request.UpdatePasswordRequest;
@@ -147,14 +148,17 @@ public class UserController {
         }
     }
 
-    // update password
-    @PutMapping("/update-password")
-    public ResponseEntity<String> updatePassword(@RequestBody UpdatePasswordRequest updatePasswordRequest) {
+    // update password for user by id
+    @PutMapping("/update-password/{userId}")
+    public ResponseEntity<String> updatePasswordById(@PathVariable Long userId,
+            @RequestBody UpdatePasswordRequest updatePasswordRequest) {
         try {
-            userService.updatePassword(updatePasswordRequest);
+            userService.updatePasswordById(userId, updatePasswordRequest);
             return ResponseEntity.ok("Password updated successfully");
-        } catch (UsernameNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        } catch (UserAlreadyExistException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error updating password");
         }

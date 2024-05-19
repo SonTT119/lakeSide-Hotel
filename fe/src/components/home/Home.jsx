@@ -20,7 +20,7 @@ const Home = () => {
 
     return (
         <section>
-            {message && <div className="text-warning px-5">{message}</div>}
+            {/* {message && <div className="text-warning px-5">{message}</div>} */}
             { isLoggedIn && currentUser && <div className="text-success text-center">You are login as {currentUser}!</div>}
             { !isLoggedIn && <div className="text-danger text-center">You are not login!</div>}
             <MainHeader/>

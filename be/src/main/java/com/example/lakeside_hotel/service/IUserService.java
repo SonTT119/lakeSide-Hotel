@@ -24,10 +24,6 @@ public interface IUserService {
 
     User updateUser(Long userId, String firstName, String lastName, String phone, String address);
 
-    // void updatePassword(String email, String password);
-
-    void updatePassword(UpdatePasswordRequest updatePasswordRequest);
-
     void deleteUserById(Long userId);
 
     // User getUserById(Long userId);
@@ -43,4 +39,6 @@ public interface IUserService {
     byte[] getAvatarByUserId(Long userId) throws SQLException;
 
     User createUser(User user, String roleName);
+
+    void updatePasswordById(Long userId, UpdatePasswordRequest updatePasswordRequest);
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Admin from "./components/admin/Admin";
@@ -9,6 +9,7 @@ import ForgotPass from "./components/auth/ForgotPass";
 import Login from "./components/auth/Login";
 import Profile from "./components/auth/Profile";
 import Registration from "./components/auth/Registration";
+import UpdatePassword from "./components/auth/UpdatePassword";
 import BookingHistory from "./components/booking/BookingHistory";
 import BookingSuccess from "./components/booking/BookingSuccess";
 import Bookings from "./components/booking/Bookings";
@@ -33,8 +34,10 @@ import ExistingUsers from "./components/user/ExistingUsers";
 import "/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'));
+
   return (
-    <AuthProvider>
+    <AuthProvider value={{ isLoggedIn, setIsLoggedIn }}>
       <main>
         <Router>
           <Navbar/>
@@ -71,6 +74,7 @@ function App() {
             <Route path="/payment" element={<Payment/>} />
             <Route path="/payment-success" element={<PaymentSuccess/>} />
             <Route path="/booking-history" element={<BookingHistory/>} />
+            <Route path="/update-password" element={<UpdatePassword/>} />
           </Routes>
           {/* <Footer/> */}
         </Router>

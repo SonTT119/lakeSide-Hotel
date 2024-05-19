@@ -29,18 +29,16 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const success = await login(loginData)
-        if (success) {
-            const token = success.token
-            handleLogin(token)
-            navigate("/")
-        } else {
+        try {
+            const success = await login(loginData)
+            if (success) {
+                const token = success.token
+                handleLogin(token)
+                navigate("/")
+            }
+        } catch (error) {
             setErrorMessages("Invalid email or password. Please try again.")
         }
-
-        setTimeout(() => {
-            setErrorMessages("")
-        }, 3000)
     }
 
     return (
@@ -48,7 +46,7 @@ const Login = () => {
             <div className='wrapper'>
                 <form onSubmit={handleSubmit}>
                     <h1>Login</h1>
-                    {errorMessages && <div className="notice danger">{errorMessages}</div>}
+                    {errorMessages && <div className="error-message">{errorMessages}</div>}
                     <div className="input-box">
                         <input
                             type="email"

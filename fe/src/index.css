@@ -143,6 +143,41 @@
     outline-style:solid;
     bottom: 30px;
   }
+
+  .button-carousel:hover,.card-body:hover{
+    background-color: rgb(50, 50, 50);
+    color: #fff;
+    transition: 0.7s;
+    outline-color: transparent;
+    outline-style:solid;
+  }
+
+  .card-body-content{
+    background-color: rgb(170, 190, 190);
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.7s;
+    outline-color: transparent;
+    outline-style:solid;
+    bottom: 30px;
+  }
+
+  .card-body-p5{
+    background-color:rgb(161, 166, 166);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.7s;
+    outline-color: transparent;
+    outline-style:solid;
+    bottom: 30px;
+  }
+
   .button-carousel:hover{
     background-color: rgb(137, 127, 132);
     color: #fff;
@@ -492,9 +527,9 @@
   }
 
   .error-message {
-    color: #dc3545; /* Red color */
-    font-size: 14px;
-    margin-top: 5px;
+    color: #cb0014; /* Red color */
+    font-size: 17px;
+    margin-top: 7px;
 }
 
 /* date-slider.css */

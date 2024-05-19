@@ -71,7 +71,13 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-        JwtResponse response = userService.authenticateUser(loginRequest);
-        return ResponseEntity.ok(response);
+        try {
+            JwtResponse jwtResponse = userService.authenticateUser(loginRequest);
+            return ResponseEntity.ok(jwtResponse);
+        } catch (UserAlreadyExistException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+        }
     }
 }

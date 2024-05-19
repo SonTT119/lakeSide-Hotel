@@ -241,13 +241,11 @@ export async function addAdmin(admin, roleName) {
 export async function login(login) {
     try {
 		const response = await api.post("/auth/login", login)
-		if (response.status >= 200 && response.status < 300) {
-			return response.data
-		} else {
-			return null
-		}
+		return response.data
 	} catch (error) {
         if (error.response && error.response.data) {
+            throw new Error(error.response.data)
+        } else {
             throw new Error(`Error logging in: ${error.message}`)
         }
     }
@@ -441,6 +439,19 @@ export async function forgotPassword(forgotPassData) {
         throw new Error(`Error sending email: ${error.message}`)
     }
 }
+
+// resend OTP
+export async function resendOTP(data) {
+    try {
+        const response = await api.post(`/forgotPassword/resendEmail/${data.email}`,{
+            headers: getHeader()
+        }
+        )
+        return response.data
+    } catch (error) {
+        throw new Error(`Error resending OTP: ${error.message}`)
+    }
+}
 // verify OTP
 export async function verifyOTP(data) {
     try {
@@ -529,5 +540,20 @@ export async function getCountById(roomId) {
         return response.data
     } catch (error) {
         throw new Error(`Error fetching count for room ${roomId}`)
+    }
+}
+
+// update password
+export async function updatePassword(userId, data, token) {
+    try {
+        const response = await api.put(`/users/update-password/${userId}`, data,{
+            headers: getHeader()
+        })
+        return response.data
+    } catch (error) {
+        if (error.response && error.response.status === 409) {
+            throw new Error('Conflict: The new password may be the same as the old one or does not meet the password policy.')
+        }
+        throw new Error(`Error updating password: ${error.message}`)
     }
 }

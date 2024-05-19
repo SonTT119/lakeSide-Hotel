@@ -69,17 +69,17 @@ return (
         <div className="container">
             {errorMessage && <p className="text-danger">{errorMessage}</p>}
             {message && <p className="text-success">{message}</p>}
-            <div className="card p-5 mt-5" style={{ backgroundColor: "whitesmoke" }}>
-                <h4 className="card-title text-center">Edit Profile</h4>
-                <div className="card-body">
+            <div className=" p-3 mt-2" style={{ backgroundColor: "whitesmoke", display:"block"}}>
+                <h2 className="text-center mb-4">Edit Profile</h2>
+                <div className="card-body-content" style={{borderRadius:"15px", width:"50%", marginLeft:"320px"}}>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
-                            <label htmlFor="firstName" className="form-label">First Name</label>
-                            <input type="text" className="form-control" id="firstName" name="firstName" value={user.firstName} onChange={handleChange} />
+                            <label htmlFor="firstName" className="form-label" style={{fontSize:"17px"}}>First Name:</label>
+                            <input type="text" className="form-control" id="firstName" name="firstName" value={user.firstName} onChange={handleChange} style={{borderRadius:"15px"}} />
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="lastName" className="form-label">Last Name</label>
-                            <input type="text" className="form-control" id="lastName" name="lastName" value={user.lastName} onChange={handleChange} />
+                            <label htmlFor="lastName" className="form-label" style={{fontSize:"17px"}}>Last Name:</label>
+                            <input type="text" className="form-control" id="lastName" name="lastName" value={user.lastName} onChange={handleChange} style={{borderRadius:"15px"}} />
                         </div>
                         {/* <div className="mb-3">
                             <label htmlFor="email" className="form-label">Email</label>
@@ -87,16 +87,16 @@ return (
                         </div> */}
                         {/* phone */}
                         <div className="mb-3">
-                            <label htmlFor="phone" className="form-label">Phone</label>
-                            <input type="text" className="form-control" id="phone" name="phone" value={user.phone} onChange={handleChange} />
+                            <label htmlFor="phone" className="form-label" style={{fontSize:"17px"}}>Phone:</label>
+                            <input type="text" className="form-control" id="phone" name="phone" value={user.phone} onChange={handleChange} style={{borderRadius:"15px"}} />
                         </div>
                         {/* address */}
                         <div className="mb-3">
-                            <label htmlFor="address" className="form-label">Address</label>
-                            <input type="text" className="form-control" id="address" name="address" value={user.address} onChange={handleChange} />
+                            <label htmlFor="address" className="form-label" style={{fontSize:"17px"}}>Address:</label>
+                            <input type="text" className="form-control" id="address" name="address" value={user.address} onChange={handleChange} style={{borderRadius:"15px"}} />
                         </div>
-                        <button type="submit" className="btn btn-primary">Save Changes</button>
-                        <Link to="/profile" className="btn btn-secondary ms-2">Cancel</Link>
+                        <button type="submit" className="btn btn-outline-primary mt-2">Save Changes</button>
+                        <Link to="/profile" className="btn btn-outline-warning ms-2 mt-2">Cancel</Link>
                     </form>
                 </div>
             </div>
