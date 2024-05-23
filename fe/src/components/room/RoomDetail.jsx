@@ -73,6 +73,14 @@ const RoomDetail = () => {
 
     const handleFavoriteToggle = async () => {
         try {
+            if (!userEmail) {
+                setErrorMessage("You must be logged in to add a room to your favorites list.");
+                setTimeout(() => {
+                    setErrorMessage("");
+                }, 3000);
+                return;
+            }
+            
             if (isFavorite) {
                 await removeFromFavorite(userEmail, roomId);
                 const updatedFavorites = favorites.filter(favorite => favorite.roomId !== roomId);
